@@ -1,0 +1,17 @@
+{
+  "name": "chess-desc-notation-emulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine spec/**/**.spec.js"
+  },
+  "keywords": [
+    "chess"
+  ],
+  "author": "Faiez Hares",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
