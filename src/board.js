@@ -31,32 +31,24 @@ const black = (board, rank) => {
   return board[rank - 1]
 }
 
-// fileShorthand either have two-letters "KB" (king-bishop) where the first is the side (king or queen)
-// or one-letter "K" or "Q"
-const pieceInRank = (rank, fileShorthand) => {
-  const side = fileShorthand.split('')[0]
-  const inclinedFile = fileShorthand.split('')[1] || side
+const pieceInRank = (rank, inclinedFile) => {
+  const side = inclinedFile.split('')[0]
+  const file = inclinedFile.split('')[1] || side
 
+  // When the file does not contain a side, we consider it on the side of the king
   if (side === 'Q') {
-    return rank[pieces.indexOf(inclinedFile)]
+    return rank[pieces.indexOf(file)]
   } else {
-    return rank[pieces.lastIndexOf(inclinedFile)]
+    return rank[pieces.lastIndexOf(file)]
   }
 }
 
-const whiteAt = (board, fileShorthand, rank) => {
-  return pieceInRank(white(board, rank), fileShorthand)
+const whiteAt = (board, file, rank) => {
+  return pieceInRank(white(board, rank), file)
 }
 
-const blackAt = (board, fileShorthand, rank) => {
-  const side = fileShorthand.split('')[0]
-  const inclinedFile = fileShorthand.split('')[1] || side
-
-  if (side === 'Q') {
-    return black(board, rank)[pieces.indexOf(inclinedFile)]
-  } else {
-    return black(board, rank)[pieces.lastIndexOf(inclinedFile)]
-  }
+const blackAt = (board, file, rank) => {
+  return pieceInRank(black(board, rank), file)
 }
 
 module.exports = {
