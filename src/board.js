@@ -23,12 +23,12 @@ const init = () => {
   return result
 }
 
-const white = (index, board) => {
-  return board[8 - index]
+const white = (rank, board) => {
+  return board[8 - rank]
 }
 
-const black = (index, board) => {
-  return board[index - 1]
+const black = (rank, board) => {
+  return board[rank - 1]
 }
 
 const whiteAt = (board, fileShorthand, rank) => {
