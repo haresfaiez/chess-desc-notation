@@ -1,6 +1,10 @@
 const board = require('../src/board')
 
 describe('board', () => {
+  it('returns the piece at a given location', () => {
+    expect(board.whiteAt(board.init(), 'K', 1)).toEqual('K')
+  })
+
   it('initializes the lines of the black player', () => {
     const actual = board.init()
 

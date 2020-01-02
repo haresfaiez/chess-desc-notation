@@ -1,3 +1,6 @@
+const pieces = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+const pawns = ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P']
+
 const empty = () => {
   return [
       ['', '', '', '', '', '', '', ''],
@@ -12,9 +15,6 @@ const empty = () => {
 }
 
 const init = () => {
-  const pieces = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
-  const pawns = ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P']
-
   const result = empty()
   result[0] = pieces
   result[1] = pawns
@@ -31,9 +31,14 @@ const black = (index, board) => {
   return board[index - 1]
 }
 
+const whiteAt = (board, file, rank) => {
+  return white(rank, board)[pieces.indexOf(file)]
+}
+
 module.exports = {
   empty,
   init,
   white,
-  black
+  black,
+  whiteAt
 }
