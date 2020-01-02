@@ -31,8 +31,9 @@ const black = (index, board) => {
   return board[index - 1]
 }
 
-const whiteAt = (board, file, rank) => {
-  return white(rank, board)[pieces.indexOf(file)]
+const whiteAt = (board, fileShorthand, rank) => {
+  const targetFile = fileShorthand.split('')[1] || fileShorthand.split('')[0]
+  return white(rank, board)[pieces.lastIndexOf(targetFile)]
 }
 
 module.exports = {

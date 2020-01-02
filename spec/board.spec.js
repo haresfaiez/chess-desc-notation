@@ -1,7 +1,11 @@
 const board = require('../src/board')
 
 describe('board', () => {
-  it('returns the piece at a given location', () => {
+  it('finds a piece in the king-bishop file', () => {
+    expect(board.whiteAt(board.init(), 'KB', 1)).toEqual('B')
+  })
+
+  it('finds a piece in the king file', () => {
     expect(board.whiteAt(board.init(), 'K', 1)).toEqual('K')
   })
 
