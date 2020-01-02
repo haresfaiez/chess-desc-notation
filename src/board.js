@@ -44,10 +44,22 @@ const whiteAt = (board, fileShorthand, rank) => {
   }
 }
 
+const blackAt = (board, fileShorthand, rank) => {
+  const side = fileShorthand.split('')[0]
+  const inclinedFile = fileShorthand.split('')[1] || side
+
+  if (side === 'Q') {
+    return black(board, rank)[pieces.indexOf(inclinedFile)]
+  } else {
+    return black(board, rank)[pieces.lastIndexOf(inclinedFile)]
+  }
+}
+
 module.exports = {
   empty,
   init,
   white,
   black,
-  whiteAt
+  whiteAt,
+  blackAt
 }

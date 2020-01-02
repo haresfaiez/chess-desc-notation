@@ -1,14 +1,28 @@
 const board = require('../src/board')
 
 describe('board', () => {
-  it('finds a piece in the queen-bishop file', () => {
+  it('finds a black piece in the queen-bishop file', () => {
+    const game = board.empty()
+    game[0] = ['', '', 'K', '', '', 'Q', '', '']
+
+    expect(board.blackAt(game, 'QB', 1)).toEqual('K')
+  })
+
+  it('finds a black piece in the king-bishop file', () => {
+    const game = board.empty()
+    game[0] = ['', '', '', '', '', 'Q', '', '']
+
+    expect(board.blackAt(game, 'KB', 1)).toEqual('Q')
+  })
+
+  it('finds a white piece in the queen-bishop file', () => {
     const game = board.empty()
     game[7] = ['', '', 'K', '', '', 'Q', '', '']
 
     expect(board.whiteAt(game, 'QB', 1)).toEqual('K')
   })
 
-  it('finds a piece in the king-bishop file', () => {
+  it('finds a white piece in the king-bishop file', () => {
     const game = board.empty()
     game[7] = ['', '', '', '', '', 'Q', '', '']
 
