@@ -32,8 +32,9 @@ const black = (index, board) => {
 }
 
 const whiteAt = (board, fileShorthand, rank) => {
-  const targetFile = fileShorthand.split('')[1] || fileShorthand.split('')[0]
-  return white(rank, board)[pieces.lastIndexOf(targetFile)]
+  const fileIsInclined = fileShorthand.length == 2
+  const inclinedFile = fileIsInclined ? fileShorthand.split('')[1] : fileShorthand.split('')[0]
+  return white(rank, board)[pieces.lastIndexOf(inclinedFile)]
 }
 
 module.exports = {
