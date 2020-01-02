@@ -31,17 +31,21 @@ const black = (board, rank) => {
   return board[rank - 1]
 }
 
-// fileShorthand can have two-letters "KB" (king-bishop) where the first is the side (king or queen)
+// fileShorthand either have two-letters "KB" (king-bishop) where the first is the side (king or queen)
 // or one-letter "K" or "Q"
-const whiteAt = (board, fileShorthand, rank) => {
+const pieceInRank = (rank, fileShorthand) => {
   const side = fileShorthand.split('')[0]
   const inclinedFile = fileShorthand.split('')[1] || side
 
   if (side === 'Q') {
-    return white(board, rank)[pieces.indexOf(inclinedFile)]
+    return rank[pieces.indexOf(inclinedFile)]
   } else {
-    return white(board, rank)[pieces.lastIndexOf(inclinedFile)]
+    return rank[pieces.lastIndexOf(inclinedFile)]
   }
+}
+
+const whiteAt = (board, fileShorthand, rank) => {
+  return pieceInRank(white(board, rank), fileShorthand)
 }
 
 const blackAt = (board, fileShorthand, rank) => {
