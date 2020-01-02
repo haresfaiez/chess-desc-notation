@@ -23,11 +23,11 @@ const init = () => {
   return result
 }
 
-const white = (rank, board) => {
+const white = (board, rank) => {
   return board[8 - rank]
 }
 
-const black = (rank, board) => {
+const black = (board, rank) => {
   return board[rank - 1]
 }
 
@@ -38,9 +38,9 @@ const whiteAt = (board, fileShorthand, rank) => {
   const inclinedFile = fileShorthand.split('')[1] || side
 
   if (side === 'Q') {
-    return white(rank, board)[pieces.indexOf(inclinedFile)]
+    return white(board, rank)[pieces.indexOf(inclinedFile)]
   } else {
-    return white(rank, board)[pieces.lastIndexOf(inclinedFile)]
+    return white(board, rank)[pieces.lastIndexOf(inclinedFile)]
   }
 }
 

@@ -24,21 +24,21 @@ describe('board', () => {
   it('initializes the lines of the black player', () => {
     const game = board.init()
 
-    expect(board.black(1, game)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
-    expect(board.black(2, game)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
+    expect(board.black(game, 1)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
+    expect(board.black(game, 2)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
   })
 
   it('initializes the lines of the white player', () => {
     const game = board.init()
 
-    expect(board.white(1, game)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
-    expect(board.white(2, game)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
+    expect(board.white(game, 1)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
+    expect(board.white(game, 2)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
   })
 
   it('returns the first line of the white player', () => {
     const singleton = ['B1', 'B2', '', '', '', '', 'W2', 'W1']
 
-    expect(board.white(1, singleton)).toEqual('W1')
+    expect(board.white(singleton, 1)).toEqual('W1')
   })
 
   it('has no pieces on creation', () => {
