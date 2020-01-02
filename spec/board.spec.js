@@ -16,21 +16,23 @@ describe('board', () => {
   })
 
   it('finds a piece in the king file', () => {
-    expect(board.whiteAt(board.init(), 'K', 1)).toEqual('K')
+    const game = board.init()
+
+    expect(board.whiteAt(game, 'K', 1)).toEqual('K')
   })
 
   it('initializes the lines of the black player', () => {
-    const actual = board.init()
+    const game = board.init()
 
-    expect(board.black(1, actual)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
-    expect(board.black(2, actual)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
+    expect(board.black(1, game)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
+    expect(board.black(2, game)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
   })
 
   it('initializes the lines of the white player', () => {
-    const actual = board.init()
+    const game = board.init()
 
-    expect(board.white(1, actual)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
-    expect(board.white(2, actual)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
+    expect(board.white(1, game)).toEqual(['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'])
+    expect(board.white(2, game)).toEqual(['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'])
   })
 
   it('returns the first line of the white player', () => {
@@ -40,7 +42,7 @@ describe('board', () => {
   })
 
   it('has no pieces on creation', () => {
-    const actual = board.empty()
+    const game = board.empty()
 
     const expected = [
       ['', '', '', '', '', '', '', ''],
@@ -52,6 +54,6 @@ describe('board', () => {
       ['', '', '', '', '', '', '', ''],
       ['', '', '', '', '', '', '', '']
     ]
-    expect(actual).toBeTruthy(expected)
+    expect(game).toBeTruthy(expected)
   })
 })
