@@ -1,6 +1,13 @@
 const board = require('../src/board')
 
 describe('board', () => {
+  it('finds a piece in the queen-bishop file', () => {
+    const game = board.empty()
+    game[7] = ['', '', 'K', '', '', 'Q', '', '']
+
+    expect(board.whiteAt(game, 'QB', 1)).toEqual('K')
+  })
+
   it('finds a piece in the king-bishop file', () => {
     const game = board.empty()
     game[7] = ['', '', '', '', '', 'Q', '', '']
