@@ -1,5 +1,7 @@
 {
   "name": "chess-desc-notation",
+  "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
   "sources": [
     {
       "dir": "src"
@@ -8,6 +10,5 @@
       "dir": "__tests__",
       "type": "dev"
     }
-  ],
-  "bs-dev-dependencies": ["@glennsl/bs-jest"]
+  ]
 }
