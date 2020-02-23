@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine spec/**/**.spec.js",
+    "clean": "bsb -clean-world",
+    "build": "bsb -make-world",
+    "watch": "bsb -make-world -w",
+    "test": "npm run build && jest",
     "tcr": "npm test && git commit -a || git reset --hard"
   },
   "keywords": [
@@ -13,6 +16,8 @@
   "author": "Faiez Hares",
   "license": "ISC",
   "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.9",
+    "bs-platform": "^7.1.1",
     "jasmine": "^3.5.0"
   }
 }

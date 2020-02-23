@@ -1,0 +1,13 @@
+{
+  "name": "chess-desc-notation",
+  "sources": [
+    {
+      "dir": "src"
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"]
+}
