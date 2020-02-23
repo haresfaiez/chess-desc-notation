@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "bsb -clean-world",
+    "clean": "bsb -clean-world && rm **/*~",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
     "test": "npm run build && jest",
