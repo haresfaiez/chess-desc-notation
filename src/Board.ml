@@ -6,5 +6,6 @@ module Board = struct
     match file with
     | 'K' -> King
     | 'Q' -> Queen
+  let at file rank = King
 end
 
