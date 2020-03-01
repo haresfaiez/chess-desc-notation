@@ -2,8 +2,8 @@ module Board = struct
   type piece =
     | King
     | Queen
-  let pieceAt a b =
-    match a with
+  let pieceAt file b =
+    match file with
     | 'K' -> King
     | 'Q' -> Queen
 end
