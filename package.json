@@ -8,7 +8,7 @@
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
     "test": "npm run build && jest",
-    "tcr": "npm test && git commit -a || git reset --hard"
+    "tcr": "npm test && git add . && git diff --cached && git commit || git reset --hard"
   },
   "keywords": [
     "chess"
