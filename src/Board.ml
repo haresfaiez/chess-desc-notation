@@ -8,7 +8,11 @@ module Board = struct
     | 'Q' -> Queen
   let at file rank =
     match file with
-    | King -> King
-    | Queen -> Queen
+    | King  -> (
+      match rank with
+      | 1 -> Some King
+      | _ -> None
+    )
+    | Queen -> Some Queen
 end
 

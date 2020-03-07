@@ -3,5 +3,5 @@ module Board : sig
     | King
     | Queen
   val pieceAt: char -> int -> piece
-  val at     : piece -> int -> piece
+  val at     : piece -> int -> piece option
 end
