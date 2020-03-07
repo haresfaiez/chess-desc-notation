@@ -13,4 +13,8 @@ let () =
           expect (Board.occupant Board.King 3) |> toBe None);
       test "puts no piece in Q5" (fun () ->
           expect (Board.occupant Board.Queen 5) |> toBe None);
+      test "puts no piece above the board" (fun () ->
+          expect (Board.occupant Board.Queen 9) |> toBe None);
+      test "puts no piece below the board" (fun () ->
+          expect (Board.occupant Board.Queen 0) |> toBe None);
     );
