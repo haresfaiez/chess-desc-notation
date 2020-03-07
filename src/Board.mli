@@ -2,5 +2,5 @@ module Board : sig
   type piece =
     | King
     | Queen
-  val at     : piece -> int -> piece option
+  val occupant: piece -> int -> piece option
 end

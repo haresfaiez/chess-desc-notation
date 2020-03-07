@@ -3,7 +3,7 @@ module Board = struct
     | King
     | Queen
 
-  let at file rank =
+  let occupant file rank =
     match file with
     | King  -> (
       match rank with
