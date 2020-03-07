@@ -8,7 +8,6 @@
 
 Use `npm test` to run tests
 
-
 ## Chess notation
 
 ### Rank
