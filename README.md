@@ -43,3 +43,4 @@ in the diff analysis).
 
 ## How to
 * Emacs `auto-revert-mode`
+* Start with failed cases (the non-happy path), e.g Board.move implementation.
