@@ -4,16 +4,8 @@ module Board = struct
     | Queen
 
   let occupant file rank =
-    match file with
-    | King  -> (
-      match rank with
-      | 1 -> Some King
-      | _ -> None
-    )
-    | Queen -> (
-      match rank with
-      | 1 -> Some Queen
-      | _ -> None
-    )
+    match rank with
+    | 1 -> Some file
+    | _ -> None
 end
 
