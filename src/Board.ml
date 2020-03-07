@@ -7,7 +7,7 @@ module Board = struct
   type moveFailure =
     | NotInStartPosition
 
-  let occupant file rank =
+  let occupant (file, rank) =
     match rank with
     | 1 -> Some file
     | 2 -> Some Pawn

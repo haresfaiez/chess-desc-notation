@@ -5,6 +5,6 @@ module Board : sig
     | Pawn
   type moveFailure =
     | NotInStartPosition
-  val occupant: piece -> int -> piece option
+  val occupant: (piece * int) -> piece option
   val move    : piece -> (piece * int) -> moveFailure
 end
