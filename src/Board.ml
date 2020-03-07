@@ -6,6 +6,7 @@ module Board = struct
 
   type moveFailure =
     | NotInStartPosition
+    | UnauthorizedMove
 
   let occupant (file, rank) =
     match rank with
@@ -14,6 +15,8 @@ module Board = struct
     | _ -> None
 
   let move piece (destinationFile, destinationRank) =
-    NotInStartPosition
+    match destinationRank with
+    | 7 -> NotInStartPosition
+    | 1 -> UnauthorizedMove
 end
 

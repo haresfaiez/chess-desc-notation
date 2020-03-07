@@ -21,4 +21,6 @@ let () =
   describe "Pawn movement" (fun () ->
       test "fails when no pawn is in the start position" (fun () ->
           expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NotInStartPosition);
+      test "fails when a pawn is moved backward" (fun () ->
+          expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.UnauthorizedMove);
     );
