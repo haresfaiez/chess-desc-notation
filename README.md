@@ -11,14 +11,17 @@ Use `npm test` to run tests
 
 ## Chess notation
 
+### Rank
+A row of the chess board. We use numbers from 1 to 8 to denote ranks.
 
-Rank: a row of the chess board. We use numbers from 1 to 8 to denote ranks.
-
-File: a column of the chess board. We refer to each file using the name of the piece
+### File
+A column of the chess board. We refer to each file using the name of the piece
 we put in that column in the initial configuration.
-K : King
-Q : Queen
-Kt: Knight (some notations use `N` here)
-B : Bishop
-R : Rook
-P : Pawn
+
+### Pieces
+* K : King
+* Q : Queen
+* Kt: Knight (some notations use `N` here)
+* B : Bishop
+* R : Rook
+* P : Pawn
