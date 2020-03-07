@@ -25,3 +25,19 @@ we put in that column in the initial configuration.
 * B : Bishop
 * R : Rook
 * P : Pawn
+
+## Problems with descriptive notation
+* `B1` is can be either on the queen side or on the king side. You can specify that as
+  `KB1` or `QB1`.
+
+## TCR
+
+### [-]
+* Need to commit README updates manually
+
+### [+]
+* works well with types (those tests won't compile in TDD).
+
+
+## How to
+* Emacs `auto-revert-mode`
