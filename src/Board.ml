@@ -13,6 +13,7 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let move piece destination = NotInStartPosition
+  let move piece (destinationFile, destinationRank) =
+    NotInStartPosition
 end
 
