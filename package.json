@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "bsb -clean-world && rm **/*~",
+    "clean": "bsb -clean-world && (rm **/*~ || echo 'No temp files.')",
+    "clear": "npm run clean",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
     "test": "npm run build && jest",
