@@ -44,3 +44,6 @@ in the diff analysis).
 ## How to
 * Emacs `auto-revert-mode`
 * Start with failed cases (the non-happy path), e.g Board.move implementation.
+* Baby steps: want a refactoring repeated. Either change the design to make failure of test/revert
+  less costly (This means better design, less possible states and less bugs, and continuous iteration)
+  or one-two-many (change one and commit, change two with the most gap and commit, change the others).
