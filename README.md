@@ -36,7 +36,8 @@ we put in that column in the initial configuration.
 * Need to commit README updates manually
 
 ### [+]
-* works well with types (those tests won't compile in TDD).
+* Works well with types (those tests won't compile in TDD).
+* You get another chance to revert if you leave the git message empty.
 
 
 ## How to
