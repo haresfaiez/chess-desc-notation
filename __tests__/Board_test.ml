@@ -18,3 +18,7 @@ let () =
       test "puts no piece below the board" (fun () ->
           expect (Board.occupant Board.Queen 0) |> toBe None);
     );
+  describe "Pawn movement" (fun () ->
+      test "fails when no pawn is in the start position" (fun () ->
+          expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NotInStartPosition);
+    );
