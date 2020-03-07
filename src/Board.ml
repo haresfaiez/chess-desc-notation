@@ -10,6 +10,10 @@ module Board = struct
       | 1 -> Some King
       | _ -> None
     )
-    | Queen -> Some Queen
+    | Queen -> (
+      match rank with
+      | 1 -> Some Queen
+      | _ -> None
+    )
 end
 
