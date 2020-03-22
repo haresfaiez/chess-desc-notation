@@ -8,11 +8,16 @@ module Board = struct
     | NotInStartPosition
     | UnauthorizedMove
 
-  let occupant (file, rank) =
+  type rank =
+    | Rank of int
+
+  let occupant (file, rank : piece * int) =
     match rank with
     | 1 -> Some file
     | 2 -> Some Pawn
     | _ -> None
+
+  let _occupant (file, rank: piece * rank) = None
 
   let move piece (destinationFile, destinationRank) =
     match destinationRank with
