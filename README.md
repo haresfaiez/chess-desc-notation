@@ -39,6 +39,7 @@ in the diff analysis).
 ### [+]
 * Works well with types (those tests won't compile in TDD).
 * You get another chance to revert if you leave the git message empty.
+* Behavior change and structure changes are separated.
 
 
 ## How to
