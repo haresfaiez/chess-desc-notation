@@ -9,7 +9,7 @@ module Board = struct
     | UnauthorizedMove
 
   type rank =
-    | Rank of int
+    | Rank of int (* value should be between 1 and 8 *)
 
   let occupant (file, rank) =
     match rank with
