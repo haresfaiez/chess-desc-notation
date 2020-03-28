@@ -14,6 +14,8 @@ module Board = struct
 
   type position = (piece * rank)
 
+  type square = (position * (piece option))
+
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file

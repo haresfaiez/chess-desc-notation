@@ -10,11 +10,13 @@ module Board : sig
 
   type position = (piece * rank)
 
+  type square = (position * (piece option))
+
   type moveFailure =
     | NoPieceToMove
     | OccupiedDestination
 
-  val get     : position -> (position * (piece option))
+  val get     : position -> square
   val occupant: position -> piece option
   val move    : piece -> (piece * int) -> moveFailure
 end
