@@ -15,6 +15,6 @@ module Board : sig
     | OccupiedDestination
 
   val get     : position -> (position * (piece option))
-  val occupant: (piece * rank) -> piece option
+  val occupant: position -> piece option
   val move    : piece -> (piece * int) -> moveFailure
 end
