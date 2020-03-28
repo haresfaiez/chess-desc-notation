@@ -20,7 +20,7 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let get _ = ((King, (Rank 1)), (occupant (King, (Rank 1))))
+  let get position = (position, (occupant position))
 
   let move piece (toFile, toRank) =
     match toRank with
