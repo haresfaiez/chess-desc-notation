@@ -7,6 +7,7 @@ module Board = struct
   type moveFailure =
     | NotInStartPosition
     | UnauthorizedMove
+    | NoPieceToMove
 
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
@@ -19,7 +20,7 @@ module Board = struct
 
   let move piece (toFile, toRank) =
     match toRank with
-    | 7 -> NotInStartPosition
+    | 7 -> NoPieceToMove
     | 1 -> UnauthorizedMove
 end
 

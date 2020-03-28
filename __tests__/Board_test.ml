@@ -16,9 +16,9 @@ let () =
       test "third rank is empty" (fun () ->
           expect (Board.occupant (Board.King, (Board.Rank 3))) |> toBe None);
     );
-  describe "Pawn movement" (fun () ->
-      test "fails when no pawn is in the start position" (fun () ->
-          expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NotInStartPosition);
+  describe "Initial pawn movement" (fun () ->
+      test "fails when is moved to K7" (fun () ->
+          expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NoPieceToMove);
       test "fails when a pawn is moved backward" (fun () ->
           expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.UnauthorizedMove);
     );
