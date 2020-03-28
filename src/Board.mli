@@ -11,6 +11,6 @@ module Board : sig
     | NotInStartPosition
     | UnauthorizedMove
 
-  val _occupant: (piece * rank) -> piece option
+  val occupant: (piece * rank) -> piece option
   val move    : piece -> (piece * int) -> moveFailure
 end
