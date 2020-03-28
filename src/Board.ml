@@ -5,8 +5,6 @@ module Board = struct
     | Pawn
 
   type moveFailure =
-    | NotInStartPosition
-    | UnauthorizedMove
     | NoPieceToMove
 
   type rank =

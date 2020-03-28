@@ -8,8 +8,6 @@ module Board : sig
     | Rank of int
 
   type moveFailure =
-    | NotInStartPosition
-    | UnauthorizedMove
     | NoPieceToMove
 
   val occupant: (piece * rank) -> piece option
