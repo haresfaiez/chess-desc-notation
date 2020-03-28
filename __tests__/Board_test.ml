@@ -26,3 +26,7 @@ let () =
       test "fails when moved to K7" (fun () ->
           expect (Board.move Board.Knight (Board.King, 7)) |> toBe Board.NoPieceToMove);
     );
+  describe "Initial King movement" (fun () ->
+      test "fails when moved to K2" (fun () ->
+          expect (Board.move Board.King (Board.King, 2)) |> toBe Board.OccupiedDestination);
+    );

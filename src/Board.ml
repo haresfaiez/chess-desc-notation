@@ -7,6 +7,7 @@ module Board = struct
 
   type moveFailure =
     | NoPieceToMove
+    | OccupiedDestination
 
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
@@ -19,6 +20,7 @@ module Board = struct
 
   let move piece (toFile, toRank) =
     match toRank with
+    | 2 -> OccupiedDestination
     | 7 -> NoPieceToMove
     | 1 -> NoPieceToMove
 end
