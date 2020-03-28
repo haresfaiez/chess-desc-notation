@@ -12,6 +12,10 @@ module Board = struct
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
 
+  type position = (piece * rank)
+
+  let get _ = ((King, (Rank 1)), (Some King))
+
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
