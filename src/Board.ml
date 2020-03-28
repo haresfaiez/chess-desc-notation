@@ -11,12 +11,6 @@ module Board = struct
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
 
-  let occupant (file, rank) =
-    match rank with
-    | 1 -> Some file
-    | 2 -> Some Pawn
-    | _ -> None
-
   let _occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
