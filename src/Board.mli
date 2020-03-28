@@ -2,6 +2,7 @@ module Board : sig
   type piece =
     | King
     | Queen
+    | Knight
     | Pawn
 
   type rank =

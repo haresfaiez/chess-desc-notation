@@ -2,6 +2,7 @@ module Board = struct
   type piece =
     | King
     | Queen
+    | Knight
     | Pawn
 
   type moveFailure =
