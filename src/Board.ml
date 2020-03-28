@@ -21,7 +21,6 @@ module Board = struct
   let move piece (toFile, toRank) =
     match toRank with
     | 2 -> OccupiedDestination
-    | 7 -> NoPieceToMove
-    | 1 -> NoPieceToMove
+    | _ -> NoPieceToMove
 end
 
