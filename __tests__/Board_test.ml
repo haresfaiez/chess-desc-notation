@@ -20,5 +20,5 @@ let () =
       test "fails when is moved to K7" (fun () ->
           expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NoPieceToMove);
       test "fails when a pawn is moved backward" (fun () ->
-          expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.UnauthorizedMove);
+          expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.NoPieceToMove);
     );
