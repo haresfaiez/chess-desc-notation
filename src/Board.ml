@@ -17,8 +17,8 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let move piece (destinationFile, destinationRank) =
-    match destinationRank with
+  let move piece (toFile, toRank) =
+    match toRank with
     | 7 -> NotInStartPosition
     | 1 -> UnauthorizedMove
 end
