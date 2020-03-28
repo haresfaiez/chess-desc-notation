@@ -19,16 +19,16 @@ let () =
           expect (Board.occupant (Board.King, (Board.Rank 3))) |> toBe None);
     );
   describe "Initial pawn movement" (fun () ->
-      test "fails when moved to K7" (fun () ->
+      test "fails when the destination is K7" (fun () ->
           expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
           expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.NoPieceToMove);
     );
   describe "Initial knight movement" (fun () ->
-      test "fails when moved to K7" (fun () ->
+      test "fails when the destination is K7" (fun () ->
           expect (Board.move Board.Knight (Board.King, 7)) |> toBe Board.NoPieceToMove);
     );
   describe "Initial King movement" (fun () ->
-      test "fails when moved to K2" (fun () ->
+      test "fails when the destination is K2" (fun () ->
           expect (Board.move Board.King (Board.King, 2)) |> toBe Board.OccupiedDestination);
     );
