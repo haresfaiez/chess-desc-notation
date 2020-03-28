@@ -40,7 +40,10 @@ in the diff analysis).
 * Works well with types (those tests won't compile in TDD).
 * You get another chance to revert if you leave the git message empty.
 * Behavior change and structure changes are separated.
-
+* Baby steps will tiny. You will have to introduce one change at a time.
+  If you want to introduce two and forget to finish one, the compiler or the test
+  disagrees. Example: add new movement for a new piece -> failure.
+  You need to first add the piece, tcr, then add the movement, tcr.
 
 ## How to
 * Emacs `auto-revert-mode`
