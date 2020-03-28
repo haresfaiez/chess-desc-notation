@@ -14,13 +14,13 @@ module Board = struct
 
   type position = (piece * rank)
 
-  let get _ = ((King, (Rank 1)), (Some King))
-
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
     | 2 -> Some Pawn
     | _ -> None
+
+  let get _ = ((King, (Rank 1)), (occupant (King, (Rank 1))))
 
   let move piece (toFile, toRank) =
     match toRank with
