@@ -7,10 +7,12 @@ let k1 : Board.position = (Board.King, (Board.Rank 1))
 let k7 : Board.position = (Board.King, (Board.Rank 7))
 let k2 : Board.position = (Board.King, (Board.Rank 2))
 
+let occupiedK rank piece : Board.square = ((Board.King, (Board.Rank rank)), (Some piece))
+
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
-          expect (Board.get k1) |> toEqual (k1, (Some Board.King)));
+          expect (Board.get k1) |> toEqual (occupiedK 1 Board.King));
       test "puts the white queen in Q1" (fun () ->
           expect (Board.occupant (Board.Queen, (Board.Rank 1))) |> toBe (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
