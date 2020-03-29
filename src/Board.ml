@@ -28,7 +28,6 @@ module Board = struct
     match occupant with
     | Some piece -> OccupiedDestination
     | None       -> match toRank with
-                    | 2 -> OccupiedDestination
                     | _ -> NoPieceToMove
 end
 
