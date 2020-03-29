@@ -24,7 +24,7 @@ let () =
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board.move Board.Pawn k7 None) |> toBe Board.NoPieceToMove);
+          expect (Board._move Board.Pawn (k7, None)) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
           expect (Board.move Board.Pawn k1 None) |> toBe Board.NoPieceToMove);
     );

@@ -29,6 +29,8 @@ module Board = struct
     | Some piece -> OccupiedDestination
     | None       -> match toRank with
                     | _ -> NoPieceToMove
+
   let move subject destination occupant = (_move subject (destination, occupant))
+
 end
 
