@@ -18,5 +18,5 @@ module Board : sig
 
   val get     : position -> square
   val occupant: position -> piece option
-  val move    : piece -> (piece * int) -> moveFailure
+  val move    : piece -> (piece * rank) -> moveFailure
 end

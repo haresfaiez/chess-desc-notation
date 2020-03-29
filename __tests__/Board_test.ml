@@ -4,6 +4,8 @@ open Expect
 open Board
 
 let k1 : Board.position = (Board.King, (Board.Rank 1))
+let k7 : Board.position = (Board.King, (Board.Rank 7))
+let k2 : Board.position = (Board.King, (Board.Rank 2))
 
 let () =
   describe "Initial board" (fun () ->
@@ -20,15 +22,15 @@ let () =
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board.move Board.Pawn (Board.King, 7)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Pawn k7) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
-          expect (Board.move Board.Pawn (Board.King, 1)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Pawn k1) |> toBe Board.NoPieceToMove);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board.move Board.Knight (Board.King, 7)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Knight k7) |> toBe Board.NoPieceToMove);
     );
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2" (fun () ->
-          expect (Board.move Board.King (Board.King, 2)) |> toBe Board.OccupiedDestination);
+          expect (Board.move Board.King k2) |> toBe Board.OccupiedDestination);
     );
