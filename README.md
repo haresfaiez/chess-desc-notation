@@ -41,6 +41,9 @@ in the diff analysis).
 * You get another chance to revert if you leave the git message empty.
 * Behavior change and structure changes are separated.
 * A lot of refactoring will be extracting/rearranging type definitions.
+* If the change is small and the test/build fails. Then, our model is flawed.
+  Eiither because we are not doing the right change, we are not doing the right change in the right way,
+  or we are missing something fundamental.
 * I used to test my code with a `git diff` before committing, now I use `npm run tcr`.
   The cost of revert is low, I get to see the diff, and what I expect to fail is in the test.
   If the test fails, the code should be modified/rewritten better. If the test succed and I notice
