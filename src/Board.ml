@@ -24,10 +24,11 @@ module Board = struct
 
   let get position = (position, (occupant position))
 
-  let move subject (toFile, (Rank toRank)) occupant =
+  let _move (subject : piece) (((toFile, (Rank toRank)), occupant) : square) : moveFailure =
     match occupant with
     | Some piece -> OccupiedDestination
     | None       -> match toRank with
                     | _ -> NoPieceToMove
+  let move subject destination occupant = (_move subject (destination, occupant))
 end
 
