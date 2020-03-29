@@ -24,15 +24,15 @@ let () =
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board._move Board.Pawn (k7, None)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Pawn (k7, None)) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
-          expect (Board._move Board.Pawn (k1, None)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Pawn (k1, None)) |> toBe Board.NoPieceToMove);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board._move Board.Knight (k7, None)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Knight (k7, None)) |> toBe Board.NoPieceToMove);
     );
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2" (fun () ->
-          expect (Board._move Board.King (k2, (Some Board.Pawn))) |> toBe Board.OccupiedDestination);
+          expect (Board.move Board.King (k2, (Some Board.Pawn))) |> toBe Board.OccupiedDestination);
     );
