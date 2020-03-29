@@ -34,5 +34,5 @@ let () =
     );
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2" (fun () ->
-          expect (Board.move Board.King k2 None) |> toBe Board.OccupiedDestination);
+          expect (Board.move Board.King k2 (Some Board.Pawn)) |> toBe Board.OccupiedDestination);
     );
