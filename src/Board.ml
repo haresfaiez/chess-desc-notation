@@ -31,6 +31,7 @@ module Board = struct
     let delegate = (occupant square) in
     match delegate with
     | ((a, b), (Some c)) -> Occupied ((a,b), c)
+    | ((a, b), None)     -> Empty (a, b)
 
   let move piece destination =
     match destination with

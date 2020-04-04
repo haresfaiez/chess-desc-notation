@@ -13,7 +13,7 @@ let () =
       test "puts the white queen in Q1" (fun () ->
           expect (Board.occupant (q 1)) |> toEqual ((q 1), (Some Board.Queen)));
       test "puts no piece in K3" (fun () ->
-          expect (Board.occupant (k 3)) |> toEqual ((k 3), None));
+          expect (Board._occupant (k 3)) |> toEqual (Board.Empty (k 3)));
       test "puts no piece in Q5" (fun () ->
           expect (Board.occupant (q 5)) |> toEqual ((q 5), None));
       test "third rank is empty" (fun () ->
