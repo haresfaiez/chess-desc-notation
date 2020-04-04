@@ -32,6 +32,8 @@ module Board = struct
     | None       -> match toRank with
                     | _ -> NoPieceToMove
 
-  let _move piece (Occupied (position, piece)) = (move piece (position, Some piece))
+  let _move piece destination =
+    match destination with
+    | (Occupied (position, piece)) -> (move piece (position, Some piece))
 end
 
