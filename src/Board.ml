@@ -29,7 +29,7 @@ module Board = struct
 
   let move piece destination =
     match destination with
-    | Occupied (position, piece) -> OccupiedDestination
+    | Occupied _                 -> OccupiedDestination
     | Empty (file, (Rank rank))  -> match rank with
                                     | _ -> NoPieceToMove
 end
