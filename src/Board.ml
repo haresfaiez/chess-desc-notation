@@ -27,13 +27,6 @@ module Board = struct
     | _ -> None in
     ((file, Rank rank), piece)
 
-  let move (subject : piece) ((position, occupant) : square) : moveFailure =
-    match occupant with
-    | Some piece -> OccupiedDestination
-    | None       -> match position with
-                    | (file, (Rank rank)) -> match rank with
-                                             | _ -> NoPieceToMove
-
   let _move piece destination =
     match destination with
     | Occupied (position, piece) -> OccupiedDestination
