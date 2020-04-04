@@ -31,8 +31,8 @@ module Board = struct
     match occupant with
     | Some piece -> OccupiedDestination
     | None       -> match position with
-                    | (toFile, (Rank toRank)) -> match toRank with
-                                                 | _ -> NoPieceToMove
+                    | (file, (Rank rank)) -> match rank with
+                                             | _ -> NoPieceToMove
 
   let _move piece destination =
     match destination with
