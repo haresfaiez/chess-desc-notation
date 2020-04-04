@@ -13,7 +13,7 @@ module Board : sig
   type square = (position * (piece option))
 
   type _square =
-    | Occupied of square
+    | Occupied: square -> _square
 
   type moveFailure =
     | NoPieceToMove

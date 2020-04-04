@@ -17,7 +17,7 @@ module Board = struct
   type square = (position * (piece option))
 
   type _square =
-    | Occupied of square
+    | Occupied: square -> _square
   
   let occupant (file, Rank rank) =
     let piece = match rank with
