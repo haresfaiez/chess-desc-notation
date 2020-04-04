@@ -27,8 +27,8 @@ module Board = struct
     | _ -> None in
     ((file, Rank rank), piece)
 
-  let _occupant square =
-    let delegate = (occupant square) in
+  let _occupant position =
+    let delegate = (occupant position) in
     match delegate with
     | ((a, b), (Some c)) -> Occupied ((a,b), c)
     | ((a, b), None)     -> Empty (a, b)
