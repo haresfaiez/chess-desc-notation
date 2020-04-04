@@ -6,6 +6,10 @@ open Board
 let k1 : Board.position = (Board.King, (Board.Rank 1))
 let k7 : Board.position = (Board.King, (Board.Rank 7))
 let k2 : Board.position = (Board.King, (Board.Rank 2))
+let k3 : Board.position = (Board.King, (Board.Rank 3))
+
+let q1 : Board.position = (Board.Queen, (Board.Rank 1))
+let q5 : Board.position = (Board.Queen, (Board.Rank 5))
 
 let occupiedK rank piece : Board.square = ((Board.King, (Board.Rank rank)), (Some piece))
 
@@ -14,13 +18,13 @@ let () =
       test "puts the white king in K1" (fun () ->
           expect (Board.get k1) |> toEqual (occupiedK 1 Board.King));
       test "puts the white queen in Q1" (fun () ->
-          expect (Board.occupant (Board.Queen, (Board.Rank 1))) |> toBe (Some Board.Queen));
+          expect (Board.occupant q1) |> toBe (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
-          expect (Board.occupant (Board.King, (Board.Rank 3))) |> toBe None);
+          expect (Board.occupant k3) |> toBe None);
       test "puts no piece in Q5" (fun () ->
-          expect (Board.occupant (Board.Queen, (Board.Rank 5))) |> toBe None);
+          expect (Board.occupant q5) |> toBe None);
       test "third rank is empty" (fun () ->
-          expect (Board.occupant (Board.King, (Board.Rank 3))) |> toBe None);
+          expect (Board.occupant k3) |> toBe None);
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
