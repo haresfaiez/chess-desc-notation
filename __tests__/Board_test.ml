@@ -18,7 +18,7 @@ let occupiedK rank piece : Board.square = ((Board.King, (Board.Rank rank)), (Som
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
-          expect (Board.get k1) |> toEqual (occupiedK 1 Board.King));
+          expect (Board.get (k 1)) |> toEqual (occupiedK 1 Board.King));
       test "puts the white queen in Q1" (fun () ->
           expect (Board.occupant q1) |> toBe (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
@@ -32,7 +32,7 @@ let () =
       test "fails when the destination is K7" (fun () ->
           expect (Board.move Board.Pawn (k7, None)) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
-          expect (Board.move Board.Pawn (k1, None)) |> toBe Board.NoPieceToMove);
+          expect (Board.move Board.Pawn ((k 1), None)) |> toBe Board.NoPieceToMove);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
