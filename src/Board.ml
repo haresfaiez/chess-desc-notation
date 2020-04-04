@@ -22,9 +22,9 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let get position =
-    let piece = (occupant position) in
-    (position, piece)
+  let get (file, Rank rank) =
+    let piece = (occupant (file, Rank rank)) in
+    ((file, Rank rank), piece)
 
   let move (subject : piece) (((toFile, (Rank toRank)), occupant) : square) : moveFailure =
     match occupant with
