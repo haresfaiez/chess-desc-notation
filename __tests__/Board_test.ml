@@ -6,19 +6,16 @@ open Board
 let k rank : Board.position = (Board.King, (Board.Rank rank))
 let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 
-let q1 : Board.position = (q 1)
-let q5 : Board.position = (Board.Queen, (Board.Rank 5))
-
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
           expect (Board.get (k 1)) |> toEqual ((k 1), (Some Board.King)));
       test "puts the white queen in Q1" (fun () ->
-          expect (Board.occupant q1) |> toBe (Some Board.Queen));
+          expect (Board.occupant (q 1)) |> toBe (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
           expect (Board.occupant (k 3)) |> toBe None);
       test "puts no piece in Q5" (fun () ->
-          expect (Board.occupant q5) |> toBe None);
+          expect (Board.occupant (q 5)) |> toBe None);
       test "third rank is empty" (fun () ->
           expect (Board.occupant (k 3)) |> toBe None);
     );
