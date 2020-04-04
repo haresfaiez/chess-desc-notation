@@ -17,6 +17,5 @@ module Board : sig
     | OccupiedDestination
 
   val get     : position -> square
-  val occupant: position -> piece option
   val move    : piece -> square -> moveFailure
 end

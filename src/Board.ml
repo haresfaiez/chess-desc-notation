@@ -16,12 +16,6 @@ module Board = struct
 
   type square = (position * (piece option))
 
-  let occupant (file, Rank rank) =
-    match rank with
-    | 1 -> Some file
-    | 2 -> Some Pawn
-    | _ -> None
-
   let get (file, Rank rank) =
     let piece = match rank with
     | 1 -> Some file
