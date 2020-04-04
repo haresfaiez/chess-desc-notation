@@ -30,8 +30,8 @@ module Board = struct
   let _occupant position =
     let delegate = (occupant position) in
     match delegate with
-    | ((a, b), (Some c)) -> Occupied ((a,b), c)
-    | ((a, b), None)     -> Empty (a, b)
+    | (_, (Some c)) -> Occupied (position, c)
+    | (_, None)     -> Empty position
 
   let move piece destination =
     match destination with
