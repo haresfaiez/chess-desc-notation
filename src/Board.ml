@@ -27,6 +27,11 @@ module Board = struct
     | _ -> None in
     ((file, Rank rank), piece)
 
+  let _occupant square =
+    let delegate = (occupant square) in
+    match delegate with
+    | ((a, b), (Some c)) -> Occupied ((a,b), c)
+
   let move piece destination =
     match destination with
     | Occupied _                 -> OccupiedDestination

@@ -9,7 +9,7 @@ let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
-          expect (Board.occupant (k 1)) |> toEqual ((k 1), (Some Board.King)));
+          expect (Board._occupant (k 1)) |> toEqual (Board.Occupied ((k 1), Board.King)));
       test "puts the white queen in Q1" (fun () ->
           expect (Board.occupant (q 1)) |> toEqual ((q 1), (Some Board.Queen)));
       test "puts no piece in K3" (fun () ->
