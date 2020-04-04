@@ -4,16 +4,15 @@ open Expect
 open Board
 
 let k rank : Board.position = (Board.King, (Board.Rank rank))
+let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 
-let q1 : Board.position = (Board.Queen, (Board.Rank 1))
+let q1 : Board.position = (q 1)
 let q5 : Board.position = (Board.Queen, (Board.Rank 5))
-
-let occupiedK rank piece : Board.square = ((k rank), (Some piece))
 
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
-          expect (Board.get (k 1)) |> toEqual (occupiedK 1 Board.King));
+          expect (Board.get (k 1)) |> toEqual ((k 1), (Some Board.King)));
       test "puts the white queen in Q1" (fun () ->
           expect (Board.occupant q1) |> toBe (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
