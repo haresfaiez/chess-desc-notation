@@ -36,8 +36,8 @@ module Board = struct
 
   let _move piece destination =
     match destination with
-    | (Occupied (position, piece)) -> OccupiedDestination
-    | (Empty position)             -> match position with
+    | Occupied (position, piece) -> OccupiedDestination
+    | Empty position             -> match position with
                                       | (file, (Rank rank)) -> match rank with
                                                                | _ -> NoPieceToMove
 end
