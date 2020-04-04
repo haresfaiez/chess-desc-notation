@@ -41,6 +41,10 @@ in the diff analysis).
 * You get another chance to revert if you leave the git message empty.
 * Behavior change and structure changes are separated.
 * A lot of refactoring will be extracting/rearranging type definitions.
+* To make a change, "extract a function". Usually, I extract a function then change all the remaining
+  code to call that function. Then, run the tests.
+  Now, I extract it. I run tcr. I reflect on the diff to see any improvement to the calling code.
+  The I change another, same thing. Then I change the rest.
 * If the change is small and the test/build fails. Then, our model is flawed.
   Eiither because we are not doing the right change, we are not doing the right change in the right way,
   or we are missing something fundamental.
