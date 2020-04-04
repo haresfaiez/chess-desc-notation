@@ -11,7 +11,7 @@ let () =
       test "puts the white king in K1" (fun () ->
           expect (Board.get (k 1)) |> toEqual ((k 1), (Some Board.King)));
       test "puts the white queen in Q1" (fun () ->
-          expect (Board.occupant (q 1)) |> toEqual (Some Board.Queen));
+          expect (Board.get (q 1)) |> toEqual ((q 1), (Some Board.Queen)));
       test "puts no piece in K3" (fun () ->
           expect (Board.occupant (k 3)) |> toEqual None);
       test "puts no piece in Q5" (fun () ->
