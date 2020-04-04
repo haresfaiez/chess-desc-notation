@@ -14,6 +14,7 @@ module Board : sig
 
   type _square =
     | Occupied: position * piece -> _square
+    | Empty   : position -> _square
 
   type moveFailure =
     | NoPieceToMove

@@ -28,6 +28,8 @@ let () =
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
           expect (Board.move Board.Knight ((k 7), None)) |> toBe Board.NoPieceToMove);
+      test "fails when the destination is K7 and K7 is empty" (fun () ->
+          expect (Board._move Board.Knight (Board.Empty (k 7))) |> toBe Board.NoPieceToMove);
     );
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2" (fun () ->
