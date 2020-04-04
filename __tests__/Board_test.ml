@@ -8,7 +8,7 @@ let k rank : Board.position = (Board.King, (Board.Rank rank))
 let q1 : Board.position = (Board.Queen, (Board.Rank 1))
 let q5 : Board.position = (Board.Queen, (Board.Rank 5))
 
-let occupiedK rank piece : Board.square = ((Board.King, (Board.Rank rank)), (Some piece))
+let occupiedK rank piece : Board.square = ((k rank), (Some piece))
 
 let () =
   describe "Initial board" (fun () ->
