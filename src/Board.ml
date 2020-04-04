@@ -28,10 +28,10 @@ module Board = struct
     ((file, Rank rank), piece)
 
   let move (subject : piece) ((position, occupant) : square) : moveFailure =
-    match position with
-    | (toFile, (Rank toRank)) -> match occupant with
-                                 | Some piece -> OccupiedDestination
-                                 | None       -> match toRank with
+    match occupant with
+    | Some piece -> OccupiedDestination
+    | None       -> match position with
+                    | (toFile, (Rank toRank)) -> match toRank with
                                                  | _ -> NoPieceToMove
 
   let _move piece destination =
