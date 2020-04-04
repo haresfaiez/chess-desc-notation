@@ -9,15 +9,15 @@ let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 let () =
   describe "Initial board" (fun () ->
       test "puts the white king in K1" (fun () ->
-          expect (Board.get (k 1)) |> toEqual ((k 1), (Some Board.King)));
+          expect (Board.occupant (k 1)) |> toEqual ((k 1), (Some Board.King)));
       test "puts the white queen in Q1" (fun () ->
-          expect (Board.get (q 1)) |> toEqual ((q 1), (Some Board.Queen)));
+          expect (Board.occupant (q 1)) |> toEqual ((q 1), (Some Board.Queen)));
       test "puts no piece in K3" (fun () ->
-          expect (Board.get (k 3)) |> toEqual ((k 3), None));
+          expect (Board.occupant (k 3)) |> toEqual ((k 3), None));
       test "puts no piece in Q5" (fun () ->
-          expect (Board.get (q 5)) |> toEqual ((q 5), None));
+          expect (Board.occupant (q 5)) |> toEqual ((q 5), None));
       test "third rank is empty" (fun () ->
-          expect (Board.get (k 3)) |> toEqual ((k 3), None));
+          expect (Board.occupant (k 3)) |> toEqual ((k 3), None));
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
