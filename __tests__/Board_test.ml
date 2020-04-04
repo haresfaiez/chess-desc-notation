@@ -11,13 +11,13 @@ let () =
       test "puts the white king in K1" (fun () ->
           expect (Board.get (k 1)) |> toEqual ((k 1), (Some Board.King)));
       test "puts the white queen in Q1" (fun () ->
-          expect (Board.occupant (q 1)) |> toBe (Some Board.Queen));
+          expect (Board.occupant (q 1)) |> toEqual (Some Board.Queen));
       test "puts no piece in K3" (fun () ->
-          expect (Board.occupant (k 3)) |> toBe None);
+          expect (Board.occupant (k 3)) |> toEqual None);
       test "puts no piece in Q5" (fun () ->
-          expect (Board.occupant (q 5)) |> toBe None);
+          expect (Board.occupant (q 5)) |> toEqual None);
       test "third rank is empty" (fun () ->
-          expect (Board.occupant (k 3)) |> toBe None);
+          expect (Board.occupant (k 3)) |> toEqual None);
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
