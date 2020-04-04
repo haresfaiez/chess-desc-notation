@@ -3,7 +3,9 @@ open Expect
 
 open Board
 
-let k1 : Board.position = (Board.King, (Board.Rank 1))
+let k rank : Board.position = (Board.King, (Board.Rank rank))
+
+let k1 : Board.position = k 1
 let k7 : Board.position = (Board.King, (Board.Rank 7))
 let k2 : Board.position = (Board.King, (Board.Rank 2))
 let k3 : Board.position = (Board.King, (Board.Rank 3))
