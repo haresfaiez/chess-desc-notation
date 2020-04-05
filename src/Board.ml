@@ -30,9 +30,9 @@ module Board = struct
     (position, (occupantPiece position))
 
   let _occupant position =
-    match (position, (occupantPiece position)) with
-    | (_, (Some c)) -> Occupied (position, c)
-    | _             -> Empty position
+    match (occupantPiece position) with
+    | Some c -> Occupied (position, c)
+    | _      -> Empty position
 
   let move piece destination =
     match destination with
