@@ -26,9 +26,6 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let occupant position =
-    (position, (occupantPiece position))
-
   let _occupant position =
     match (occupantPiece position) with
     | Some c -> Occupied (position, c)
