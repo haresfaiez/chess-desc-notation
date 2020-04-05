@@ -39,6 +39,6 @@ module Board = struct
     match moves with
     | (piece, position) :: []   -> move piece (square position)
     | (piece, position) :: next -> match piece with
+                                   | King -> move piece (square position)
                                    | Pawn -> play next
-                                   | _    -> move piece (square position)
 end
