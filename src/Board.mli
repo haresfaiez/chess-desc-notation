@@ -20,4 +20,5 @@ module Board : sig
 
   val square: position -> square
   val move  : piece -> square -> moveFailure
+  val play  : (piece * position) list -> moveFailure
 end

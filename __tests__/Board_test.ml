@@ -33,3 +33,7 @@ let () =
       test "fails when the destination is K2 and K2 is occupied" (fun () ->
           expect (Board.move Board.King (Occupied ((k 2), Board.Pawn))) |> toBe Board.OccupiedDestination);
     );
+  describe "Game play" (fun () ->
+      test "fails when first move is K-K2" (fun () ->
+          expect (Board.play [(Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
+    );

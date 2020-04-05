@@ -34,5 +34,6 @@ module Board = struct
     | Occupied _                 -> OccupiedDestination
     | Empty (file, (Rank rank))  -> match rank with
                                     | _ -> NoPieceToMove
-end
 
+  let play it = OccupiedDestination
+end
