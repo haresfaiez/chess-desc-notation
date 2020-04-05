@@ -26,8 +26,8 @@ module Board = struct
 
   let square position =
     match (occupantPiece position) with
-    | Some c -> Occupied (position, c)
-    | _      -> Empty position
+    | Some piece -> Occupied (position, piece)
+    | _          -> Empty position
 
   let move piece destination =
     match destination with
