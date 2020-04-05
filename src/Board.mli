@@ -10,14 +10,14 @@ module Board : sig
 
   type position = (piece * rank)
 
-  type _square =
-    | Occupied: position * piece -> _square
-    | Empty   : position -> _square
+  type square =
+    | Occupied: position * piece -> square
+    | Empty   : position -> square
 
   type moveFailure =
     | NoPieceToMove
     | OccupiedDestination
 
-  val square: position -> _square
-  val move  : piece -> _square -> moveFailure
+  val square: position -> square
+  val move  : piece -> square -> moveFailure
 end
