@@ -26,9 +26,8 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let occupant (file, Rank rank) =
-    let piece = (occupantPiece (file, Rank rank)) in
-    ((file, Rank rank), piece)
+  let occupant position =
+    (position, (occupantPiece position))
 
   let _occupant position =
     match (occupant position) with
