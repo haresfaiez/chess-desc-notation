@@ -61,6 +61,9 @@ in the diff analysis).
   disagrees. Example: add new movement for a new piece -> failure.
   You need to first add the piece, tcr, then add the movement, tcr.
 
+### Ocaml
+* Deconstruction is a good way to avoid booleans/compression, or at least delay their use.
+
 ## How to
 * Emacs `auto-revert-mode`
 * Start with failed cases (the non-happy path), e.g Board.move implementation.
