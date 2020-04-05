@@ -36,6 +36,8 @@ let () =
   describe "Game play" (fun () ->
       test "fails when first move is K-K2" (fun () ->
           expect (Board.play [(Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
+      test "fails when first move is K-K2 and second move is valid" (fun () ->
+          expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.OccupiedDestination);
       test "fails when second move is K-K2" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
     );
