@@ -35,7 +35,8 @@ module Board = struct
     | Empty (file, (Rank rank))  -> match rank with
                                     | _ -> NoPieceToMove
 
-  let play moves =
+  let rec play moves =
     match moves with
-    | (piece, position) :: [] -> move piece (square position)
+    | (piece, position) :: []   -> move piece (square position)
+    | (piece, position) :: next -> play next
 end
