@@ -38,7 +38,7 @@ module Board = struct
   let rec play moves =
     match moves with
     | (piece, position) :: []   -> move piece (square position)
-    | (piece, position) :: next -> match piece with
-                                   | King -> move piece (square position)
-                                   | Pawn -> play next
+    | (piece, position) :: next -> match (piece, position) with
+                                   | (King, (King, Rank 2)) -> move piece (square position)
+                                   | _                      -> play next
 end
