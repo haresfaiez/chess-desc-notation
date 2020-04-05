@@ -20,6 +20,6 @@ module Board : sig
     | NoPieceToMove
     | OccupiedDestination
 
-  val _occupant: position -> _square
-  val move     : piece -> _square -> moveFailure
+  val square: position -> _square
+  val move  : piece -> _square -> moveFailure
 end
