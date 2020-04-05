@@ -43,7 +43,8 @@ in the diff analysis).
 * A lot of refactoring will be extracting/rearranging type definitions.
 * There is an interesting play. When you replace a constant with a function call to make an early test work
   and you fail. Change the code so that the next time you do the change with the same assumptions, you succeeds.
-  When the commit fails because of wrong assumptions, think about simplifying the code.
+  When the commit fails because of wrong assumptions, think about simplifying the code or about changing your
+  next step.
 * To make a change, "extract a function". Usually, I extract a function then change all the remaining
   code to call that function. Then, run the tests.
   Now, I extract it. I run tcr. I reflect on the diff to see any improvement to the calling code.
