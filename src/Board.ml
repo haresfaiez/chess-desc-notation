@@ -40,5 +40,6 @@ module Board = struct
     | (piece, position) :: []   -> move piece (square position)
     | (piece, position) :: next -> match (piece, position) with
                                    | (King, (King, Rank 2)) -> move piece (square position)
+                                   | (Pawn, (King, Rank 7)) -> move piece (square position)
                                    | _                      -> play next
 end

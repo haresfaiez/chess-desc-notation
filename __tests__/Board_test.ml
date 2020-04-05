@@ -38,6 +38,8 @@ let () =
           expect (Board.play [(Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
       test "fails when first move is K-K2 and second move is valid" (fun () ->
           expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.OccupiedDestination);
+      test "fails when first move is P-K7 and second move is valid" (fun () ->
+          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))]) |> toBe Board.NoPieceToMove);
       test "fails when second move is K-K2" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
     );
