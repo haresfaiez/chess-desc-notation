@@ -37,5 +37,5 @@ module Board = struct
 
   let play moves =
     match moves with
-    | (piece, position) :: next -> move piece (square position)
+    | (piece, position) :: [] -> move piece (square position)
 end
