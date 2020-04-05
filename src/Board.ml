@@ -35,5 +35,5 @@ module Board = struct
     | Empty (file, (Rank rank))  -> match rank with
                                     | _ -> NoPieceToMove
 
-  let play it = OccupiedDestination
+  let play it = move King (square (King, Rank 2))
 end
