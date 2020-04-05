@@ -19,12 +19,15 @@ module Board = struct
   type _square =
     | Occupied: position * piece -> _square
     | Empty   : position -> _square
-  
-  let occupant (file, Rank rank) =
-    let piece = match rank with
+
+  let occupantPiece (file, Rank rank) =
+    match rank with
     | 1 -> Some file
     | 2 -> Some Pawn
-    | _ -> None in
+    | _ -> None
+
+  let occupant (file, Rank rank) =
+    let piece = (occupantPiece (file, Rank rank)) in
     ((file, Rank rank), piece)
 
   let _occupant position =
