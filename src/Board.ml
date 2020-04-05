@@ -14,8 +14,6 @@ module Board = struct
 
   type position = (piece * rank)
 
-  type square = (position * (piece option))
-
   type _square =
     | Occupied: position * piece -> _square
     | Empty   : position -> _square
