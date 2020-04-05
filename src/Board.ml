@@ -18,14 +18,14 @@ module Board = struct
     | Occupied: position * piece -> square
     | Empty   : position -> square
 
-  let occupantPiece (file, Rank rank) =
+  let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
     | 2 -> Some Pawn
     | _ -> None
 
   let square position =
-    match (occupantPiece position) with
+    match (occupant position) with
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
