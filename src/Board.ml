@@ -43,6 +43,7 @@ module Board = struct
     | Empty position  -> move piece position
 
   let rec play moves =
+    let playTurn piece position = turn piece (square position) in
     match moves with
     | (piece, position) :: []   -> turn piece (square position)
     | (piece, position) :: next -> match (turn piece (square position)) with
