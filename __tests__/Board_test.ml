@@ -26,6 +26,8 @@ let () =
           expect (Board.turn Board.Pawn (Board.Empty (k 1))) |> toBe Board.Unreachable);
       test "succeeds when the move is P-K3" (fun () ->
           expect (Board.turn Board.Pawn (Board.Empty (k 3))) |> toBe Board.Moved);
+      test "succeeds when the move is P-Q3" (fun () ->
+          expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7 and K7 is empty" (fun () ->
