@@ -10,7 +10,9 @@
     "watch": "bsb -make-world -w",
     "test": "npm run build && jest",
     "tcr": "npm test && git add . && git diff --cached && git commit || git reset --hard",
-    "s-docs": "git commit README.md -m 'Improve docs'"
+    "s-docs": "git commit README.md -m 'Improve docs'",
+    "last-change": "git diff HEAD~1 HEAD",
+    "revert": "git reset --hard HEAD~1"
   },
   "keywords": [
     "chess"
