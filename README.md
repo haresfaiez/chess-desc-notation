@@ -41,6 +41,7 @@ in the diff analysis).
 * You get another chance to revert if you leave the git message empty.
 * Behavior change and structure changes are separated.
 * A lot of refactoring will be extracting/rearranging type definitions.
+* When a test fails, you write a more specific one, narrowing down the scope each time.
 * There is an interesting play. When you replace a constant with a function call to make an early test work
   and you fail. Change the code so that the next time you do the change with the same assumptions, you succeeds.
   When the commit fails because of wrong assumptions, think about simplifying the code or about changing your
