@@ -5,7 +5,7 @@ module Board = struct
     | Knight
     | Pawn
 
-  type moveFailure =
+  type turn =
     | NoPieceToMove
     | OccupiedDestination
 
@@ -38,7 +38,7 @@ module Board = struct
   let rec play moves =
     match moves with
     | (piece, position) :: []   -> move piece (square position)
-    | (piece, position) :: next -> match (piece, position) with
+    | (piece, position) :: next -> match (piece, position) with (* Generalize this *)
                                    | (King, (King, Rank 2)) -> move piece (square position)
                                    | (Pawn, (King, Rank 7)) -> move piece (square position)
                                    | _                      -> play next

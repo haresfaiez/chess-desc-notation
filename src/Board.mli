@@ -14,11 +14,11 @@ module Board : sig
     | Occupied: position * piece -> square
     | Empty   : position -> square
 
-  type moveFailure =
+  type turn =
     | NoPieceToMove
     | OccupiedDestination
 
   val square: position -> square
-  val move  : piece -> square -> moveFailure
-  val play  : (piece * position) list -> moveFailure
+  val move  : piece -> square -> turn
+  val play  : (piece * position) list -> turn
 end
