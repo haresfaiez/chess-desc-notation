@@ -34,8 +34,8 @@ module Board = struct
     match destination with
     | Occupied _      -> OccupiedDestination
     | Empty position  -> match position with
-                         | (King, (Rank 3))    -> Moved
-                         | (file, (Rank rank)) -> NoPieceToMove
+                         | (King, (Rank 3)) -> Moved
+                         | _                -> NoPieceToMove
 
   let rec play moves =
     match moves with
