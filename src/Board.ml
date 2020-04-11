@@ -30,7 +30,7 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
-  let move piece destination =
+  let move piece source destination =
     match destination with
     | (King, (Rank 3)) -> Moved
     | _                -> Unreachable
@@ -38,7 +38,7 @@ module Board = struct
   let turn piece destination =
     match destination with
     | Occupied _      -> OccupiedDestination
-    | Empty position  -> move piece position
+    | Empty position  -> move piece [] position
 
   let rec play moves =
     match moves with

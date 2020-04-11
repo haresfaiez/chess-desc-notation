@@ -20,7 +20,7 @@ module Board : sig
     | Moved
 
   val square: position -> square
-  val move  : piece -> position -> turn
+  val move  : piece -> position list -> position -> turn
   val turn  : piece -> square -> turn
   val play  : (piece * position) list -> turn
 end
