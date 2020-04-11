@@ -34,6 +34,8 @@ let () =
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2 and K2 is occupied" (fun () ->
           expect (Board.turn Board.King (Occupied ((k 2), Board.Pawn))) |> toBe Board.OccupiedDestination);
+      test "fails when the move is K-K3" (fun () ->
+          expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
       test "fails when first move is K-K2" (fun () ->
