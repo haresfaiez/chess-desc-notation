@@ -24,6 +24,8 @@ let () =
           expect (Board.move Board.Pawn (Board.Empty (k 7))) |> toBe Board.NoPieceToMove);
       test "fails when moved backward" (fun () ->
           expect (Board.move Board.Pawn (Board.Empty (k 1))) |> toBe Board.NoPieceToMove);
+      test "succeeds when the move is P-K3" (fun () ->
+          expect (Board.move Board.Pawn (Board.Empty (k 3))) |> toBe Board.Moved);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7 and K7 is empty" (fun () ->

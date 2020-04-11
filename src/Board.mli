@@ -17,6 +17,7 @@ module Board : sig
   type turn =
     | NoPieceToMove
     | OccupiedDestination
+    | Moved
 
   val square: position -> square
   val move  : piece -> square -> turn

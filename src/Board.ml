@@ -8,6 +8,7 @@ module Board = struct
   type turn =
     | NoPieceToMove
     | OccupiedDestination
+    | Moved
 
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
@@ -31,9 +32,10 @@ module Board = struct
 
   let move piece destination =
     match destination with
-    | Occupied _                 -> OccupiedDestination
-    | Empty (file, (Rank rank))  -> match rank with
-                                    | _ -> NoPieceToMove
+    | Occupied _      -> OccupiedDestination
+    | Empty position  -> match position with
+                         | (King, (Rank 3))    -> Moved
+                         | (file, (Rank rank)) -> NoPieceToMove
 
   let rec play moves =
     match moves with
