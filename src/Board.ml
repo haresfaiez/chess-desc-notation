@@ -30,12 +30,15 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
+  let move piece position =
+    match position with
+    | (King, (Rank 3)) -> Moved
+    | _                -> NoPieceToMove
+
   let turn piece destination =
     match destination with
     | Occupied _      -> OccupiedDestination
-    | Empty position  -> match position with
-                         | (King, (Rank 3)) -> Moved
-                         | _                -> NoPieceToMove
+    | Empty position  -> move piece position
 
   let rec play moves =
     match moves with
