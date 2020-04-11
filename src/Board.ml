@@ -30,7 +30,7 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
-  let move piece destination =
+  let turn piece destination =
     match destination with
     | Occupied _      -> OccupiedDestination
     | Empty position  -> match position with
@@ -39,9 +39,9 @@ module Board = struct
 
   let rec play moves =
     match moves with
-    | (piece, position) :: []   -> move piece (square position)
+    | (piece, position) :: []   -> turn piece (square position)
     | (piece, position) :: next -> match (piece, position) with (* Generalize this *)
-                                   | (King, (King, Rank 2)) -> move piece (square position)
-                                   | (Pawn, (King, Rank 7)) -> move piece (square position)
+                                   | (King, (King, Rank 2)) -> turn piece (square position)
+                                   | (Pawn, (King, Rank 7)) -> turn piece (square position)
                                    | _                      -> play next
 end
