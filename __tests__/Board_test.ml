@@ -21,15 +21,15 @@ let () =
     );
   describe "Initial pawn movement" (fun () ->
       test "fails when the destination is K7" (fun () ->
-          expect (Board.turn Board.Pawn (Board.Empty (k 7))) |> toBe Board.NoPieceToMove);
+          expect (Board.turn Board.Pawn (Board.Empty (k 7))) |> toBe Board.Unreachable);
       test "fails when moved backward" (fun () ->
-          expect (Board.turn Board.Pawn (Board.Empty (k 1))) |> toBe Board.NoPieceToMove);
+          expect (Board.turn Board.Pawn (Board.Empty (k 1))) |> toBe Board.Unreachable);
       test "succeeds when the move is P-K3" (fun () ->
           expect (Board.turn Board.Pawn (Board.Empty (k 3))) |> toBe Board.Moved);
     );
   describe "Initial knight movement" (fun () ->
       test "fails when the destination is K7 and K7 is empty" (fun () ->
-          expect (Board.turn Board.Knight (Board.Empty (k 7))) |> toBe Board.NoPieceToMove);
+          expect (Board.turn Board.Knight (Board.Empty (k 7))) |> toBe Board.Unreachable);
     );
   describe "Initial King movement" (fun () ->
       test "fails when the destination is K2 and K2 is occupied" (fun () ->
@@ -41,7 +41,7 @@ let () =
       test "fails when first move is K-K2 and second move is valid" (fun () ->
           expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.OccupiedDestination);
       test "fails when first move is P-K7 and second move is valid" (fun () ->
-          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))]) |> toBe Board.NoPieceToMove);
+          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))]) |> toBe Board.Unreachable);
       test "fails when second move is K-K2" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.OccupiedDestination);
     );

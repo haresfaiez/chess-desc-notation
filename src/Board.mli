@@ -15,7 +15,7 @@ module Board : sig
     | Empty   : position -> square
 
   type turn =
-    | NoPieceToMove
+    | Unreachable
     | OccupiedDestination
     | Moved
 

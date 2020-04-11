@@ -6,7 +6,7 @@ module Board = struct
     | Pawn
 
   type turn =
-    | NoPieceToMove
+    | Unreachable
     | OccupiedDestination
     | Moved
 
@@ -33,7 +33,7 @@ module Board = struct
   let move piece position =
     match position with
     | (King, (Rank 3)) -> Moved
-    | _                -> NoPieceToMove
+    | _                -> Unreachable
 
   let turn piece destination =
     match destination with
