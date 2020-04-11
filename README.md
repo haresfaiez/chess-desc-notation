@@ -37,6 +37,7 @@ we put in that column in the initial configuration.
 in the diff analysis).
 
 ### [+]
+* It is similar to repl driven development.
 * Works well with types (those tests won't compile in TDD).
 * You get another chance to revert if you leave the git message empty.
 * Behavior change and structure changes are separated.
