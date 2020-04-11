@@ -46,6 +46,6 @@ module Board = struct
     match moves with
     | []                        -> Moved
     | (piece, position) :: next -> match (turn piece (square position)) with
-                                   | Moved -> play next
+                                   | Moved -> play (List.tl moves)
                                    | _     -> turn piece (square position)
 end
