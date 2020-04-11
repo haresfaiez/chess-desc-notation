@@ -30,8 +30,8 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
-  let move piece position =
-    match position with
+  let move piece destination =
+    match destination with
     | (King, (Rank 3)) -> Moved
     | _                -> Unreachable
 
