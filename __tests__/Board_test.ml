@@ -24,14 +24,14 @@ let () =
           expect (Board._turn Board.Pawn (Board.Removed (k 7))) |> toBe Board.Unreachable);
       test "-K1 is unreachable when the board is initialized" (fun () ->
           expect (Board._turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
+      test "-K3 succeeds" (fun () ->
+          expect (Board._turn Board.Pawn (Board.Removed (k 3))) |> toBe Board.Moved);
     );
   describe "K" (fun () ->
       test "-K2 creates conflict when the board is initialized" (fun () ->
           expect (Board._turn Board.King Board.Moved) |> toBe Board.Conflict);
     );
   describe "Initial pawn movement" (fun () ->
-      test "succeeds when the move is P-K3" (fun () ->
-          expect (Board.turn Board.Pawn (Board.Empty (k 3))) |> toBe Board.Moved);
       test "succeeds when the move is P-Q3" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
     );
