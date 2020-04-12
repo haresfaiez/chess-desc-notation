@@ -48,7 +48,10 @@ module Board = struct
     | Occupied _      -> OccupiedDestination
     | Empty position  -> move piece position
 
-  let _turn piece destination = Unreachable
+  let _turn piece destination =
+    match destination with
+    | Moved            -> OccupiedDestination
+    | Removed position -> move piece position
 
   let rec play moves =
     match moves with
