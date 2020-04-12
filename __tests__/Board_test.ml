@@ -31,13 +31,13 @@ let () =
       test "-K2 creates conflict when the board is initialized" (fun () ->
           expect (Board._turn Board.King Board.Moved) |> toBe Board.Conflict);
     );
+  describe "Kn" (fun () ->
+      test "-K7 is unreachable when the board is initialized" (fun () ->
+          expect (Board._turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
+    );
   describe "Initial pawn movement" (fun () ->
       test "succeeds when the move is P-Q3" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
-    );
-  describe "Initial knight movement" (fun () ->
-      test "fails when the destination is K7 and K7 is empty" (fun () ->
-          expect (Board.turn Board.Knight (Board.Empty (k 7))) |> toBe Board.Unreachable);
     );
   describe "Initial King movement" (fun () ->
       test "fails when the move is K-K3" (fun () ->
