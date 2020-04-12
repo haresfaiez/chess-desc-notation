@@ -21,19 +21,19 @@ let () =
     );
   describe "P" (fun () ->
       test "-K7 is unreachable when the board is initialized" (fun () ->
-          expect (Board._turn Board.Pawn (Board.Removed (k 7))) |> toBe Board.Unreachable);
+          expect (Board.turn Board.Pawn (Board.Removed (k 7))) |> toBe Board.Unreachable);
       test "-K1 is unreachable when the board is initialized" (fun () ->
-          expect (Board._turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
+          expect (Board.turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
       test "-K3 succeeds" (fun () ->
-          expect (Board._turn Board.Pawn (Board.Removed (k 3))) |> toBe Board.Moved);
+          expect (Board.turn Board.Pawn (Board.Removed (k 3))) |> toBe Board.Moved);
     );
   describe "K" (fun () ->
       test "-K2 creates conflict when the board is initialized" (fun () ->
-          expect (Board._turn Board.King Board.Moved) |> toBe Board.Conflict);
+          expect (Board.turn Board.King Board.Moved) |> toBe Board.Conflict);
     );
   describe "Kn" (fun () ->
       test "-K7 is unreachable when the board is initialized" (fun () ->
-          expect (Board._turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
+          expect (Board.turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
     );
   describe "Initial pawn movement" (fun () ->
       test "succeeds when the move is P-Q3" (fun () ->

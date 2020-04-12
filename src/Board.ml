@@ -38,7 +38,7 @@ module Board = struct
                           | Pawn -> Moved)
     | _             -> Unreachable
 
-  let _turn piece destination =
+  let turn piece destination =
     match destination with
     | Moved            -> Conflict
     | Removed position -> move piece position
@@ -46,7 +46,7 @@ module Board = struct
   let rec play moves =
     match moves with
     | []                     -> Moved
-    | (piece, position) :: _ -> match (_turn piece (get position)) with
+    | (piece, position) :: _ -> match (turn piece (get position)) with
                                    | Moved -> play (List.tl moves)
-                                   | _     -> _turn piece (get position)
+                                   | _     -> turn piece (get position)
 end
