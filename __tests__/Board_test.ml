@@ -16,6 +16,8 @@ let () =
           expect (Board.square (q 1)) |> toEqual (Board.Occupied ((q 1), Board.Queen)));
       test "puts no piece in K3" (fun () ->
           expect (Board.square (k 3)) |> toEqual (Board.Empty (k 3)));
+      test "removes all pieces from K3" (fun () ->
+          expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
       test "puts no piece in Q5" (fun () ->
           expect (Board.square (q 5)) |> toEqual (Board.Empty (q 5)));
       test "third rank is empty" (fun () ->
