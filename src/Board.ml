@@ -16,10 +16,6 @@ module Board = struct
     | Moved
     | Removed: position -> turn
 
-  type square =
-    | Occupied: position * piece -> square
-    | Empty   : position -> square
-
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file

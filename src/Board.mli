@@ -10,10 +10,6 @@ module Board : sig
 
   type position = (piece * rank)
 
-  type square =
-    | Occupied: position * piece -> square
-    | Empty   : position -> square
-
   type turn =
     | Unreachable
     | Conflict
