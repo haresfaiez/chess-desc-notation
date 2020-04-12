@@ -23,7 +23,7 @@ let () =
       test "-K7 is unreachable when the board is initialized" (fun () ->
           expect (Board._turn Board.Pawn (Board.Removed (k 7))) |> toBe Board.Unreachable);
       test "-K1 is unreachable when the board is initialized" (fun () ->
-          expect (Board._turn Board.Pawn (Board.Removed (k 1))) |> toBe Board.Unreachable);
+          expect (Board._turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
     );
   describe "K" (fun () ->
       test "-K2 creates conflict when the board is initialized" (fun () ->
