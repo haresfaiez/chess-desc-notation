@@ -18,6 +18,7 @@ module Board : sig
     | Unreachable
     | OccupiedDestination
     | Moved
+    | Removed: position -> turn
 
   val square: position -> square
   val get   : position -> turn

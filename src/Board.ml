@@ -5,15 +5,16 @@ module Board = struct
     | Knight
     | Pawn
 
-  type turn =
-    | Unreachable
-    | OccupiedDestination
-    | Moved
-
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
 
   type position = (piece * rank)
+
+  type turn =
+    | Unreachable
+    | OccupiedDestination
+    | Moved
+    | Removed: position -> turn
 
   type square =
     | Occupied: position * piece -> square
@@ -30,9 +31,10 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
-  let get position = 
+  let get position =
     match (occupant position) with
     | Some piece -> Moved
+    | _          -> Removed position
 
   let move piece destination =
     match destination with
