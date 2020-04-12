@@ -14,10 +14,10 @@ let () =
           expect (Board.square (q 1)) |> toEqual (Board.Occupied ((q 1), Board.Queen)));
       test "removes all pieces from K3" (fun () ->
           expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
-      test "puts no piece in Q5" (fun () ->
-          expect (Board.square (q 5)) |> toEqual (Board.Empty (q 5)));
-      test "third rank is empty" (fun () ->
-          expect (Board.square (k 3)) |> toEqual (Board.Empty (k 3)));
+      test "removes all pieces from Q5" (fun () ->
+          expect (Board.get (q 5)) |> toEqual (Board.Removed (q 5)));
+      test "removes all pieces from the third rank" (fun () ->
+          expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
     );
   describe "P-K7" (fun () ->
       test "is unreachable when the board is initialized" (fun () ->
