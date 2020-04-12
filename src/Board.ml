@@ -30,6 +30,8 @@ module Board = struct
     | Some piece -> Occupied (position, piece)
     | _          -> Empty position
 
+  let get _ = Moved
+
   let move piece destination =
     match destination with
     | (_, (Rank 3)) -> (match piece with
