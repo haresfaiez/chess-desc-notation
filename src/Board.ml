@@ -38,11 +38,6 @@ module Board = struct
                           | Pawn -> Moved)
     | _             -> Unreachable
 
-  let turn piece destination =
-    match destination with
-    | Occupied _      -> Conflict
-    | Empty position  -> move piece position
-
   let _turn piece destination =
     match destination with
     | Moved            -> Conflict
