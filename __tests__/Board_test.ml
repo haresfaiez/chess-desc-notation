@@ -40,12 +40,12 @@ let () =
           expect (Board.turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
-      test "fails when first move is K-K2" (fun () ->
+      test "[K-K2] fails" (fun () ->
           expect (Board.play [(Board.King, (k 2))]) |> toBe Board.Conflict);
-      test "fails when first move is K-K2 and second move is valid" (fun () ->
+      test "[K-K2, P-Q3] fails" (fun () ->
           expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.Conflict);
-      test "fails when first move is P-K7 and second move is valid" (fun () ->
+      test "[P-K7, P-Q3] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))]) |> toBe Board.Unreachable);
-      test "fails when second move is K-K2" (fun () ->
+      test "[P-Q3, K-K2] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.Conflict);
     );
