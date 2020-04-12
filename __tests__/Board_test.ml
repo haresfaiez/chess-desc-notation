@@ -19,29 +19,25 @@ let () =
       test "removes all pieces from the third rank" (fun () ->
           expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
     );
-  describe "P" (fun () ->
-      test "-K7 is unreachable when the board is initialized" (fun () ->
+  describe "Initial movement: P" (fun () ->
+      test "-K7 is unreachable" (fun () ->
           expect (Board.turn Board.Pawn (Board.Removed (k 7))) |> toBe Board.Unreachable);
-      test "-K1 is unreachable when the board is initialized" (fun () ->
+      test "-K1 is unreachable" (fun () ->
           expect (Board.turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
       test "-K3 succeeds" (fun () ->
           expect (Board.turn Board.Pawn (Board.Removed (k 3))) |> toBe Board.Moved);
-    );
-  describe "K" (fun () ->
-      test "-K2 creates conflict when the board is initialized" (fun () ->
-          expect (Board.turn Board.King Board.Moved) |> toBe Board.Conflict);
-    );
-  describe "Kn" (fun () ->
-      test "-K7 is unreachable when the board is initialized" (fun () ->
-          expect (Board.turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
-    );
-  describe "Initial pawn movement" (fun () ->
-      test "succeeds when the move is P-Q3" (fun () ->
+      test "-Q3 suuceeds" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
     );
-  describe "Initial King movement" (fun () ->
-      test "fails when the move is K-K3" (fun () ->
+  describe "Initial movement: K" (fun () ->
+      test "-K2 creates conflict" (fun () ->
+          expect (Board.turn Board.King Board.Moved) |> toBe Board.Conflict);
+      test "-K3 is unreachable" (fun () ->
           expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
+    );
+  describe "Initial movement: Kn" (fun () ->
+      test "-K7 is unreachable" (fun () ->
+          expect (Board.turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
       test "fails when first move is K-K2" (fun () ->
