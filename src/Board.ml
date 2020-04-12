@@ -12,7 +12,7 @@ module Board = struct
 
   type turn =
     | Unreachable
-    | OccupiedDestination
+    | Conflict
     | Moved
     | Removed: position -> turn
 
@@ -45,12 +45,12 @@ module Board = struct
 
   let turn piece destination =
     match destination with
-    | Occupied _      -> OccupiedDestination
+    | Occupied _      -> Conflict
     | Empty position  -> move piece position
 
   let _turn piece destination =
     match destination with
-    | Moved            -> OccupiedDestination
+    | Moved            -> Conflict
     | Removed position -> move piece position
 
   let rec play moves =

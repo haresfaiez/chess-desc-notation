@@ -16,7 +16,7 @@ module Board : sig
 
   type turn =
     | Unreachable
-    | OccupiedDestination
+    | Conflict
     | Moved
     | Removed: position -> turn
 
