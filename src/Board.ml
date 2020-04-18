@@ -22,17 +22,17 @@ module Board = struct
     | 2 -> Some Pawn
     | _ -> None
 
-  let get position =
-    match (occupant position) with
-    | Some piece -> Moved
-    | _          -> Removed position
-
   let move piece destination =
     match destination with
     | (_, (Rank 3)) -> (match piece with
                           | King -> Unreachable
                           | Pawn -> Moved)
     | _             -> Unreachable
+
+  let get position =
+    match (occupant position) with
+    | Some piece -> Moved
+    | _          -> Removed position
 
   let turn piece destination =
     match destination with

@@ -16,8 +16,8 @@ module Board : sig
     | Moved
     | Removed: position -> turn
 
-  val get : position -> turn
   val move: piece -> position -> turn
+  val get : position -> turn
   val turn: piece -> turn -> turn
   val play: (piece * position) list -> turn
 end
