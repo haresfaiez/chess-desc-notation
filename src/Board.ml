@@ -32,7 +32,7 @@ module Board = struct
   let turn piece position =
     match occupant position with
     | Some piece -> Conflict
-    | None -> move piece position
+    | None       -> move piece position
 
   let rec play moves =
     match moves with
