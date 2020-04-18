@@ -14,7 +14,6 @@ module Board = struct
     | Unreachable
     | Conflict
     | Moved
-    | Removed: position -> turn
 
   let occupant (file, Rank rank) =
     match rank with

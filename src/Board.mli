@@ -14,7 +14,6 @@ module Board : sig
     | Unreachable
     | Conflict
     | Moved
-    | Removed: position -> turn
 
   val move: piece -> position -> turn
   val turn: piece -> position -> turn
