@@ -32,7 +32,7 @@ module Board = struct
   let get position =
     match (occupant position) with
     | Some piece -> Conflict
-    | _          -> Removed position
+    | None       -> Removed position
 
   let turn piece position =
     let destination = get position in
