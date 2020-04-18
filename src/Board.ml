@@ -34,11 +34,6 @@ module Board = struct
     | Some piece -> Moved
     | _          -> Removed position
 
-  let turn piece destination =
-    match destination with
-    | Moved            -> Conflict
-    | Removed position -> move piece position
-
   let _turn piece d =
     let destination = get d in
     match destination with
