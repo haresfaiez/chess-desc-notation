@@ -32,6 +32,8 @@ let () =
   describe "Initial movement: K" (fun () ->
       test "-K2 creates conflict" (fun () ->
           expect (Board.turn Board.King Board.Moved) |> toBe Board.Conflict);
+      test "-K2 creates conflict" (fun () ->
+          expect (Board._turn Board.King (k 2)) |> toBe Board.Conflict);
       test "-K3 is unreachable" (fun () ->
           expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
     );
