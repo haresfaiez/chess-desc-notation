@@ -9,9 +9,9 @@ let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 let () =
   describe "Initial board" (fun () ->
       test "moves the white king to K1" (fun () ->
-          expect (Board.get (k 1)) |> toEqual Board.Moved);
+          expect (Board.get (k 1)) |> toEqual Board.Conflict);
       test "moves the white queen to Q1" (fun () ->
-          expect (Board.get (q 1)) |> toEqual Board.Moved);
+          expect (Board.get (q 1)) |> toEqual Board.Conflict);
       test "removes all pieces from K3" (fun () ->
           expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
       test "removes all pieces from Q5" (fun () ->

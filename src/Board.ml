@@ -31,12 +31,13 @@ module Board = struct
 
   let get position =
     match (occupant position) with
-    | Some piece -> Moved
+    | Some piece -> Conflict
     | _          -> Removed position
 
   let turn piece position =
     let destination = get position in
     match destination with
+    | Conflict  -> Conflict
     | Moved     -> Conflict
     | Removed _ -> move piece position
 
