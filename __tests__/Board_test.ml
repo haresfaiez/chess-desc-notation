@@ -7,18 +7,6 @@ let k rank : Board.position = (Board.King, (Board.Rank rank))
 let q rank : Board.position = (Board.Queen, (Board.Rank rank))
 
 let () =
-  describe "Initial board" (fun () ->
-      test "moves the white king to K1" (fun () ->
-          expect (Board.get (k 1)) |> toEqual Board.Conflict);
-      test "moves the white queen to Q1" (fun () ->
-          expect (Board.get (q 1)) |> toEqual Board.Conflict);
-      test "removes all pieces from K3" (fun () ->
-          expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
-      test "removes all pieces from Q5" (fun () ->
-          expect (Board.get (q 5)) |> toEqual (Board.Removed (q 5)));
-      test "removes all pieces from the third rank" (fun () ->
-          expect (Board.get (k 3)) |> toEqual (Board.Removed (k 3)));
-    );
   describe "Initial movement: P" (fun () ->
       test "-K7 fails" (fun () ->
           expect (Board.turn Board.Pawn (k 7)) |> toBe Board.Unreachable);

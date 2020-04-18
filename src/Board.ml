@@ -29,11 +29,6 @@ module Board = struct
                           | Pawn -> Moved)
     | _             -> Unreachable
 
-  let get position =
-    match (occupant position) with
-    | Some piece -> Conflict
-    | None       -> Removed position
-
   let turn piece position =
     match occupant position with
     | Some piece -> Conflict
