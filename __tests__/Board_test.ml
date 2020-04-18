@@ -22,10 +22,10 @@ let () =
   describe "Initial movement: P" (fun () ->
       test "-K7 fails" (fun () ->
           expect (Board._turn Board.Pawn (k 7)) |> toBe Board.Unreachable);
-      test "-K1 is unreachable" (fun () ->
-          expect (Board.turn Board.Pawn Board.Moved) |> toBe Board.Conflict);
+      test "-K1 fails" (fun () ->
+          expect (Board._turn Board.Pawn (k 1)) |> toBe Board.Conflict);
       test "-K3 succeeds" (fun () ->
-          expect (Board.turn Board.Pawn (Board.Removed (k 3))) |> toBe Board.Moved);
+          expect (Board._turn Board.Pawn (k 3)) |> toBe Board.Moved);
       test "-Q3 suuceeds" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
     );
