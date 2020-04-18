@@ -37,9 +37,12 @@ module Board = struct
   let turn piece position =
     let destination = get position in
     match destination with
-    | Conflict  -> Conflict
-    | Moved     -> Conflict
-    | Removed _ -> move piece position
+    | Conflict  -> (match (occupant position) with
+                    | Some piece -> Conflict)
+    | Moved     -> (match (occupant position) with
+                    | Some piece -> Conflict)
+    | Removed _ -> (match (occupant position) with
+                    | None -> move piece position)
 
   let rec play moves =
     match moves with
