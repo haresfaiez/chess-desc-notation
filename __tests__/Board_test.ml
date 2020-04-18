@@ -38,8 +38,8 @@ let () =
           expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
     );
   describe "Initial movement: Kn" (fun () ->
-      test "-K7 is unreachable" (fun () ->
-          expect (Board.turn Board.Knight (Board.Removed (k 7))) |> toBe Board.Unreachable);
+      test "-K7 fails" (fun () ->
+          expect (Board._turn Board.Knight (k 7)) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
