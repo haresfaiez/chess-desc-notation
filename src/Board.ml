@@ -35,10 +35,10 @@ module Board = struct
 
   let rec playTurn piece position next =
     match next with
-    | []             -> Moved
+    | []                  -> Moved
     | (_, following) :: _ -> (match position = following with
-                         | true  -> Conflict
-                         | false -> playTurn piece position (List.tl next))
+                              | true  -> Conflict
+                              | false -> playTurn piece position (List.tl next))
 
   let rec play moves =
     match moves with
