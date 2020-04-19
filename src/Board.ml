@@ -35,8 +35,9 @@ module Board = struct
 
   let playTurn piece position next =
     match next with
-    | [] -> Moved
-    | _  -> Moved
+    | []                         -> Moved
+    | (_, (King, (Rank 2))) :: _ -> Conflict
+    | _                          -> Moved
 
   let rec play moves =
     match moves with
