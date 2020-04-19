@@ -35,6 +35,7 @@ we put in that column in the initial configuration.
 * Need to commit README updates manually
 * Sometimes the test pass because it was badly written, not because it fails (you catch it
 in the diff analysis).
+* The slow degradation of quality is still hard to see.
 
 ### [+]
 * It is similar to repl driven development.
