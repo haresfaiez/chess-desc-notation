@@ -33,10 +33,12 @@ module Board = struct
     | Some piece -> Conflict
     | None       -> move piece position
 
+  let nextMove position following = position = following
+
   let rec playTurn piece position next =
     match next with
     | []                  -> Moved
-    | (_, following) :: _ -> (match position = following with
+    | (_, following) :: _ -> (match nextMove position following with
                               | true  -> Conflict
                               | false -> playTurn piece position (List.tl next))
 
