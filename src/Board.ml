@@ -37,14 +37,14 @@ module Board = struct
     if position = following then Some Conflict else None
 
   let rec playTurn piece position next =
-    let checkConflict piece position (_, following) =
+    let checkConflict (_, following) =
       match nextMove position following with
       | Some conflict  -> conflict
       | None           -> playTurn piece position (List.tl next) in
 
     match next with
     | []             -> Moved
-    | following :: _ -> checkConflict piece position following
+    | following :: _ -> checkConflict following
 
   let rec play moves =
     match moves with
