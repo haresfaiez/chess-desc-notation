@@ -33,6 +33,8 @@ module Board = struct
     | Some piece -> Conflict
     | None       -> move piece position
 
+  let playTurn piece position next = Moved
+
   let rec play moves =
     match moves with
     | []                     -> Moved

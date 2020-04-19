@@ -29,6 +29,10 @@ let () =
       test "-K7 fails" (fun () ->
           expect (Board.turn Board.Knight (k 7)) |> toBe Board.Unreachable);
     );
+  describe "PlayTurn" (fun () ->
+      test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
+        expect (Board.playTurn Board.Pawn (k 3) [(Board.Pawn, (q 3))]) |> toBe Board.Moved);
+    );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
           expect (Board.play [(Board.King, (k 2))]) |> toBe Board.Conflict);

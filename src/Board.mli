@@ -15,7 +15,8 @@ module Board : sig
     | Conflict
     | Moved
 
-  val move: piece -> position -> turn
-  val turn: piece -> position -> turn
-  val play: (piece * position) list -> turn
+  val move    : piece -> position -> turn
+  val turn    : piece -> position -> turn
+  val play    : (piece * position) list -> turn
+  val playTurn: piece -> position -> (piece * position) list -> turn
 end
