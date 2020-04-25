@@ -31,15 +31,15 @@ let () =
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
-        expect (Board.playTurn Board.Pawn (q 3) [(Board.Pawn, (k 3))]) |> toBe Board.Moved);
+        expect (Board.playTurn Board.Pawn (q 3) [(Board.Pawn, (k 2), (k 3))]) |> toBe Board.Moved);
       test "detects a conflict in [P-K2, K-K2]" (fun () ->
-        expect (Board.playTurn Board.King (k 2) [(Board.Pawn, (k 2))]) |> toBe Board.Conflict);
+        expect (Board.playTurn Board.King (k 2) [(Board.Pawn, (k 2), (k 2))]) |> toBe Board.Conflict);
       test "detects a conflict in [P-K2, P-Q3, K-K2]" (fun () ->
-        expect (Board.playTurn Board.King (k 2) [(Board.Pawn, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.Conflict);
+        expect (Board.playTurn Board.King (k 2) [(Board.Pawn, (k 2), (k 2)); (Board.Pawn, (q 2), (q 3))]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
         expect (Board.playTurn Board.Pawn (k 3) []) |> toBe Board.Moved);
       test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun() ->
-        expect (Board.playTurn Board.Queen (q 4) [(Board.Pawn, (q 3)); (Board.Pawn, (q 4))]) |> toBe Board.Conflict);
+        expect (Board.playTurn Board.Queen (q 4) [(Board.Pawn, (q 2), (q 3)); (Board.Pawn, (q 3), (q 4))]) |> toBe Board.Conflict);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
