@@ -49,3 +49,8 @@ let () =
       test "[P-Q3, K-K2] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.Conflict);
     );
+  (*describe "Conflicts" (fun () ->
+      test "exists on P-Q3 in [Q-Q1, P-Q3, Q-Q3]" (fun() ->
+          expect (Board.conflicts (q 3) ((q 3) , (q 1)) |> toBe Some Board.Conflict);
+        );
+    );*)

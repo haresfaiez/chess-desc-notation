@@ -34,13 +34,13 @@ module Board = struct
     | None       -> move piece position
 
   (* from/to -P option *)
-  let conflicts position following =
+  let conflicts position (following, _) =
     if position = following then Some Conflict else None
 
   let rec playTurn piece position history =
     let checkConflict prev =
       let (_, prevPosition) = prev in
-      match conflicts position prevPosition with
+      match conflicts position (prevPosition, prevPosition) with
       | Some conflict  -> conflict
       | None           -> playTurn piece position (List.tl history) in
 
