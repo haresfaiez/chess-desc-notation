@@ -19,5 +19,4 @@ module Board : sig
   val turn    : piece -> position -> turn
   val play    : (piece * position) list -> turn
   val playTurn: piece -> position -> (piece * position) list -> turn
-  val conflicts: position -> (position * position) -> turn option
 end
