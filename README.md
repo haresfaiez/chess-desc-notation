@@ -39,6 +39,8 @@ in the diff analysis).
 
 ### [+]
 * It is similar to repl driven development.
+* If you want to make the sure you have written the test correctly or that the test normally fails,
+  change the implementation or the test. You probably have a flawed model of the code.
 * It is about small safe steps. You could have big unsafe steps even with a strong type system.
 * Works well with types (those tests won't compile in TDD).
 * You get another chance to revert if you leave the git message empty.
