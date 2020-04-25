@@ -33,9 +33,8 @@ module Board = struct
     | Some piece -> Conflict
     | None       -> move piece position
 
-  (* from/to -P option *)
-  let conflicts position (following, _) =
-    if position = following then Some Conflict else None
+  let conflicts position (source, destination) =
+    if position = destination then Some Conflict else None
 
   let rec playTurn piece position history =
     let checkConflict prev =
