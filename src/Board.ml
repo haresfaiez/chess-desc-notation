@@ -34,8 +34,7 @@ module Board = struct
     | None       -> move piece position
 
   let rec playTurn piece position history =
-    let checkConflict prev =
-      let (_, destination) = prev in
+    let checkConflict (_, destination) =
       if position = destination then Conflict else (playTurn piece position (List.tl history)) in
 
     match history with
