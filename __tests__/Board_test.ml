@@ -5,6 +5,7 @@ open Board
 
 let k rank : Board.position = (Board.King, (Board.Rank rank))
 let q rank : Board.position = (Board.Queen, (Board.Rank rank))
+let forwardPawn file count : (Board.piece * Board.position * Board.position) = Board.forward Board.Pawn file count
 
 let () =
   describe "Initial movement: P" (fun () ->
@@ -53,5 +54,5 @@ let () =
     );
   describe "Forward movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
-          expect(Board.forward Board.Pawn Board.King 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
+          expect(forwardPawn Board.King 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
     );
