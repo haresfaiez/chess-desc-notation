@@ -15,9 +15,11 @@ module Board : sig
     | Conflict
     | Moved
 
+  type movement = piece * position * position
+
   val move    : piece -> position -> turn
   val turn    : piece -> position -> turn
   val play    : (piece * position) list -> turn
-  val playTurn: piece -> position -> (piece * position * position) list -> turn
-  val forward : piece -> piece -> int -> (piece * position * position)
+  val playTurn: piece -> position -> movement list -> turn
+  val forward : piece -> piece -> int -> movement
 end

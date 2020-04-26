@@ -15,6 +15,8 @@ module Board = struct
     | Conflict
     | Moved
 
+  type movement = piece * position * position
+
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
