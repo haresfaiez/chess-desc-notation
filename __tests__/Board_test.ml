@@ -57,6 +57,8 @@ let () =
           expect(moveP (k 2) 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
           expect(moveP (k 2) 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
-      test "moves queen forward" (fun() ->
+      test "moves queen one step forward" (fun() ->
           expect(Board.forward Board.Queen (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
+      test "moves queen one step backward" (fun() ->
+          expect(Board.forward Board.Queen (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
     );
