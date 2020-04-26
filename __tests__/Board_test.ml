@@ -6,6 +6,7 @@ open Board
 let k rank           : Board.position = (Board.King, (Board.Rank rank))
 let q rank           : Board.position = (Board.Queen, (Board.Rank rank))
 let moveP from count : Board.movement = Board.vertical Board.Pawn from count
+let moveQ from count : Board.movement = Board.vertical Board.Queen from count
 
 let () =
   describe "Initial movement: P" (fun () ->
@@ -58,7 +59,7 @@ let () =
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
           expect(moveP (k 2) 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
       test "moves queen one step forward" (fun() ->
-          expect(Board.vertical Board.Queen (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
+          expect(moveQ (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
       test "moves queen one step backward" (fun() ->
-          expect(Board.vertical Board.Queen (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
+          expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
     );
