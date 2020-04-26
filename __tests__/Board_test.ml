@@ -55,4 +55,6 @@ let () =
   describe "Forward movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
           expect(forwardPawn Board.King 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
+      test "keeps pawn in K2 when the steps count is 0" (fun () ->
+          expect(forwardPawn Board.King 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
     );

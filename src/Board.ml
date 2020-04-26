@@ -54,5 +54,5 @@ module Board = struct
                                 | Moved -> play (List.tl moves)
                                 | _     -> turnOutcome
 
-  let forward piece file count = let init = 2 in (piece, (file, Rank init), (file, Rank (init + 1)))
+  let forward piece file count = let init = 2 in (piece, (file, Rank init), (file, Rank (init + count)))
 end
