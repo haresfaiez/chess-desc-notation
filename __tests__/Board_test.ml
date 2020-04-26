@@ -5,8 +5,8 @@ open Board
 
 let k rank           : Board.position = (Board.King, (Board.Rank rank))
 let q rank           : Board.position = (Board.Queen, (Board.Rank rank))
-let moveP from count : Board.movement = Board.vertical Board.Pawn from count
-let moveQ from count : Board.movement = Board.vertical Board.Queen from count
+let moveP from count : Board.movement = Board.shiftRank Board.Pawn from count
+let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 
 let () =
   describe "Initial movement: P" (fun () ->

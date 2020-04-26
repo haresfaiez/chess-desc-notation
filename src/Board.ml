@@ -50,5 +50,5 @@ module Board = struct
                                 | Moved -> play (List.tl moves)
                                 | _     -> turnOutcome
 
-  let vertical piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
+  let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
 end
