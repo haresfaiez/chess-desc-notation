@@ -19,4 +19,5 @@ module Board : sig
   val turn    : piece -> position -> turn
   val play    : (piece * position) list -> turn
   val playTurn: piece -> position -> (piece * position * position) list -> turn
+  val forward : piece -> piece -> int -> (piece * position * position)
 end

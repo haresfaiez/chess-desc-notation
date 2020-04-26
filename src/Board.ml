@@ -33,6 +33,7 @@ module Board = struct
     | Some piece -> Conflict
     | None       -> move piece position
 
+  (* use source *)
   let rec playTurn piece position history =
     let checkConflict (_, source, destination) =
       if position = destination
@@ -50,4 +51,6 @@ module Board = struct
                                 match turnOutcome with
                                 | Moved -> play (List.tl moves)
                                 | _     -> turnOutcome
+
+  let forward piece file count = (piece, (King, Rank 2), (King, Rank 3))
 end

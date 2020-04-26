@@ -51,3 +51,7 @@ let () =
       test "[P-Q3, K-K2] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.Conflict);
     );
+  describe "Forward movement" (fun () ->
+      test "moves pawn from P-K2 to P-K3" (fun () ->
+          expect(Board.forward Board.Pawn Board.King 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
+    );
