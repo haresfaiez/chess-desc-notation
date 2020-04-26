@@ -40,9 +40,9 @@ module Board = struct
     let checkConflict (_, source, destination) =
       if position = source
       then playTurn piece position []
-      else (if position = destination
-            then Conflict
-            else (playTurn piece position (List.tl history)))
+      else if position = destination
+      then Conflict
+      else (playTurn piece position (List.tl history))
     in
 
     match history with
