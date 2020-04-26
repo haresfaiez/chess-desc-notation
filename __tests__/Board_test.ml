@@ -5,7 +5,7 @@ open Board
 
 let k rank                 : Board.position = (Board.King, (Board.Rank rank))
 let q rank                 : Board.position = (Board.Queen, (Board.Rank rank))
-let forwardPawn file count : Board.movement = Board.forward Board.Pawn file count
+let forwardPawn file count : Board.movement = Board.forward Board.Pawn (file, Rank 2) count
 
 let () =
   describe "Initial movement: P" (fun () ->
