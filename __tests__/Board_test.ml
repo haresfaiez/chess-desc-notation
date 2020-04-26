@@ -33,8 +33,8 @@ let () =
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
         expect (Board.playTurn Board.Pawn (q 3) [(forwardPawn Board.King 1)]) |> toBe Board.Moved);
-      test "detects a conflict in [P-K2, K-K2]" (fun () ->
-        expect (Board.playTurn Board.King (k 2) [(forwardPawn Board.King 0)]) |> toBe Board.Conflict);
+      test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
+        expect (Board.playTurn Board.Queen (q 3) [(forwardPawn Board.Queen 1)]) |> toBe Board.Conflict);
       test "detects a conflict in [P-K2, P-Q3, K-K2]" (fun () ->
         expect (Board.playTurn Board.King (k 2) [(forwardPawn Board.Queen 1); (forwardPawn Board.King 0)]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
