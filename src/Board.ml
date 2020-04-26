@@ -38,9 +38,12 @@ module Board = struct
   (* use source *)
   let rec playTurn piece position history =
     let checkConflict (_, source, destination) =
-      if position = destination
-      then Conflict
-      else (playTurn piece position (List.tl history)) in
+      if position = source
+      then playTurn piece position []
+      else (if position = destination
+            then Conflict
+            else (playTurn piece position (List.tl history)))
+    in
 
     match history with
     | []        -> Moved

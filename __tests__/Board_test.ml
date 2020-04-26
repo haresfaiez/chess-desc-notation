@@ -40,8 +40,10 @@ let () =
         expect (Board.playTurn Board.Queen (q 3) [(moveP (k 2) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
         expect (Board.playTurn Board.Pawn (k 3) []) |> toBe Board.Moved);
-      test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun() ->
+      test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun () ->
         expect (Board.playTurn Board.Queen (q 4) [(moveP (q 3) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
+      test "detecs no conflicts in [Q-Q2, Q-Q1, Q-Q2, Q-Q1]" (fun () ->
+        expect (Board.playTurn Board.Queen (q 1) [(moveQ (q 1) 1);(moveQ (q 2) (-1))]) |> toBe Board.Moved);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
