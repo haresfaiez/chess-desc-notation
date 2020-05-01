@@ -33,7 +33,10 @@ module Board = struct
 
   let turn piece position =
     let (file, Rank rank) = position in
-    let current = occupant position in
+    let current = (match rank with
+                   | 1 -> Some file
+                   | 2 -> Some Pawn
+                   | _ -> None) in
     match current with
     | Some piece -> Conflict
     | None       -> move piece position
