@@ -34,6 +34,8 @@ let () =
   describe "Initial movement: Q" (fun () ->
       test "-Q1 succeeds" (fun () ->
         expect (Board.move Board.Queen (q 1)) |> toBe Board.Moved);
+      test "-Q2 succeeds" (fun () ->
+        expect (Board.move Board.Queen (q 2)) |> toBe Board.Moved);
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->

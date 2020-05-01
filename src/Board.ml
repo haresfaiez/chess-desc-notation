@@ -28,7 +28,7 @@ module Board = struct
     | (_, (Rank 3))     -> (match piece with
                             | King -> Unreachable
                             | Pawn -> Moved)
-    | (Queen, (Rank 1)) -> Moved
+    | (Queen, (Rank _)) -> Moved
     | _                 -> Unreachable
 
   let turn piece position =
