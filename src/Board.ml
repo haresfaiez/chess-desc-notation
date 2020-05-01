@@ -43,7 +43,7 @@ module Board = struct
     let (file, Rank rank) = position in
     match rank with
     | 1 -> Conflict
-    | 2 -> Conflict
+    | 2 -> playTurn piece position [(Pawn, position, position)]
     | _ -> playTurn piece position []
 
   let rec play moves =
