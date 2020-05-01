@@ -17,13 +17,6 @@ module Board = struct
 
   type movement = piece * position * position
 
-  (* Remove this *)
-  let occupant (file, Rank rank) =
-    match rank with
-    | 1 -> Some file
-    | 2 -> Some Pawn
-    | _ -> None
-
   let move piece destination =
     match destination with
     | (_, (Rank 3)) -> (match piece with
