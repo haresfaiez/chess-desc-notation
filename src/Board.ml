@@ -25,10 +25,11 @@ module Board = struct
 
   let move piece destination =
     match destination with
-    | (_, (Rank 3)) -> (match piece with
-                          | King -> Unreachable
-                          | Pawn -> Moved)
-    | _             -> Unreachable
+    | (_, (Rank 3))     -> (match piece with
+                            | King -> Unreachable
+                            | Pawn -> Moved)
+    | (Queen, (Rank 1)) -> Moved
+    | _                 -> Unreachable
 
   let turn piece position =
     match occupant position with
