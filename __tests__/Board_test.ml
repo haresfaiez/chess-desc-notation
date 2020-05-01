@@ -11,11 +11,11 @@ let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 let () =
   describe "Initial movement: P" (fun () ->
       test "-K7 fails" (fun () ->
-          expect (Board.turn Board.Pawn (k 7)) |> toBe Board.Unreachable);
+          expect (Board.move Board.Pawn (k 7)) |> toBe Board.Unreachable);
       test "-K1 fails" (fun () ->
           expect (Board.turn Board.Pawn (k 1)) |> toBe Board.Conflict);
       test "-K3 succeeds" (fun () ->
-          expect (Board.turn Board.Pawn (k 3)) |> toBe Board.Moved);
+          expect (Board.move Board.Pawn (k 3)) |> toBe Board.Moved);
       test "-Q3 suuceeds" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.Moved);
     );
