@@ -23,7 +23,7 @@ let () =
       test "-K2 creates conflict" (fun () ->
           expect (Board.turn Board.King (k 2)) |> toBe Board.Conflict);
       test "-K3 fails" (fun () ->
-          expect (Board.turn Board.King (k 3)) |> toBe Board.Unreachable);
+          expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
       test "-K3 is unreachable" (fun () ->
           expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
     );
