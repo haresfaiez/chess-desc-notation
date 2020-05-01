@@ -5,6 +5,7 @@ open Board
 
 let k rank           : Board.position = (Board.King, (Board.Rank rank))
 let q rank           : Board.position = (Board.Queen, (Board.Rank rank))
+let kn rank          : Board.position = (Board.Knight, (Board.Rank rank))
 let moveP from count : Board.movement = Board.shiftRank Board.Pawn from count
 let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 
@@ -51,7 +52,7 @@ let () =
       test "detects no conflicts in [Q-Q2, Q-Q1, Q-Q2, Q-Q1]" (fun () ->
         expect (Board.playTurn Board.Queen (q 1) [(moveQ (q 1) 1);(moveQ (q 2) (-1))]) |> toBe Board.Moved);
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
-        expect (Board.playTurn Board.Knight (Board.Knight, (Rank 2)) [moveP (Board.Knight, (Rank 2)) 1]) |> toBe Board.Unreachable);
+        expect (Board.playTurn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
