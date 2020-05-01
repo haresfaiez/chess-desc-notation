@@ -17,6 +17,7 @@ module Board = struct
 
   type movement = piece * position * position
 
+  (* Remove this *)
   let occupant (file, Rank rank) =
     match rank with
     | 1 -> Some file
@@ -34,12 +35,10 @@ module Board = struct
   let turn piece position =
     let (file, Rank rank) = position in
     let current = (match rank with
-                   | 1 -> Some file
-                   | 2 -> Some Pawn
-                   | _ -> None) in
-    match current with
-    | Some piece -> Conflict
-    | None       -> move piece position
+                   | 1 -> Conflict
+                   | 2 -> Conflict
+                   | _ -> move piece position) in
+    current
 
   let rec playTurn piece position history =
     match history with
