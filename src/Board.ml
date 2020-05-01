@@ -37,7 +37,7 @@ module Board = struct
 
   let rec playTurn piece position history =
     match history with
-    | []                                                   -> Moved
+    | []                                                   -> move piece position
     | (_, _, destination) :: _ when position = destination -> Conflict
     | (_, source, _)      :: _ when position = source      -> Moved
     | _                                                    -> playTurn piece position (List.tl history)
