@@ -32,19 +32,19 @@ module Board = struct
     | (Queen, _)    -> Moved
     | _             -> Unreachable
 
-  let turn piece position =
-    let (file, Rank rank) = position in
-    match rank with
-    | 1 -> Conflict
-    | 2 -> Conflict
-    | _ -> move piece position
-
   let rec playTurn piece position history =
     match history with
     | []                                                   -> move piece position
     | (_, _, destination) :: _ when position = destination -> Conflict
     | (_, source, _)      :: _ when position = source      -> move piece position
     | _                                                    -> playTurn piece position (List.tl history)
+
+  let turn piece position =
+    let (file, Rank rank) = position in
+    match rank with
+    | 1 -> Conflict
+    | 2 -> Conflict
+    | _ -> playTurn piece position []
 
   let rec play moves =
     match moves with
