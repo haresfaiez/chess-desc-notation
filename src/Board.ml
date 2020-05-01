@@ -34,11 +34,10 @@ module Board = struct
 
   let turn piece position =
     let (file, Rank rank) = position in
-    let current = (match rank with
-                   | 1 -> Conflict
-                   | 2 -> Conflict
-                   | _ -> move piece position) in
-    current
+    match rank with
+    | 1 -> Conflict
+    | 2 -> Conflict
+    | _ -> move piece position
 
   let rec playTurn piece position history =
     match history with
