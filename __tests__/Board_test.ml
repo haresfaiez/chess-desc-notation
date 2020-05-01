@@ -30,6 +30,8 @@ let () =
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
+          expect (Board.turn Board.Knight (k 7)) |> toBe Board.Unreachable);
+      test "-K7 fails" (fun () ->
           expect (Board.playTurn Board.Knight (k 7) []) |> toBe Board.Unreachable);
     );
   describe "Initial movement: Q" (fun () ->

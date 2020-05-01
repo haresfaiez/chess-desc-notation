@@ -32,7 +32,8 @@ module Board = struct
     | _             -> Unreachable
 
   let turn piece position =
-    match occupant position with
+    let current = occupant position in
+    match current with
     | Some piece -> Conflict
     | None       -> move piece position
 
