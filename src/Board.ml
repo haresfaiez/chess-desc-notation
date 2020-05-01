@@ -32,6 +32,7 @@ module Board = struct
     | _             -> Unreachable
 
   let turn piece position =
+    let (file, Rank rank) = position in
     let current = occupant position in
     match current with
     | Some piece -> Conflict
