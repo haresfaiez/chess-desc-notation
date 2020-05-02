@@ -32,7 +32,8 @@ module Board = struct
     | (_, source, _)      :: _ when position = source      -> move piece position
     | _                                                    -> playTurn piece position (List.tl history)
 
-  let init position = match position with
+  let init position =
+    match position with
     | (file, Rank 1) -> [(file, position, position)]
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
