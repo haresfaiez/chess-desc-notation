@@ -38,12 +38,12 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
 
-  let rec play moves =
+  let rec play moves _ =
     match moves with
     | []                     -> Moved
     | (piece, position) :: _ -> let outcome = turn piece position (init position) in
                                 match outcome with
-                                | Moved -> play (List.tl moves)
+                                | Moved -> play (List.tl moves) []
                                 | _     -> outcome
 
   let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
