@@ -43,7 +43,7 @@ module Board = struct
   let rec play moves =
     match moves with
     | []                     -> Moved
-    | (piece, position) :: _ -> let outcome = turn piece position in
+    | (piece, position) :: _ -> let outcome = playTurn piece position (init position) in
                                 match outcome with
                                 | Moved -> play (List.tl moves)
                                 | _     -> outcome
