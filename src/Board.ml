@@ -41,9 +41,9 @@ module Board = struct
   let rec play moves history =
     match moves with
     | []                     -> Moved
-    | (piece, position) :: _ -> let outcome = turn piece position (init position) in
+    | (piece, position) :: _ -> let outcome = turn piece position (List.append (init position) history) in
                                 match outcome with
-                                | Moved -> play (List.tl moves) []
+                                | Moved -> play (List.tl moves) [(piece, position, position)]
                                 | _     -> outcome
 
   let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
