@@ -25,12 +25,12 @@ module Board = struct
     | (Queen, _)    -> Moved
     | _             -> Unreachable
 
-  let rec playTurn piece position history =
+  let rec turn piece position history =
     match history with
     | []                                                   -> move piece position
     | (_, _, destination) :: _ when position = destination -> Conflict
     | (_, source, _)      :: _ when position = source      -> move piece position
-    | _                                                    -> playTurn piece position (List.tl history)
+    | _                                                    -> turn piece position (List.tl history)
 
   let init position =
     match position with
@@ -41,7 +41,7 @@ module Board = struct
   let rec play moves =
     match moves with
     | []                     -> Moved
-    | (piece, position) :: _ -> let outcome = playTurn piece position (init position) in
+    | (piece, position) :: _ -> let outcome = turn piece position (init position) in
                                 match outcome with
                                 | Moved -> play (List.tl moves)
                                 | _     -> outcome
