@@ -34,10 +34,10 @@ module Board = struct
 
   let turn piece position =
     let (file, Rank rank) = position in
-    let init = (match rank with
-                | 1 -> [(file, position, position)]
-                | 2 -> [(Pawn, position, position)]
-                | _ -> []) in
+    let init = (match position with
+                | (file, Rank 1) -> [(file, position, position)]
+                | (file, Rank 2) -> [(Pawn, position, position)]
+                | _              -> []) in
     playTurn piece position init
 
   let rec play moves =
