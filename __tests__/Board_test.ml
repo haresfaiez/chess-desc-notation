@@ -49,6 +49,8 @@ let () =
         expect (Board.turn Board.Queen (q 1) [(moveQ (q 1) 1);(moveQ (q 2) (-1))]) |> toBe Board.Moved);
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
         expect (Board.turn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
+      test "detects no conflicts when in [P-Q3, Q-Q2]" (fun () ->
+        expect (Board.turn Board.Queen (q 2) (List.append [(moveP (q 2) 1)] (Board.init (q 2)))) |> toBe Board.Moved);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
