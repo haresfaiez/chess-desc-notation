@@ -33,11 +33,11 @@ module Board = struct
     | _                                                    -> playTurn piece position (List.tl history)
 
   let turn piece position =
-    let init = (match position with
-                | (file, Rank 1) -> [(file, position, position)]
-                | (_, Rank 2)    -> [(Pawn, position, position)]
-                | _              -> []) in
-    playTurn piece position init
+    let init position = (match position with
+                         | (file, Rank 1) -> [(file, position, position)]
+                         | (_, Rank 2)    -> [(Pawn, position, position)]
+                         | _              -> []) in
+    playTurn piece position (init position)
 
   let rec play moves =
     match moves with
