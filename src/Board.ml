@@ -38,7 +38,7 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
 
-  let rec play moves _ =
+  let rec play moves history =
     match moves with
     | []                     -> Moved
     | (piece, position) :: _ -> let outcome = turn piece position (init position) in
