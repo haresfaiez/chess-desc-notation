@@ -61,6 +61,8 @@ let () =
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))] []) |> toBe Board.Conflict);
       test "[P-Q3, Q-Q3] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.Queen, (q 3))] []) |> toBe Board.Conflict);
+      test "[P-Q3, P-K3, Q-Q3] fails" (fun () ->
+          expect (Board.play [(Board.Pawn, (q 3)); (Board.Pawn, (k 3)); (Board.Queen, (q 3))] []) |> toBe Board.Conflict);
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
