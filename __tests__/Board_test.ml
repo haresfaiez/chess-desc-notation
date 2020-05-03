@@ -10,6 +10,10 @@ let moveP from count : Board.movement = Board.shiftRank Board.Pawn from count
 let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 
 let () =
+  describe "Movement" (fun () ->
+      test "fails when no sources are available" (fun () ->
+        expect (Board.move Board.Pawn [] (k 3)) |> toBe Board.NoSources);
+    );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
           expect (Board.move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);

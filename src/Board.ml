@@ -16,15 +16,18 @@ module Board = struct
     | Unreachable
     | Conflict
     | Moved: movement -> turn
+    | NoSources
     | End
 
   let move piece sources destination =
-    match destination with
-    | (_, (Rank 3)) -> (match piece with
-                        | King -> Unreachable
-                        | Pawn -> Moved (Pawn, (List.hd sources), destination))
-    | (Queen, _)    -> Moved (Queen, (List.hd sources), destination)
-    | _             -> Unreachable
+    match sources with
+    | [] -> NoSources
+    | _  -> (match destination with
+             | (_, (Rank 3)) -> (match piece with
+                                 | King -> Unreachable
+                                 | Pawn -> Moved (Pawn, (List.hd sources), destination))
+             | (Queen, _)    -> Moved (Queen, (List.hd sources), destination)
+             | _             -> Unreachable)
 
   let rec turn piece position history =
     match history with
