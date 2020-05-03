@@ -10,13 +10,13 @@ module Board : sig
 
   type position = (piece * rank)
 
+  type movement = piece * position * position
+
   type turn =
     | Unreachable
     | Conflict
-    | Moved: piece * position * position -> turn
+    | Moved: movement -> turn
     | End
-
-  type movement = piece * position * position
 
   val move     : piece -> position -> turn
   val _move    : piece -> position list -> position -> turn

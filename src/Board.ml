@@ -10,13 +10,13 @@ module Board = struct
 
   type position = (piece * rank)
 
+  type movement = piece * position * position
+
   type turn =
     | Unreachable
     | Conflict
-    | Moved: piece * position * position -> turn
+    | Moved: movement -> turn
     | End
-
-  type movement = piece * position * position
 
   let _move piece sources destination =
     match destination with
