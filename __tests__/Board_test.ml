@@ -21,6 +21,8 @@ let () =
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
           expect (Board._move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
+      test "-K3 succeeds from K2" (fun () ->
+          expect (Board._move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (Board.Pawn, (k 2), (k 3))));
     );
   describe "Initial movement: K" (fun () ->
       test "-K3 fails" (fun () ->

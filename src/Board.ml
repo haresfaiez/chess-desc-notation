@@ -13,11 +13,18 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
+    | Moved: piece * position * position -> turn
     | End
 
   type movement = piece * position * position
 
-  let _move piece sources destination = Unreachable
+  let _move piece sources destination =
+    match destination with
+    | (_, (Rank 3)) -> (match piece with
+                        | King -> Unreachable
+                        | Pawn -> Moved (Pawn, (List.hd sources), destination))
+    | (Queen, _)    -> End
+    | _             -> Unreachable
 
   let move piece destination =
     match destination with
