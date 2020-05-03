@@ -34,6 +34,10 @@ let () =
       test "-K7 fails" (fun () ->
           expect (Board.turn Board.Knight (k 7) []) |> toBe Board.Unreachable);
     );
+  describe "Movement: K" (fun () ->
+      test "-K3 is unreachable from K1" (fun () ->
+          expect (Board._move Board.King [(k 1)] (k 3)) |> toBe Board.Unreachable);
+    );
   describe "Initial movement: Q" (fun () ->
       test "-Q1 succeeds" (fun () ->
         expect (Board.move Board.Queen (q 1)) |> toBe Board.End);
