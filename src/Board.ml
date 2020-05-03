@@ -17,6 +17,8 @@ module Board = struct
 
   type movement = piece * position * position
 
+  let _move piece sources destination = Unreachable
+
   let move piece destination =
     match destination with
     | (_, (Rank 3)) -> (match piece with

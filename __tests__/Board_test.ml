@@ -18,6 +18,10 @@ let () =
       test "-Q3 suuceeds" (fun () ->
           expect (Board.move Board.Pawn (q 3)) |> toBe Board.End);
     );
+  describe "Movement: P" (fun () ->
+      test "-K7 is unreachable from K2" (fun () ->
+          expect (Board._move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
+    );
   describe "Initial movement: K" (fun () ->
       test "-K3 fails" (fun () ->
           expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);

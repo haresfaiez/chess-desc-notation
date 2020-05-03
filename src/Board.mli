@@ -18,6 +18,7 @@ module Board : sig
   type movement = piece * position * position
 
   val move     : piece -> position -> turn
+  val _move    : piece -> position list -> position -> turn
   val play     : (piece * position) list -> movement list -> turn
   val turn     : piece -> position -> movement list -> turn
   val init     : position -> movement list
