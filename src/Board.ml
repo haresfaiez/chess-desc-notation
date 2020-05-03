@@ -23,7 +23,7 @@ module Board = struct
     | (_, (Rank 3)) -> (match piece with
                         | King -> Unreachable
                         | Pawn -> Moved (Pawn, (List.hd sources), destination))
-    | (Queen, _)    -> End
+    | (Queen, _)    -> Moved (Queen, (List.hd sources), destination)
     | _             -> Unreachable
 
   let move piece destination =
