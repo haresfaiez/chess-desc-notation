@@ -36,7 +36,7 @@ module Board = struct
     match history with
     | []                                                   -> move piece position
     | (_, _, destination) :: _ when position = destination -> Conflict
-    | (_, source, _)      :: _ when position = source      -> move piece position
+    | (_, source, _)      :: _ when position = source      -> _move piece [position] position
     | _                                                    -> turn piece position (List.tl history)
 
   let init position =
@@ -50,8 +50,9 @@ module Board = struct
     | []                     -> End
     | (piece, position) :: _ -> let outcome = turn piece position (List.append history (init position)) in
                                 match outcome with
-                                | End -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
-                                | _   -> outcome
+                                | Moved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | End     -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | _       -> outcome
 
   let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
 end
