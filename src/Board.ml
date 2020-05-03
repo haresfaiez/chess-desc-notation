@@ -13,7 +13,7 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | Moved
+    | End
 
   type movement = piece * position * position
 
@@ -21,8 +21,8 @@ module Board = struct
     match destination with
     | (_, (Rank 3)) -> (match piece with
                         | King -> Unreachable
-                        | Pawn -> Moved)
-    | (Queen, _)    -> Moved
+                        | Pawn -> End)
+    | (Queen, _)    -> End
     | _             -> Unreachable
 
   let rec turn piece position history =
@@ -40,11 +40,11 @@ module Board = struct
 
   let rec play moves history =
     match moves with
-    | []                     -> Moved
+    | []                     -> End
     | (piece, position) :: _ -> let outcome = turn piece position (List.append history (init position)) in
                                 match outcome with
-                                | Moved -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
-                                | _     -> outcome
+                                | End -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | _   -> outcome
 
   let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
 end

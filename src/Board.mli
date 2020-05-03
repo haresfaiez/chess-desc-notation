@@ -13,7 +13,7 @@ module Board : sig
   type turn =
     | Unreachable
     | Conflict
-    | Moved
+    | End
 
   type movement = piece * position * position
 
