@@ -34,7 +34,7 @@ module Board = struct
 
   let rec turn piece position history =
     match history with
-    | []                                                   -> move piece position
+    | []                                                   -> _move piece [position] position
     | (_, _, destination) :: _ when position = destination -> Conflict
     | (_, source, _)      :: _ when position = source      -> _move piece [position] position
     | _                                                    -> turn piece position (List.tl history)
