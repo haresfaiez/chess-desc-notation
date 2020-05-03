@@ -18,7 +18,7 @@ module Board = struct
     | Moved: movement -> turn
     | End
 
-  let _move piece sources destination =
+  let move piece sources destination =
     match destination with
     | (_, (Rank 3)) -> (match piece with
                         | King -> Unreachable
@@ -28,9 +28,9 @@ module Board = struct
 
   let rec turn piece position history =
     match history with
-    | []                                                   -> _move piece [position] position
+    | []                                                   -> move piece [position] position
     | (_, _, destination) :: _ when position = destination -> Conflict
-    | (_, source, _)      :: _ when position = source      -> _move piece [position] position
+    | (_, source, _)      :: _ when position = source      -> move piece [position] position
     | _                                                    -> turn piece position (List.tl history)
 
   let init position =

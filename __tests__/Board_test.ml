@@ -12,9 +12,9 @@ let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 let () =
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board._move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
+          expect (Board.move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
-          expect (Board._move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (moveP (k 2) 1)));
+          expect (Board.move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (moveP (k 2) 1)));
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
@@ -22,11 +22,11 @@ let () =
     );
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
-          expect (Board._move Board.King [(k 1)] (k 3)) |> toBe Board.Unreachable);
+          expect (Board.move Board.King [(k 1)] (k 3)) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (Board._move Board.Queen [(q 1)] (q 4)) |> toEqual (Board.Moved (moveQ (q 1) 3)));
+        expect (Board.move Board.Queen [(q 1)] (q 4)) |> toEqual (Board.Moved (moveQ (q 1) 3)));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->

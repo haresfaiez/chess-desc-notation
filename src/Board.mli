@@ -18,7 +18,7 @@ module Board : sig
     | Moved: movement -> turn
     | End
 
-  val _move    : piece -> position list -> position -> turn
+  val move    : piece -> position list -> position -> turn
   val play     : (piece * position) list -> movement list -> turn
   val turn     : piece -> position -> movement list -> turn
   val init     : position -> movement list
