@@ -26,12 +26,6 @@ module Board = struct
     | (Queen, _)    -> Moved (Queen, (List.hd sources), destination)
     | _             -> Unreachable
 
-  let move piece destination =
-    let result = _move piece [destination] destination in
-    match result with
-    | Moved _ -> End
-    | _       -> result
-
   let rec turn piece position history =
     match history with
     | []                                                   -> _move piece [position] position

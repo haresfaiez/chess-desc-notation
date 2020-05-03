@@ -10,25 +10,11 @@ let moveP from count : Board.movement = Board.shiftRank Board.Pawn from count
 let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 
 let () =
-  describe "Initial movement: P" (fun () ->
-      test "-K7 fails" (fun () ->
-          expect (Board.move Board.Pawn (k 7)) |> toBe Board.Unreachable);
-      test "-K3 succeeds" (fun () ->
-          expect (Board.move Board.Pawn (k 3)) |> toBe Board.End);
-      test "-Q3 suuceeds" (fun () ->
-          expect (Board.move Board.Pawn (q 3)) |> toBe Board.End);
-    );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
           expect (Board._move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (Board._move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (moveP (k 2) 1)));
-    );
-  describe "Initial movement: K" (fun () ->
-      test "-K3 fails" (fun () ->
-          expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
-      test "-K3 is unreachable" (fun () ->
-          expect (Board.move Board.King (k 3)) |> toBe Board.Unreachable);
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
@@ -37,12 +23,6 @@ let () =
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
           expect (Board._move Board.King [(k 1)] (k 3)) |> toBe Board.Unreachable);
-    );
-  describe "Initial movement: Q" (fun () ->
-      test "-Q1 succeeds" (fun () ->
-        expect (Board.move Board.Queen (q 1)) |> toBe Board.End);
-      test "-Q2 succeeds" (fun () ->
-        expect (Board.move Board.Queen (q 2)) |> toBe Board.End);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
