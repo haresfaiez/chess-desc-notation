@@ -23,9 +23,9 @@ module Board = struct
     match sources with
     | []          -> [Unreachable]
     | source :: _ -> (match destination with
-                       | (_, (Rank 3)) -> [(match piece with
-                                           | King -> Unreachable
-                                           | Pawn -> Moved (Pawn, source, destination))]
+                       | (_, (Rank 3)) -> (match piece with
+                                           | King -> moveOptions piece (List.tl sources) destination
+                                           | Pawn -> [Moved (Pawn, source, destination)])
                        | (Queen, _)    -> [Moved (Queen, source, destination)]
                        | _             -> moveOptions piece (List.tl sources) destination)
     
