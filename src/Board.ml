@@ -19,15 +19,18 @@ module Board = struct
     | NoSources
     | End
 
-  let move piece sources destination =
-    match sources with
-    | [] -> NoSources
-    | _  -> (match destination with
+  let moveOptions piece sources destination =
+    [(match destination with
              | (_, (Rank 3)) -> (match piece with
                                  | King -> Unreachable
                                  | Pawn -> Moved (Pawn, (List.hd sources), destination))
              | (Queen, _)    -> Moved (Queen, (List.hd sources), destination)
-             | _             -> Unreachable)
+             | _             -> Unreachable)]
+
+  let move piece sources destination =
+    match sources with
+    | [] -> NoSources
+    | _  -> List.hd (moveOptions piece sources destination) (* Implement a strategy to select the option *)
 
   let rec turn piece position history =
     match history with
