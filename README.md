@@ -67,6 +67,8 @@ in the diff analysis).
   If you want to introduce two and forget to finish one, the compiler or the test
   disagrees. Example: add new movement for a new piece -> failure.
   You need to first add the piece, tcr, then add the movement, tcr.
+* "Make the test pass as soon as possible" needs to be weighted against "Remove the test and think harder".
+  Otherwise, you heading toward a tunnel.
 
 ### Ocaml
 * Deconstruction is a good way to avoid booleans/compression, or at least delay their use.
