@@ -16,7 +16,6 @@ module Board : sig
     | Unreachable
     | Conflict
     | Moved: movement -> turn
-    | NoSources
     | End
 
   val move    : piece -> position list -> position -> turn

@@ -16,25 +16,21 @@ module Board = struct
     | Unreachable
     | Conflict
     | Moved: movement -> turn
-    | NoSources
     | End
 
   let rec moveOptions piece sources destination =
     match sources with
-    | []          -> [Unreachable]
-    | source :: _ -> let current = (piece, source, destination) in
-                     (match current with
-                      | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
-                      | (Pawn, (_, (Rank src)), (_, (Rank dest))) when src = dest -> [Moved current]
-                      | (Pawn, (_, (Rank 2)), (_, (Rank 3)))                      -> [Moved current]
-                      | (Queen, _, (Queen, _))                                    -> [Moved current]
-                      | _                                                         -> moveOptions piece (List.tl sources) destination)
-    
+    | []             -> [Unreachable]
+    | source :: next -> let current = (piece, source, destination) in
+                        (match current with
+                         | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
+                         | (Pawn, (_, (Rank src)), (_, (Rank dest))) when src = dest -> [Moved current]
+                         | (Pawn, (_, (Rank 2)), (_, (Rank 3)))                      -> [Moved current]
+                         | (Queen, _, (Queen, _))                                    -> [Moved current]
+                         | _                                                         -> moveOptions piece next destination)
 
-  let move piece sources destination =
-    match sources with
-    | [] -> NoSources
-    | _  -> List.hd (moveOptions piece sources destination) (* Implement a strategy to select the option *)
+  (* Implement a strategy to select the option *)
+  let move piece sources destination = List.hd (moveOptions piece sources destination)
 
   let rec turn piece position history =
     match history with
