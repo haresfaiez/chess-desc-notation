@@ -53,8 +53,8 @@ let () =
           expect (Board.play [(Board.King, (k 2))] []) |> toBe Board.Conflict);
       test "[K-K2, P-Q3] fails" (fun () ->
           expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))] []) |> toBe Board.Conflict);
-      test "[P-K7, P-Q3] fails" (fun () ->
-          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))] []) |> toBe Board.Unreachable);
+      (*test "[P-K7, P-Q3] fails" (fun () ->
+          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))] []) |> toBe Board.Unreachable);*)
       test "[P-Q3, K-K2] fails" (fun () ->
           expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))] []) |> toBe Board.Conflict);
       test "[P-Q3, Q-Q3] fails" (fun () ->
