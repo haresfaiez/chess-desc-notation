@@ -19,14 +19,15 @@ module Board = struct
     | NoSources
     | End
 
-  let moveOptions piece sources destination =
+  let rec moveOptions piece sources destination =
     match sources with
+    | []          -> [Unreachable]
     | source :: _ -> (match destination with
                        | (_, (Rank 3)) -> [(match piece with
                                            | King -> Unreachable
                                            | Pawn -> Moved (Pawn, source, destination))]
                        | (Queen, _)    -> [Moved (Queen, source, destination)]
-                       | _             -> [Unreachable])
+                       | _             -> moveOptions piece (List.tl sources) destination)
     
 
   let move piece sources destination =
