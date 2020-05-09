@@ -21,12 +21,12 @@ module Board = struct
 
   let moveOptions piece sources destination =
     match sources with
-    | source :: _ -> [(match destination with
-                       | (_, (Rank 3)) -> (match piece with
+    | source :: _ -> (match destination with
+                       | (_, (Rank 3)) -> [(match piece with
                                            | King -> Unreachable
-                                           | Pawn -> Moved (Pawn, source, destination))
-                       | (Queen, _)    -> Moved (Queen, source, destination)
-                       | _             -> Unreachable)]
+                                           | Pawn -> Moved (Pawn, source, destination))]
+                       | (Queen, _)    -> [Moved (Queen, source, destination)]
+                       | _             -> [Unreachable])
     
 
   let move piece sources destination =
