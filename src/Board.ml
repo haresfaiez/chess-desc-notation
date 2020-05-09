@@ -22,12 +22,12 @@ module Board = struct
   let rec moveOptions piece sources destination =
     match sources with
     | []          -> [Unreachable]
-    | source :: _ -> (match destination with
-                       | (_, (Rank 3)) -> (match piece with
-                                           | King -> moveOptions piece (List.tl sources) destination
-                                           | Pawn -> [Moved (Pawn, source, destination)])
-                       | (Queen, _)    -> [Moved (Queen, source, destination)]
-                       | _             -> moveOptions piece (List.tl sources) destination)
+    | source :: _ -> (match (piece, destination) with
+                      | (_, (_, (Rank 3))) -> (match piece with
+                                               | King -> moveOptions piece (List.tl sources) destination
+                                               | Pawn -> [Moved (Pawn, source, destination)])
+                      | (_, (Queen, _))    -> [Moved (Queen, source, destination)]
+                      | _                  -> moveOptions piece (List.tl sources) destination)
     
 
   let move piece sources destination =
