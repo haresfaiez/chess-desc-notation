@@ -24,7 +24,7 @@ module Board = struct
     | []          -> [Unreachable]
     | source :: _ -> let current = (piece, source, destination) in
                      (match current with
-                      | (King, _, (_, (Rank 2)))                      -> [Moved current]
+                      | (King, (_, (Rank 1)), (_, (Rank 2)))          -> [Moved current]
                       | (Pawn, _, (_, (Rank rank))) when rank = 2 + 1 -> [Moved current]
                       | (Queen, _, (Queen, _))                        -> [Moved current]
                       | _                                             -> moveOptions piece (List.tl sources) destination)
