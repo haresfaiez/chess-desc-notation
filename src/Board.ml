@@ -18,6 +18,19 @@ module Board = struct
     | Moved: movement -> turn
     | End
 
+  let init position =
+    match position with
+    | (file, Rank 1) -> [(file, position, position)]
+    | (_, Rank 2)    -> [(Pawn, position, position)]
+    | _              -> []
+
+  let setup piece =
+    match piece with
+    | King   -> [(piece, Rank 1)]
+    | Queen  -> [(piece, Rank 1)]
+    | Pawn   -> [(Knight, Rank 1); (Queen, Rank 1); (King, Rank 1); (Knight, Rank 1)]
+    | _      -> [(piece, Rank 1); (piece, Rank 1)]
+
   let rec moveOptions piece sources destination =
     match sources with
     | []             -> [Unreachable]
@@ -38,19 +51,6 @@ module Board = struct
     | (_, _, dst) :: _      when destination = dst -> Conflict
     | (_, src, _)      :: _ when destination = src -> move piece [destination] destination
     | _                                            -> turn piece destination (List.tl history)
-
-  let init position =
-    match position with
-    | (file, Rank 1) -> [(file, position, position)]
-    | (_, Rank 2)    -> [(Pawn, position, position)]
-    | _              -> []
-
-  let setup piece =
-    match piece with
-    | King   -> [(piece, Rank 1)]
-    | Queen  -> [(piece, Rank 1)]
-    | Pawn   -> [(Knight, Rank 1); (Queen, Rank 1); (King, Rank 1); (Knight, Rank 1)]
-    | _      -> [(piece, Rank 1); (piece, Rank 1)]
 
   let rec play moves history =
     match moves with
