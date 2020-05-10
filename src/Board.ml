@@ -47,7 +47,9 @@ module Board = struct
 
   let position piece =
     match piece with
-    | King -> [(piece, Rank 1)]
+    | King   -> [(piece, Rank 1)]
+    | Queen  -> [(piece, Rank 1)]
+    | Knight -> [(piece, Rank 1); (piece, Rank 1)]
 
   let rec play moves history =
     match moves with
