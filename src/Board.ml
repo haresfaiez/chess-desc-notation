@@ -32,12 +32,12 @@ module Board = struct
   (* Implement a strategy to select the option *)
   let move piece sources destination = List.hd (moveOptions piece sources destination)
 
-  let rec turn piece position history =
+  let rec turn piece destination history =
     match history with
-    | []                                                   -> move piece [position] position
-    | (_, _, destination) :: _ when position = destination -> Conflict
-    | (_, source, _)      :: _ when position = source      -> move piece [position] position
-    | _                                                    -> turn piece position (List.tl history)
+    | []                                           -> move piece [destination] destination
+    | (_, _, dst) :: _      when destination = dst -> Conflict
+    | (_, src, _)      :: _ when destination = src -> move piece [destination] destination
+    | _                                            -> turn piece destination (List.tl history)
 
   let init position =
     match position with
