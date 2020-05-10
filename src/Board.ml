@@ -28,7 +28,7 @@ module Board = struct
     match piece with
     | King   -> [(piece, Rank 1)]
     | Queen  -> [(piece, Rank 1)]
-    | Pawn   -> [(Knight, Rank 1); (Queen, Rank 1); (King, Rank 1); (Knight, Rank 1)]
+    | Pawn   -> [(Knight, Rank 2); (Queen, Rank 2); (King, Rank 2); (Knight, Rank 2)]
     | _      -> [(piece, Rank 1); (piece, Rank 1)]
 
   let rec moveOptions piece sources destination =
@@ -38,7 +38,7 @@ module Board = struct
                         (match current with
                          | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
                          | (Pawn, (_, (Rank src)), (_, (Rank dest))) when src = dest -> [Moved current]
-                         | (Pawn, (_, (Rank 2)), (_, (Rank 3)))                      -> [Moved current]
+                         | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
                          | (Queen, _, (Queen, _))                                    -> [Moved current]
                          | _                                                         -> moveOptions piece next destination)
 

@@ -17,8 +17,8 @@ let () =
           expect (Board.setup Board.Queen) |> toEqual [(q 1)]);
       test "of the Knight are Kn1,Kn1" (fun () ->
           expect (Board.setup Board.Knight) |> toEqual [(kn 1); (kn 1)]);
-      test "of the pawn are Kn1,K1,Q1,Kn1" (fun () ->
-          expect (Board.setup Board.Pawn) |> toEqual [(kn 1); (q 1); (k 1); (kn 1)]);
+      test "of the pawn are Kn2,K2,Q2,Kn2" (fun () ->
+          expect (Board.setup Board.Pawn) |> toEqual [(kn 2); (q 2); (k 2); (kn 2)]);
     );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
@@ -29,6 +29,8 @@ let () =
           expect (Board.move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (Board.move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (moveP (k 2) 1)));
+      test "-K3 succeeds from initial setup" (fun () ->
+          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (moveP (k 2) 1)]);
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
