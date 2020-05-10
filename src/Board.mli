@@ -10,6 +10,8 @@ module Board : sig
 
   type position = (piece * rank)
 
+  type source = position * position list
+
   type movement = piece * position * position
 
   type turn =

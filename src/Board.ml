@@ -10,6 +10,8 @@ module Board = struct
 
   type position = (piece * rank)
 
+  type source = position * position list
+
   type movement = piece * position * position
 
   type turn =
@@ -34,7 +36,7 @@ module Board = struct
   let rec moveOptions piece sources destination =
     match sources with
     | []             -> [Unreachable]
-    | source :: next -> let current = (piece, source, destination) in
+    | source :: next -> let current = (piece, source, destination) in (* Replace math with source.options contains destination *)
                         (match current with
                          | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
                          | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
