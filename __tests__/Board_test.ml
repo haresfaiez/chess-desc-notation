@@ -10,6 +10,10 @@ let moveP from count : Board.movement = Board.shiftRank Board.Pawn from count
 let moveQ from count : Board.movement = Board.shiftRank Board.Queen from count
 
 let () =
+  describe "Initial piece position" (fun () ->
+      test "of the king is K1" (fun () ->
+          expect (Board.position Board.King) |> toEqual [(k 1)]);
+    );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
         expect (Board.move Board.Pawn [] (k 3)) |> toBe Board.Unreachable);

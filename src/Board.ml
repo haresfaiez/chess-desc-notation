@@ -45,6 +45,8 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
 
+  let position piece = [(King, Rank 1)]
+
   let rec play moves history =
     match moves with
     | []                     -> End

@@ -22,5 +22,6 @@ module Board : sig
   val play     : (piece * position) list -> movement list -> turn
   val turn     : piece -> position -> movement list -> turn
   val init     : position -> movement list
+  val position : piece -> position list
   val shiftRank: piece -> position -> int -> movement
 end
