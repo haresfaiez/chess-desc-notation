@@ -17,6 +17,8 @@ let () =
           expect (Board.position Board.Queen) |> toEqual [(q 1)]);
       test "of the Knight are Kn1,Kn1" (fun () ->
           expect (Board.position Board.Knight) |> toEqual [(kn 1); (kn 1)]);
+      test "of the pawn are Kn1,K1,Q1,Kn1" (fun () ->
+          expect (Board.position Board.Pawn) |> toEqual [(kn 1); (q 1); (k 1); (kn 1)]);
     );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
