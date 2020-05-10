@@ -28,10 +28,10 @@ module Board = struct
 
   let setup piece =
     match piece with
-    | King   -> [(piece, Rank 1)]
-    | Queen  -> [(piece, Rank 1)]
-    | Pawn   -> [(Knight, Rank 2); (Queen, Rank 2); (King, Rank 2); (Knight, Rank 2)]
-    | _      -> [(piece, Rank 1); (piece, Rank 1)]
+    | King   -> [((piece, Rank 1), [])]
+    | Queen  -> [((piece, Rank 1), [])]
+    | Pawn   -> [((Knight, Rank 2), []); ((Queen, Rank 2), []); ((King, Rank 2), []); ((Knight, Rank 2), [])]
+    | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
   let rec moveOptions piece sources destination =
     let check current next = (* Replace with source.options contains destination *)
@@ -45,10 +45,7 @@ module Board = struct
     | (source, []) :: next -> check (piece, source, destination) next
 
   (* Implement a strategy to select the option *)
-  let move piece sources destination =
-    let to_ source = (source, []) in
-    let _sources = List.map to_ sources in
-    List.hd (moveOptions piece _sources destination)
+  let move piece sources destination = List.hd (moveOptions piece sources destination)
 
   let rec turn piece destination history =
     match history with
