@@ -45,7 +45,7 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
 
-  let position piece =
+  let setup piece =
     match piece with
     | King   -> [(piece, Rank 1)]
     | Queen  -> [(piece, Rank 1)]
