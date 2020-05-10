@@ -20,7 +20,7 @@ module Board : sig
     | Moved: movement -> turn
     | End
 
-  val moveOptions: piece -> position list -> position -> turn list
+  val moveOptions: piece -> source list -> position -> turn list
   val move       : piece -> position list -> position -> turn
   val play       : (piece * position) list -> movement list -> turn
   val turn       : piece -> position -> movement list -> turn

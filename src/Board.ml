@@ -34,17 +34,21 @@ module Board = struct
     | _      -> [(piece, Rank 1); (piece, Rank 1)]
 
   let rec moveOptions piece sources destination =
+    let check current next = (* Replace with source.options contains destination *)
+      (match current with
+       | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
+       | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
+       | (Queen, _, (Queen, _))                                    -> [Moved current]
+       | _                                                         -> moveOptions piece next destination) in
     match sources with
-    | []             -> [Unreachable]
-    | source :: next -> let current = (piece, source, destination) in (* Replace math with source.options contains destination *)
-                        (match current with
-                         | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
-                         | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
-                         | (Queen, _, (Queen, _))                                    -> [Moved current]
-                         | _                                                         -> moveOptions piece next destination)
+    | []                   -> [Unreachable]
+    | (source, []) :: next -> check (piece, source, destination) next
 
   (* Implement a strategy to select the option *)
-  let move piece sources destination = List.hd (moveOptions piece sources destination)
+  let move piece sources destination =
+    let to_ source = (source, []) in
+    let _sources = List.map to_ sources in
+    List.hd (moveOptions piece _sources destination)
 
   let rec turn piece destination history =
     match history with

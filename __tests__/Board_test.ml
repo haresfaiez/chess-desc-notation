@@ -29,8 +29,8 @@ let () =
           expect (Board.move Board.Pawn [(k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (Board.move Board.Pawn [(k 2)] (k 3)) |> toEqual (Board.Moved (moveP (k 2) 1)));
-      test "-K3 succeeds from initial setup" (fun () ->
-          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (moveP (k 2) 1)]);
+      (*test "-K3 succeeds from initial setup" (fun () ->
+          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (moveP (k 2) 1)]);*)
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
