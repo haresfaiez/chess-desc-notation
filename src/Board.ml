@@ -37,7 +37,6 @@ module Board = struct
     | source :: next -> let current = (piece, source, destination) in
                         (match current with
                          | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
-                         | (Pawn, (_, (Rank src)), (_, (Rank dest))) when src = dest -> [Moved current]
                          | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
                          | (Queen, _, (Queen, _))                                    -> [Moved current]
                          | _                                                         -> moveOptions piece next destination)
