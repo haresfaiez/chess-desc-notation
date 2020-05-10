@@ -29,7 +29,7 @@ module Board = struct
   let setup piece =
     match piece with
     | King   -> let at rank = (King, Rank rank) in [(at 1, [(at 2)])]
-    | Queen  -> [((piece, Rank 1), [])]
+    | Queen  -> let at rank = (Queen, Rank rank) in [(at 1, [(at 2); (at 3); (at 4)])]
     | Pawn   -> [((Knight, Rank 2), []); ((Queen, Rank 2), []); ((King, Rank 2), []); ((Knight, Rank 2), [])]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
@@ -41,8 +41,8 @@ module Board = struct
        | (Queen, _, (Queen, _))                                    -> [Moved current]
        | _                                                         -> moveOptions piece next destination) in
     match sources with
-    | []                   -> [Unreachable]
-    | (source, []) :: next -> check (piece, source, destination) next
+    | []                  -> [Unreachable]
+    | (source, _) :: next -> check (piece, source, destination) next
 
   (* Implement a strategy to select the option *)
   let move piece sources destination = List.hd (moveOptions piece sources destination)

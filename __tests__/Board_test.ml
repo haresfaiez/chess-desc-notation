@@ -14,9 +14,9 @@ let () =
   describe "Initial piece positions" (fun () ->
       test "of the king are K1" (fun () ->
           expect (Board.setup Board.King) |> toEqual [((k 1), [(k 2)])]);
-      (*test "of the Queen are Q1" (fun () ->
-          expect (Board.setup Board.Queen) |> toEqual [(q 1)]);
-      test "of the Knight are Kn1,Kn1" (fun () ->
+      test "of the Queen are Q1" (fun () ->
+          expect (Board.setup Board.Queen) |> toEqual [(q 1), [(q 2); (q 3); (q 4)]]);
+      (*test "of the Knight are Kn1,Kn1" (fun () ->
           expect (Board.setup Board.Knight) |> toEqual [(kn 1); (kn 1)]);
       test "of the pawn are Kn2,K2,Q2,Kn2" (fun () ->
           expect (Board.setup Board.Pawn) |> toEqual [(kn 2); (q 2); (k 2); (kn 2)]);*)
