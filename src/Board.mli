@@ -18,10 +18,11 @@ module Board : sig
     | Moved: movement -> turn
     | End
 
-  val move     : piece -> position list -> position -> turn
-  val play     : (piece * position) list -> movement list -> turn
-  val turn     : piece -> position -> movement list -> turn
-  val init     : position -> movement list
-  val setup    : piece -> position list
-  val shiftRank: piece -> position -> int -> movement
+  val moveOptions: piece -> position list -> position -> turn list
+  val move       : piece -> position list -> position -> turn
+  val play       : (piece * position) list -> movement list -> turn
+  val turn       : piece -> position -> movement list -> turn
+  val init       : position -> movement list
+  val setup      : piece -> position list
+  val shiftRank  : piece -> position -> int -> movement
 end
