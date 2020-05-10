@@ -27,9 +27,10 @@ module Board = struct
     | _              -> []
 
   let setup piece =
+    let at rank = (piece, Rank rank) in
     match piece with
-    | King   -> let at rank = (King, Rank rank) in [(at 1, [(at 2)])]
-    | Queen  -> let at rank = (Queen, Rank rank) in [(at 1, [(at 2); (at 3); (at 4)])]
+    | King   -> [(at 1, [(at 2)])]
+    | Queen  -> [(at 1, [(at 2); (at 3); (at 4)])]
     | Pawn   -> [((Knight, Rank 2), []); ((Queen, Rank 2), []); ((King, Rank 2), []); ((Knight, Rank 2), [])]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
