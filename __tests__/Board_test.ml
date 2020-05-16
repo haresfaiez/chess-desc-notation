@@ -19,7 +19,7 @@ let () =
       test "of the Knight are Kn1,Kn1" (fun () ->
           expect (Board.setup Board.Knight) |> toEqual [(kn 1, []); (kn 1, [])]);
       test "of the pawn are Kn2,K2,Q2,Kn2" (fun () ->
-          expect (Board.setup Board.Pawn) |> toEqual [(kn 2, []); (q 2, []); (k 2, [(k 3)]); (kn 2, [])]);
+          expect (Board.setup Board.Pawn) |> toEqual [(kn 2, [(kn 3)]); (q 2, [(q 3)]); (k 2, [(k 3)]); (kn 2, [(kn 3)])]);
     );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->

@@ -32,7 +32,7 @@ module Board = struct
     match piece with
     | King   -> [(at 1, [(at 2)])]
     | Queen  -> [(at 1, [(at 2); (at 3); (at 4)])]
-    | Pawn   -> [((Knight, Rank 2), []); ((Queen, Rank 2), []); (pawnAt King); ((Knight, Rank 2), [])]
+    | Pawn   -> [(pawnAt Knight); (pawnAt Queen); (pawnAt King); (pawnAt Knight)]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
   let rec moveOptions piece sources destination =
