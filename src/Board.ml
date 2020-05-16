@@ -37,11 +37,14 @@ module Board = struct
   let rec moveOptions piece sources destination =
     let check (piece, (source, options), destination) next =
       let current = (piece, source, destination) in
-      if (List.exists (fun each -> each = destination) options) then [Moved current] else
-      (match current with
-       | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
-       | (Queen, _, (Queen, _))                                    -> [Moved current]
-       | _                                                         -> moveOptions piece next destination) in
+      if (List.exists (fun e -> e = destination) options)
+      then [Moved current]
+      else
+        (match current with
+         | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
+         | (Queen, _, (Queen, _))                                    -> [Moved current]
+         | _                                                         -> moveOptions piece next destination)
+    in
     match sources with
     | []             -> [Unreachable]
     | source :: next -> check (piece, source, destination) next
