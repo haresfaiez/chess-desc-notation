@@ -37,9 +37,9 @@ module Board = struct
   let isDestination (source, options) destination = List.exists (fun each -> each = destination) options
 
   let rec moveOptions piece sources destination =
-    let check (piece, (source, options), destination) next = (* Replace with source.options contains destination *)
+    let check (piece, (source, options), destination) next =
       let current = (piece, source, destination) in
-      if (isDestination (source, options) destination) then [Moved current] else
+      if (List.exists (fun each -> each = destination) options) then [Moved current] else
       (match current with
        | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
        | (Queen, _, (Queen, _))                                    -> [Moved current]
