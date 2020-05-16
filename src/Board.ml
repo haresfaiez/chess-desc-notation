@@ -35,7 +35,8 @@ module Board = struct
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
   let rec moveOptions piece sources destination =
-    let check current next = (* Replace with source.options contains destination *)
+    let check (piece, source, destination) next = (* Replace with source.options contains destination *)
+      let current = (piece, source, destination) in
       (match current with
        | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
        | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
