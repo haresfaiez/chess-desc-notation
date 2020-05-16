@@ -41,7 +41,6 @@ module Board = struct
       let current = (piece, source, destination) in
       if (isDestination (source, options) destination) then [Moved current] else
       (match current with
-       | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
        | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
        | (Queen, _, (Queen, _))                                    -> [Moved current]
        | _                                                         -> moveOptions piece next destination) in
