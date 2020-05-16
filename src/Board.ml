@@ -34,7 +34,9 @@ module Board = struct
     | Pawn   -> [((Knight, Rank 2), []); ((Queen, Rank 2), []); ((King, Rank 2), []); ((Knight, Rank 2), [])]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
-  let isDestination (source, options) destination = options = [destination]
+  let isDestination (source, options) destination =
+    let isEqual each = each = destination in
+    List.exists isEqual options
 
   let rec moveOptions piece sources destination =
     let check (piece, (source, _), destination) next = (* Replace with source.options contains destination *)
