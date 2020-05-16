@@ -27,5 +27,4 @@ module Board : sig
   val init         : position -> movement list
   val setup        : piece -> source list
   val shiftRank    : piece -> position -> int -> movement
-  val isDestination: source -> position -> bool
 end
