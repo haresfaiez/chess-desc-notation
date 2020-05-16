@@ -21,6 +21,11 @@ let () =
       test "of the pawn are Kn2,K2,Q2,Kn2" (fun () ->
           expect (Board.setup Board.Pawn) |> toEqual [(kn 2, []); (q 2, []); (k 2, []); (kn 2, [])]);
     );
+  describe "Destination check" (fun () ->
+      test "finds position in source" (fun () ->
+          expect (Board.isDestination ((k 1), [(k 2)]) (k 2)) |> toBe true;
+        );
+    );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
         expect (Board.move Board.Pawn [] (k 3)) |> toBe Board.Unreachable);
