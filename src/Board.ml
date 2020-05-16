@@ -35,7 +35,7 @@ module Board = struct
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
   let rec moveOptions piece sources destination =
-    let check (piece, source, destination) next = (* Replace with source.options contains destination *)
+    let check (piece, (source, _), destination) next = (* Replace with source.options contains destination *)
       let current = (piece, source, destination) in
       (match current with
        | (King, (_, (Rank 1)), (_, (Rank 2)))                      -> [Moved current]
@@ -43,8 +43,8 @@ module Board = struct
        | (Queen, _, (Queen, _))                                    -> [Moved current]
        | _                                                         -> moveOptions piece next destination) in
     match sources with
-    | []                  -> [Unreachable]
-    | (source, _) :: next -> check (piece, source, destination) next
+    | []             -> [Unreachable]
+    | source :: next -> check (piece, source, destination) next
 
   (* Implement a strategy to select the option *)
   let move piece sources destination = List.hd (moveOptions piece sources destination)
