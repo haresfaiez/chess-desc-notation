@@ -40,10 +40,9 @@ module Board = struct
       let current = (piece, source, destination) in
       if (List.exists (fun e -> e = destination) options)
       then [Moved current]
-      else
-        (match current with
-         | (Queen, _, (Queen, _))                                    -> [Moved current]
-         | _                                                         -> moveOptions piece next destination)
+      else if (piece = Queen)
+      then [Moved current]
+      else moveOptions piece next destination
     in
     match sources with
     | []             -> [Unreachable]
