@@ -42,7 +42,6 @@ module Board = struct
       then [Moved current]
       else
         (match current with
-         | (Pawn, (src, (Rank 2)), (dest, (Rank 3))) when src = dest -> [Moved current]
          | (Queen, _, (Queen, _))                                    -> [Moved current]
          | _                                                         -> moveOptions piece next destination)
     in
