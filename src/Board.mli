@@ -17,7 +17,6 @@ module Board : sig
   type turn =
     | Unreachable
     | Conflict
-    | Moved: movement -> turn
     | SMoved: (piece * source * position) -> turn
     | End
 

@@ -17,7 +17,6 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | Moved: movement -> turn
     | SMoved: (piece * source * position) -> turn
     | End
 
@@ -63,7 +62,6 @@ module Board = struct
     | []                     -> End
     | (piece, position) :: _ -> let outcome = turn piece position (List.append history (init position)) in
                                 match outcome with
-                                | Moved _  -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
                                 | SMoved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
                                 | _        -> outcome
 
