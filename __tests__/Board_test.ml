@@ -60,7 +60,8 @@ let () =
       test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun () ->
         expect (Board.turn Board.Queen (q 4) [(moveP (q 3) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [Q-Q2, Q-Q1, Q-Q2, Q-Q1]" (fun () ->
-        expect (Board.turn Board.Queen (q 1) [(moveQ (q 1) 1); (moveQ (q 2) (-1))]) |> toEqual (Board.SMoved (smoveQ ((q 1), []) 0)));
+        expect (Board.turn Board.Queen (q 1) [(moveQ (q 1) 1); (moveQ (q 2) (-1))])
+        |> toEqual (Board.SMoved (smoveQ ((q 1), []) 0)));
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
         expect (Board.turn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
     );
