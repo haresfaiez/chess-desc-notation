@@ -18,6 +18,7 @@ module Board = struct
     | Unreachable
     | Conflict
     | Moved: movement -> turn
+    | SMoved: (piece * source * position) -> turn
     | End
 
   let init position =
@@ -62,8 +63,9 @@ module Board = struct
     | []                     -> End
     | (piece, position) :: _ -> let outcome = turn piece position (List.append history (init position)) in
                                 match outcome with
-                                | Moved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
-                                | _       -> outcome
+                                | Moved _  -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | SMoved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | _        -> outcome
 
   let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
 end

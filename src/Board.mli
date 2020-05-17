@@ -18,6 +18,7 @@ module Board : sig
     | Unreachable
     | Conflict
     | Moved: movement -> turn
+    | SMoved: (piece * source * position) -> turn
     | End
 
   val moveOptions  : piece -> source list -> position -> turn list
