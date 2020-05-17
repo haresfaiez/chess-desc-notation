@@ -5,12 +5,13 @@ open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
 let shiftRank piece source steps = (piece, source, shift source steps)
-let k rank           = (Board.King, (Board.Rank rank))
-let q rank           = (Board.Queen, (Board.Rank rank))
-let kn rank          = (Board.Knight, (Board.Rank rank))
-let moveP from count = shiftRank Board.Pawn from count
-let moveQ from count = shiftRank Board.Queen from count
-let source position  = (position, [])
+let k rank            = (Board.King, (Board.Rank rank))
+let q rank            = (Board.Queen, (Board.Rank rank))
+let kn rank           = (Board.Knight, (Board.Rank rank))
+let moveP from count  = shiftRank Board.Pawn from count
+let moveQ from count  = shiftRank Board.Queen from count
+let smoveQ from count = (Board.Queen, from, shift from count)
+let source position   = (position, [])
 
 let () =
   describe "Initial piece positions" (fun () ->
