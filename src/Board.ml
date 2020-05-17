@@ -39,7 +39,7 @@ module Board = struct
   let rec moveOptions piece sources destination =
     let check (piece, (source, options), destination) next =
       if (List.exists (fun e -> e = destination) options)
-      then [Moved (piece, source, destination)]
+      then [SMoved (piece, (source, []), destination)]
       else if (piece = Queen)
       then [SMoved (piece, (source, []), destination)]
       else moveOptions piece next destination
