@@ -10,7 +10,7 @@ let q rank            = (Board.Queen, (Board.Rank rank))
 let kn rank           = (Board.Knight, (Board.Rank rank))
 let moveP from count  = shiftRank Board.Pawn from count
 let moveQ from count  = shiftRank Board.Queen from count
-let smoveQ from count = (Board.Queen, from, shift from count)
+let smoveQ from count = (Board.Queen, List.hd (Board.setup Board.Queen), shift from count)
 let source position   = (position, [])
 
 let () =
