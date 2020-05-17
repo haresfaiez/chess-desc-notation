@@ -5,13 +5,13 @@ open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
 let shiftRank piece source steps = (piece, source, shift source steps)
-let k rank                       = (Board.King, (Board.Rank rank))
-let q rank                       = (Board.Queen, (Board.Rank rank))
-let kn rank                      = (Board.Knight, (Board.Rank rank))
-let moveP from count             = shiftRank Board.Pawn from count
-let moveQ from count             = shiftRank Board.Queen from count
-let smoveQ (from, options) count = (Board.Queen, (from, options), shift from count)
-let source position              = (position, [])
+let k rank            = (Board.King, (Board.Rank rank))
+let q rank            = (Board.Queen, (Board.Rank rank))
+let kn rank           = (Board.Knight, (Board.Rank rank))
+let moveP from count  = shiftRank Board.Pawn from count
+let moveQ from count  = shiftRank Board.Queen from count
+let smoveQ from count = (Board.Queen, (from, []), shift from count)
+let source position   = (position, [])
 
 let () =
   describe "Initial piece positions" (fun () ->
@@ -46,7 +46,7 @@ let () =
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (Board.move Board.Queen [source (q 1)] (q 4)) |> toEqual (Board.SMoved (smoveQ ((q 1), []) 3)));
+        expect (Board.move Board.Queen [source (q 1)] (q 4)) |> toEqual (Board.SMoved (smoveQ (q 1) 3)));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
@@ -61,7 +61,7 @@ let () =
         expect (Board.turn Board.Queen (q 4) [(moveP (q 3) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [Q-Q2, Q-Q1, Q-Q2, Q-Q1]" (fun () ->
         expect (Board.turn Board.Queen (q 1) [(moveQ (q 1) 1); (moveQ (q 2) (-1))])
-        |> toEqual (Board.SMoved (smoveQ ((q 1), []) 0)));
+        |> toEqual (Board.SMoved (smoveQ (q 1) 0)));
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
         expect (Board.turn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
     );
