@@ -52,7 +52,7 @@ let () =
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
-        expect (Board.turn Board.Pawn (q 3) [(movementP (k 2) 1)]) |> toEqual (Board.Moved (sMovementP (q 2) 1)));
+        expect (destination (Board.turn Board.Pawn (q 3) [(movementP (k 2) 1)])) |> toEqual (q 3));
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
         expect (Board.turn Board.Queen (q 3) [(movementP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, P-K3, Q-Q3]" (fun () ->
