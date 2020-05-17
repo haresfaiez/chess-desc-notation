@@ -5,14 +5,15 @@ open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
 let shiftRank piece source steps = (piece, source, shift source steps)
-let k rank                = (Board.King, (Board.Rank rank))
-let q rank                = (Board.Queen, (Board.Rank rank))
-let kn rank               = (Board.Knight, (Board.Rank rank))
-let movementP from count  = shiftRank Board.Pawn from count
-let movementQ from count  = shiftRank Board.Queen from count
-let sMovementP from count = (Board.Pawn, (from, []), shift from count)
-let source position       = (position, [])
-let destination actual    = match actual with | Board.Moved (_, _, result) -> result
+let k rank             = (Board.King, (Board.Rank rank))
+let q rank             = (Board.Queen, (Board.Rank rank))
+let kn rank            = (Board.Knight, (Board.Rank rank))
+let moveP from count   = shiftRank Board.Pawn from count
+let moveQ from count   = shiftRank Board.Queen from count
+let smoveP from count  = (Board.Pawn, (from, []), shift from count)
+let source position    = (position, [])
+
+let destination actual = match actual with | Board.Moved (_, _, result) -> result
 
 let () =
   describe "Initial piece positions" (fun () ->
@@ -35,7 +36,7 @@ let () =
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (Board.move Board.Pawn [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
-          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (sMovementP (k 2) 1)]);
+          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (smoveP (k 2) 1)]);
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
@@ -51,19 +52,19 @@ let () =
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
-        expect (destination (Board.turn Board.Pawn (q 3) [(movementP (k 2) 1)])) |> toEqual (q 3));
+        expect (destination (Board.turn Board.Pawn (q 3) [(moveP (k 2) 1)])) |> toEqual (q 3));
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
-        expect (Board.turn Board.Queen (q 3) [(movementP (q 2) 1)]) |> toBe Board.Conflict);
+        expect (Board.turn Board.Queen (q 3) [(moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, P-K3, Q-Q3]" (fun () ->
-        expect (Board.turn Board.Queen (q 3) [(movementP (k 2) 1); (movementP (q 2) 1)]) |> toBe Board.Conflict);
+        expect (Board.turn Board.Queen (q 3) [(moveP (k 2) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
         expect (destination (Board.turn Board.Pawn (k 3) [])) |> toEqual (k 3));
       test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun () ->
-        expect (Board.turn Board.Queen (q 4) [(movementP (q 3) 1); (movementP (q 2) 1)]) |> toBe Board.Conflict);
+        expect (Board.turn Board.Queen (q 4) [(moveP (q 3) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [Q-Q2, Q-Q1, Q-Q2, Q-Q1]" (fun () ->
-        expect (destination (Board.turn Board.Queen (q 1) [(movementQ (q 1) 1); (movementQ (q 2) (-1))])) |> toEqual (q 1));
+        expect (destination (Board.turn Board.Queen (q 1) [(moveQ (q 1) 1); (moveQ (q 2) (-1))])) |> toEqual (q 1));
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
-        expect (Board.turn Board.Knight (kn 2) [movementP (kn 2) 1]) |> toBe Board.Unreachable);
+        expect (Board.turn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
@@ -83,11 +84,11 @@ let () =
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
-          expect(movementP (k 2) 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
+          expect(moveP (k 2) 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
-          expect(movementP (k 2) 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
+          expect(moveP (k 2) 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
       test "moves queen one step forward" (fun() ->
-          expect(movementQ (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
+          expect(moveQ (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
       test "moves queen one step backward" (fun() ->
-          expect(movementQ (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
+          expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
     );
