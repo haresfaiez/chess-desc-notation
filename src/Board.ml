@@ -41,7 +41,7 @@ module Board = struct
       if (List.exists (fun e -> e = destination) options)
       then [Moved (piece, source, destination)]
       else if (piece = Queen)
-      then [Moved (piece, source, destination)]
+      then [SMoved (piece, (source, []), destination)]
       else moveOptions piece next destination
     in
     match sources with
