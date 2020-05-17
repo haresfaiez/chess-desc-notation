@@ -27,5 +27,4 @@ module Board : sig
   val turn         : piece -> position -> movement list -> turn
   val init         : position -> movement list
   val setup        : piece -> source list
-  val shiftRank    : piece -> position -> int -> movement
 end

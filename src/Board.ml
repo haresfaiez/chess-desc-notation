@@ -67,5 +67,4 @@ module Board = struct
                                 | SMoved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
                                 | _        -> outcome
 
-  let shiftRank piece (file, Rank origin) steps = (piece, (file, Rank origin), (file, Rank (origin + steps)))
 end
