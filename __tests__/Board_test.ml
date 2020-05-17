@@ -4,7 +4,7 @@ open Expect
 open Board
 
 let shift (file, Board.Rank origin) steps : Board.position = (file, Board.Rank (origin + steps))
-let shiftRank piece (file, Board.Rank origin) steps = (piece, (file, Board.Rank origin), (shift (file, Board.Rank origin) steps))
+let shiftRank piece source steps = (piece, source, shift source steps)
 let k rank           : Board.position = (Board.King, (Board.Rank rank))
 let q rank           : Board.position = (Board.Queen, (Board.Rank rank))
 let kn rank          : Board.position = (Board.Knight, (Board.Rank rank))
