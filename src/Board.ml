@@ -17,7 +17,7 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | SMoved: (piece * source * position) -> turn
+    | Moved: (piece * source * position) -> turn
     | End
 
   let init position =
@@ -38,9 +38,9 @@ module Board = struct
   let rec moveOptions piece sources destination =
     let check (piece, (source, options), destination) next =
       if (List.exists (fun e -> e = destination) options)
-      then [SMoved (piece, (source, []), destination)]
+      then [Moved (piece, (source, []), destination)]
       else if (piece = Queen)
-      then [SMoved (piece, (source, []), destination)]
+      then [Moved (piece, (source, []), destination)]
       else moveOptions piece next destination
     in
     match sources with
@@ -62,7 +62,7 @@ module Board = struct
     | []                     -> End
     | (piece, position) :: _ -> let outcome = turn piece position (List.append history (init position)) in
                                 match outcome with
-                                | SMoved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
-                                | _        -> outcome
+                                | Moved _ -> play (List.tl moves) ((piece, (Queen, Rank 2), position) :: history)
+                                | _       -> outcome
 
 end
