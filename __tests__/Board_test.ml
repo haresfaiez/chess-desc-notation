@@ -36,7 +36,7 @@ let () =
           expect (destination (Board.move Board.Pawn [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
           expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3))
-          |> toEqual [Board.Moved (Board.Pawn, ((k 2), []), shift (k 2) 1)]);
+          |> toEqual [Board.Moved (Board.Pawn, ((k 2), [(k 3)]), shift (k 2) 1)]);
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
