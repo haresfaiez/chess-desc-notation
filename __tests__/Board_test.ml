@@ -10,7 +10,6 @@ let q rank             = (Board.Queen, (Board.Rank rank))
 let kn rank            = (Board.Knight, (Board.Rank rank))
 let moveP from count   = shiftRank Board.Pawn from count
 let moveQ from count   = shiftRank Board.Queen from count
-let smoveP from count  = (Board.Pawn, (from, []), shift from count)
 let source position    = (position, [])
 
 let destination actual = match actual with | Board.Moved (_, _, result) -> result
@@ -36,7 +35,8 @@ let () =
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (Board.move Board.Pawn [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
-          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3)) |> toEqual [Board.Moved (smoveP (k 2) 1)]);
+          expect (Board.moveOptions Board.Pawn (Board.setup Board.Pawn) (k 3))
+          |> toEqual [Board.Moved (Board.Pawn, ((k 2), []), shift (k 2) 1)]);
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
