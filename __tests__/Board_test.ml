@@ -48,7 +48,7 @@ let () =
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (Board.move Board.Queen [source (q 1)] (q 4)) |> toEqual (Board.Moved (sMovementQ (q 1) 3)));
+        expect (destination (Board.move Board.Queen [source (q 1)] (q 4))) |> toEqual (q 4));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
