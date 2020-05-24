@@ -63,12 +63,12 @@ module Board = struct
 
   let rec play moves _history =
     match moves with
-    | []                     -> End
-    | (piece, position) :: _ -> let history = List.map (fun (p, (s, _), d) -> (p, s, d)) _history in
-                                let outcome = turn piece position (List.append history (init position)) in
-                                match outcome with
-                                | Moved _ -> let source = ((Queen, Rank 2), []) in
-                                             play (List.tl moves) ((piece, source, position) :: _history)
-                                | _       -> outcome
+    | []                         -> End
+    | (piece, nextPosition) :: _ -> let history = List.map (fun (p, (s, _), d) -> (p, s, d)) _history in
+                                    let outcome = turn piece nextPosition (List.append history (init nextPosition)) in
+                                    match outcome with
+                                    | Moved _ -> let source = ((Queen, Rank 2), []) in
+                                                 play (List.tl moves) ((piece, source, nextPosition) :: _history)
+                                    | _       -> outcome
 
 end
