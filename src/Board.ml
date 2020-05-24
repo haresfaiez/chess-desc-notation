@@ -14,6 +14,8 @@ module Board = struct
 
   type movement = piece * position * position
 
+  type history = movement list
+
   type turn =
     | Unreachable
     | Conflict

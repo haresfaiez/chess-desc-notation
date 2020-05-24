@@ -14,6 +14,8 @@ module Board : sig
 
   type movement = piece * position * position
 
+  type history = movement list
+
   type turn =
     | Unreachable
     | Conflict
@@ -22,8 +24,8 @@ module Board : sig
 
   val moveOptions  : piece -> source list -> position -> turn list
   val move         : piece -> source list -> position -> turn
-  val play         : (piece * position) list -> movement list -> turn
-  val turn         : piece -> position -> movement list -> turn
-  val init         : position -> movement list
+  val play         : (piece * position) list -> history -> turn
+  val turn         : piece -> position -> history -> turn
+  val init         : position -> history
   val setup        : piece -> source list
 end
