@@ -41,7 +41,7 @@ module Board = struct
     let check (piece, (source, options), destination) next =
       if (List.exists (fun e -> e = destination) options)
       then [Moved (piece, (source, options), destination)]
-      else if (piece = Queen)
+      else if (piece = Queen) (* TODO: Remove this *)
       then [Moved (piece, (source, options), destination)]
       else moveOptions piece next destination
     in
@@ -64,7 +64,7 @@ module Board = struct
     | []                         -> End
     | (piece, nextPosition) :: _ -> let outcome = turn piece nextPosition (List.append history (init nextPosition)) in
                                     match outcome with
-                                    | Moved _ -> let source = ((Queen, Rank 2), []) in
+                                    | Moved _ -> let source = ((Queen, Rank 2), []) in (* TODO: and fix this *)
                                                  play (List.tl moves) ((piece, source, nextPosition) :: history)
                                     | _       -> outcome
 
