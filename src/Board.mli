@@ -12,15 +12,14 @@ module Board : sig
 
   type source = position * position list
 
-  type movement = piece * position * position
-  type _movement = piece * source * position
+  type movement = piece * source * position
 
-  type history = _movement list
+  type history = movement list
 
   type turn =
     | Unreachable
     | Conflict
-    | Moved: _movement -> turn
+    | Moved: movement -> turn
     | End
 
   val moveOptions  : piece -> source list -> position -> turn list
