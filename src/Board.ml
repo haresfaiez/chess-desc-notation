@@ -58,7 +58,7 @@ module Board = struct
     match history with
     | []                                           -> move piece (setup piece) destination
     | (_, _, dst) :: _      when destination = dst -> Conflict
-    | (_, (src, _), _)      :: _ when destination = src -> move piece (setup piece) destination
+    | (_, (src, _), _) :: _ when destination = src -> move piece (setup piece) destination
     | _                                            -> turn piece destination (List.tl history)
 
   let rec play moves history =
