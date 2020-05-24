@@ -24,7 +24,7 @@ module Board = struct
     | Moved: _movement -> turn
     | End
 
-  let _init position =
+  let init position =
     match position with
     | (file, Rank 1) -> [(file, (position, []), position)]
     | (_, Rank 2)    -> [(Pawn, (position, []), position)]
@@ -65,7 +65,7 @@ module Board = struct
     match moves with
     | []                         -> End
     | (piece, nextPosition) :: _ -> let history = List.map (fun (p, (s, _), d) -> (p, s, d)) _history in
-                                    let outcome = turn piece nextPosition (List.append _history (_init nextPosition)) in
+                                    let outcome = turn piece nextPosition (List.append _history (init nextPosition)) in
                                     match outcome with
                                     | Moved _ -> let source = ((Queen, Rank 2), []) in
                                                  play (List.tl moves) ((piece, source, nextPosition) :: _history)
