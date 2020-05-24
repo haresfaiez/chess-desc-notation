@@ -13,13 +13,15 @@ module Board = struct
   type source = position * position list
 
   type movement = piece * position * position
+  type _movement = piece * source * position
 
   type history = movement list
+  type _history = _movement list
 
   type turn =
     | Unreachable
     | Conflict
-    | Moved: (piece * source * position) -> turn
+    | Moved: _movement -> turn
     | End
 
   let init position =
