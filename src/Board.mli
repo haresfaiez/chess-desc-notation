@@ -15,8 +15,7 @@ module Board : sig
   type movement = piece * position * position
   type _movement = piece * source * position
 
-  type history = movement list
-  type _history = _movement list
+  type history = _movement list
 
   type turn =
     | Unreachable
@@ -26,8 +25,8 @@ module Board : sig
 
   val moveOptions  : piece -> source list -> position -> turn list
   val move         : piece -> source list -> position -> turn
-  val play         : (piece * position) list -> _history -> turn
-  val turn         : piece -> position -> _history -> turn
-  val init         : position -> _history
+  val play         : (piece * position) list -> history -> turn
+  val turn         : piece -> position -> history -> turn
+  val init         : position -> history
   val setup        : piece -> source list
 end
