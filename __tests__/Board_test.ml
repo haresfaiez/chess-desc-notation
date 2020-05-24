@@ -8,8 +8,6 @@ let shiftRank piece source steps = (piece, source, shift source steps)
 let k rank             = (Board.King, (Board.Rank rank))
 let q rank             = (Board.Queen, (Board.Rank rank))
 let kn rank            = (Board.Knight, (Board.Rank rank))
-let moveP from count   = shiftRank Board.Pawn from count
-let moveQ from count   = shiftRank Board.Queen from count
 let _moveP from count  = let (p, s, d) = shiftRank Board.Pawn from count in (p, (s, []), d)
 let _moveQ from count  = let (p, s, d) = shiftRank Board.Queen from count in (p, (s, []), d)
 let source position    = (position, [])
@@ -85,14 +83,6 @@ let () =
           expect (Board.play [(Board.Pawn, (q 3)); (Board.Queen, (q 2))] []) |> toBe Board.End);
     );
   describe "Vertical movement" (fun () ->
-      test "moves pawn from P-K2 to P-K3" (fun () ->
-          expect(moveP (k 2) 1) |> toEqual (Board.Pawn, (k 2), (k 3)));
-      test "keeps pawn in K2 when the steps count is 0" (fun () ->
-          expect(moveP (k 2) 0) |> toEqual (Board.Pawn, (k 2), (k 2)));
-      test "moves queen one step forward" (fun() ->
-          expect(moveQ (q 2) 1) |> toEqual (Board.Queen, (q 2), (q 3)));
-      test "moves queen one step backward" (fun() ->
-          expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, (q 2), (q 1)));
       test "moves pawn from P-K2 to P-K3" (fun () ->
           expect(_moveP (k 2) 1) |> toEqual (Board.Pawn, ((k 2), []), (k 3)));
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
