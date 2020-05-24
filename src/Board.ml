@@ -30,6 +30,12 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, position, position)]
     | _              -> []
 
+  let _init position =
+    match position with
+    | (file, Rank 1) -> [(file, (position, []), position)]
+    | (_, Rank 2)    -> [(Pawn, (position, []), position)]
+    | _              -> []
+
   let setup piece =
     let at rank = (piece, Rank rank) in
     let pawnAt file = ((file, Rank 2), [(file, Rank 3)]) in
