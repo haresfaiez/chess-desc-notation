@@ -4,13 +4,13 @@ open Expect
 open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
-let shiftRank piece source steps = (piece, source, shift source steps)
-let k rank             = (Board.King, (Board.Rank rank))
-let q rank             = (Board.Queen, (Board.Rank rank))
-let kn rank            = (Board.Knight, (Board.Rank rank))
-let moveP from count  = let (p, s, d) = shiftRank Board.Pawn from count in (p, (s, []), d)
-let moveQ from count  = let (p, s, d) = shiftRank Board.Queen from count in (p, (s, []), d)
-let source position    = (position, [])
+let shiftRank piece source steps = (piece, (source, []), shift source steps)
+let k rank           = (Board.King, (Board.Rank rank))
+let q rank           = (Board.Queen, (Board.Rank rank))
+let kn rank          = (Board.Knight, (Board.Rank rank))
+let moveP from count = shiftRank Board.Pawn from count
+let moveQ from count = shiftRank Board.Queen from count
+let source position  = (position, [])
 
 let destination actual = match actual with | Board.Moved (_, _, result) -> result
 
