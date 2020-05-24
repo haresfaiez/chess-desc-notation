@@ -64,14 +64,14 @@ module Board = struct
     match history with
     | []                                           -> move piece (setup piece) destination
     | (_, _, dst) :: _      when destination = dst -> Conflict
-    | (_, src, _)      :: _ when destination = src -> move piece (setup piece) destination
+    | (_, (src, _), _)      :: _ when destination = src -> move piece (setup piece) destination
     | _                                            -> turn piece destination (List.tl history)
 
   let rec play moves _history =
     match moves with
     | []                         -> End
     | (piece, nextPosition) :: _ -> let history = List.map (fun (p, (s, _), d) -> (p, s, d)) _history in
-                                    let outcome = turn piece nextPosition (List.append history (init nextPosition)) in
+                                    let outcome = turn piece nextPosition (List.append _history (_init nextPosition)) in
                                     match outcome with
                                     | Moved _ -> let source = ((Queen, Rank 2), []) in
                                                  play (List.tl moves) ((piece, source, nextPosition) :: _history)
