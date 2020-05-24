@@ -24,12 +24,6 @@ module Board = struct
     | Moved: _movement -> turn
     | End
 
-  let init position =
-    match position with
-    | (file, Rank 1) -> [(file, position, position)]
-    | (_, Rank 2)    -> [(Pawn, position, position)]
-    | _              -> []
-
   let _init position =
     match position with
     | (file, Rank 1) -> [(file, (position, []), position)]

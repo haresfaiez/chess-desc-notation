@@ -28,7 +28,6 @@ module Board : sig
   val move         : piece -> source list -> position -> turn
   val play         : (piece * position) list -> _history -> turn
   val turn         : piece -> position -> _history -> turn
-  val init         : position -> history
   val _init        : position -> _history
   val setup        : piece -> source list
 end
