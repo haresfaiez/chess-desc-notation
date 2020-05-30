@@ -19,7 +19,7 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | Moved: (piece * position * square) -> turn
+    | Moved: (piece * position * position) -> turn
     | End
 
   let setup piece =
@@ -38,11 +38,11 @@ module Board = struct
     | _              -> []
 
   let rec moveOptions piece sources destination =
-    let check (piece, (source, options), destination) next =
+    let check (piece, (source, options), destination) next = (* TODO: set destination options *)
       if (List.exists (fun e -> e = destination) options)
-      then [Moved (piece, (source, options), destination)]
+      then [Moved (piece, (source, options), (destination, []))]
       else if (piece = Queen) (* TODO: Remove this *)
-      then [Moved (piece, (source, options), destination)]
+      then [Moved (piece, (source, options), (destination, []))]
       else moveOptions piece next destination
     in
     match sources with

@@ -19,7 +19,7 @@ module Board : sig
   type turn =
     | Unreachable
     | Conflict
-    | Moved: (piece * position * square) -> turn
+    | Moved: (piece * position * position) -> turn
     | End
 
   val moveOptions  : piece -> position list -> square -> turn list
