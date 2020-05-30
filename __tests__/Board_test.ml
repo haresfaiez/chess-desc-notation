@@ -10,7 +10,7 @@ let q rank           = (Board.Queen, (Board.Rank rank))
 let kn rank          = (Board.Knight, (Board.Rank rank))
 let moveP from count = shiftRank Board.Pawn from count
 let moveQ from count = shiftRank Board.Queen from count
-let source position  = (position, [])
+let source square  = (square, [])
 
 let destination actual = match actual with | Board.Moved (_, _, result) -> result
 

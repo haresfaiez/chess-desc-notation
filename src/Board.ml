@@ -8,11 +8,11 @@ module Board = struct
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
 
-  type position = (piece * rank)
+  type square = (piece * rank)
 
-  type source = position * position list
+  type source = square * square list
 
-  type movement = piece * source * position
+  type movement = piece * source * square
 
   type history = movement list
 
@@ -31,10 +31,10 @@ module Board = struct
     | Pawn   -> [(pawnAt Knight); (pawnAt Queen); (pawnAt King); (pawnAt Knight)]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
 
-  let init position =
-    match position with
-    | (file, Rank 1) -> [(file, List.hd (setup file), position)]
-    | (_, Rank 2)    -> [(Pawn, (position, []), position)] (* TODO: Use setup *)
+  let init square =
+    match square with
+    | (file, Rank 1) -> [(file, List.hd (setup file), square)]
+    | (_, Rank 2)    -> [(Pawn, (square, []), square)] (* TODO: Use setup *)
     | _              -> []
 
   let rec moveOptions piece sources destination =
@@ -61,11 +61,11 @@ module Board = struct
 
   let rec play moves history =
     match moves with
-    | []                         -> End
-    | (piece, nextPosition) :: _ -> let outcome = turn piece nextPosition (List.append history (init nextPosition)) in
+    | []                       -> End
+    | (piece, nextSquare) :: _ -> let outcome = turn piece nextSquare (List.append history (init nextSquare)) in
                                     match outcome with
                                     | Moved _ -> let source = ((Queen, Rank 2), []) in (* TODO: and fix this *)
-                                                 play (List.tl moves) ((piece, source, nextPosition) :: history)
+                                                 play (List.tl moves) ((piece, source, nextSquare) :: history)
                                     | _       -> outcome
 
 end
