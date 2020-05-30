@@ -22,12 +22,6 @@ module Board = struct
     | Moved: movement -> turn
     | End
 
-  let init position =
-    match position with
-    | (file, Rank 1) -> [(file, (position, []), position)]
-    | (_, Rank 2)    -> [(Pawn, (position, []), position)]
-    | _              -> []
-
   let setup piece =
     let at rank = (piece, Rank rank) in
     let pawnAt file = ((file, Rank 2), [(file, Rank 3)]) in
@@ -36,6 +30,12 @@ module Board = struct
     | Queen  -> [(at 1, [(at 2); (at 3); (at 4)])]
     | Pawn   -> [(pawnAt Knight); (pawnAt Queen); (pawnAt King); (pawnAt Knight)]
     | _      -> [((piece, Rank 1), []); ((piece, Rank 1), [])]
+
+  let init position =
+    match position with
+    | (file, Rank 1) -> [(file, List.hd (setup file), position)]
+    | (_, Rank 2)    -> [(Pawn, (position, []), position)]
+    | _              -> []
 
   let rec moveOptions piece sources destination =
     let check (piece, (source, options), destination) next =
