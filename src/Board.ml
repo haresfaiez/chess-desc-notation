@@ -34,7 +34,7 @@ module Board = struct
   let init position =
     match position with
     | (file, Rank 1) -> [(file, List.hd (setup file), position)]
-    | (_, Rank 2)    -> [(Pawn, (position, []), position)]
+    | (_, Rank 2)    -> [(Pawn, (position, []), position)] (* TODO: Use setup *)
     | _              -> []
 
   let rec moveOptions piece sources destination =
