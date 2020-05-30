@@ -19,7 +19,7 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | Moved: movement -> turn
+    | Moved: (piece * position * square) -> turn
     | End
 
   let setup piece =
