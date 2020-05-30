@@ -12,12 +12,14 @@ module Board : sig
 
   type position = square * square list
 
+  type movement = piece * position * position
+
   type history = (piece * position * square) list
 
   type turn =
     | Unreachable
     | Conflict
-    | Moved: (piece * position * position) -> turn
+    | Moved: movement -> turn
     | End
 
   val moveOptions  : piece -> position list -> square -> turn list
