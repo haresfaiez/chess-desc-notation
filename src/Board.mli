@@ -12,9 +12,7 @@ module Board : sig
 
   type position = square * square list
 
-  type movement = piece * position * square
-
-  type history = movement list
+  type history = (piece * position * square) list
 
   type turn =
     | Unreachable
