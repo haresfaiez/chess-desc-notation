@@ -4,13 +4,13 @@ open Expect
 open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
-let shiftRank piece source steps = (piece, (source, []), shift source steps)
-let k rank           = (Board.King, (Board.Rank rank))
-let q rank           = (Board.Queen, (Board.Rank rank))
-let kn rank          = (Board.Knight, (Board.Rank rank))
-let moveP from count = shiftRank Board.Pawn from count
-let moveQ from count = shiftRank Board.Queen from count
-let source square  = (square, [])
+let shiftRank piece square steps = (piece, (square, []), shift square steps)
+let k rank              = (Board.King, (Board.Rank rank))
+let q rank              = (Board.Queen, (Board.Rank rank))
+let kn rank             = (Board.Knight, (Board.Rank rank))
+let moveP from count    = shiftRank Board.Pawn from count
+let moveQ from count    = shiftRank Board.Queen from count
+let nullPosition square = (square, [])
 
 let destination actual = match actual with | Board.Moved (_, _, result) -> result
 
@@ -31,7 +31,7 @@ let () =
     );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board.move Board.Pawn [source (k 2)] (k 7)) |> toBe Board.Unreachable);
+          expect (Board.move Board.Pawn [nullPosition (k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (Board.move Board.Pawn [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
@@ -44,11 +44,11 @@ let () =
     );
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
-          expect (Board.move Board.King [source (k 1)] (k 3)) |> toBe Board.Unreachable);
+          expect (Board.move Board.King [nullPosition (k 1)] (k 3)) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (destination (Board.move Board.Queen [source (q 1)] (q 4))) |> toEqual (q 4));
+        expect (destination (Board.move Board.Queen [nullPosition (q 1)] (q 4))) |> toEqual (q 4));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->

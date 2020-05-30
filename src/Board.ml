@@ -10,9 +10,9 @@ module Board = struct
 
   type square = (piece * rank)
 
-  type source = square * square list
+  type position = square * square list
 
-  type movement = piece * source * square
+  type movement = piece * position * square
 
   type history = movement list
 

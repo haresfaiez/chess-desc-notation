@@ -10,9 +10,9 @@ module Board : sig
 
   type square = (piece * rank)
 
-  type source = square * square list
+  type position = square * square list
 
-  type movement = piece * source * square
+  type movement = piece * position * square
 
   type history = movement list
 
@@ -22,10 +22,10 @@ module Board : sig
     | Moved: movement -> turn
     | End
 
-  val moveOptions  : piece -> source list -> square -> turn list
-  val move         : piece -> source list -> square -> turn
+  val moveOptions  : piece -> position list -> square -> turn list
+  val move         : piece -> position list -> square -> turn
   val play         : (piece * square) list -> history -> turn
   val turn         : piece -> square -> history -> turn
   val init         : square -> history
-  val setup        : piece -> source list
+  val setup        : piece -> position list
 end
