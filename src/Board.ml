@@ -14,7 +14,7 @@ module Board = struct
 
   type movement = piece * position * position
 
-  type history = (piece * position * position) list
+  type history = movement list
 
   type turn =
     | Unreachable
