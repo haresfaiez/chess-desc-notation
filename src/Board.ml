@@ -37,8 +37,8 @@ module Board = struct
 
   let init square =
     match square with
-    | (file, Rank 1) -> [(file, List.hd (setup file), S square)]
-    | (_, Rank 2)    -> [(Pawn, (square, []), S square)] (* TODO: Use setup *)
+    | (file, Rank 1) -> [(file, List.hd (setup file), P (square, []))]
+    | (_, Rank 2)    -> [(Pawn, (square, []), P (square, []))] (* TODO: Use setup *)
     | _              -> []
 
   let rec moveOptions piece sources destination =
@@ -70,7 +70,7 @@ module Board = struct
     | (piece, nextSquare) :: _ -> let outcome = turn piece nextSquare (List.append history (init nextSquare)) in
                                     match outcome with
                                     | Moved _ -> let source = ((Queen, Rank 2), []) in (* TODO: and fix this *)
-                                                 let nextHistory = (piece, source, S nextSquare) :: history in
+                                                 let nextHistory = (piece, source, P (nextSquare, [])) :: history in
                                                  play (List.tl moves) nextHistory
                                     | _       -> outcome
 
