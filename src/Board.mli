@@ -14,7 +14,10 @@ module Board : sig
 
   type movement = piece * position * position
 
-  type _square = | S of square
+  type _square =
+    | S of square
+    | P of position
+
   type history = (piece * position * _square) list
 
   type turn =
