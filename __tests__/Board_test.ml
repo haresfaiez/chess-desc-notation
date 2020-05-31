@@ -67,19 +67,19 @@ let () =
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
-          expect (Board.play [(Board.King, (k 2))] []) |> toBe Board.Conflict);
+          expect (Board.start [(Board.King, (k 2))]) |> toBe Board.Conflict);
       test "[K-K2, P-Q3] fails" (fun () ->
-          expect (Board.play [(Board.King, (k 2)); (Board.Pawn, (q 3))] []) |> toBe Board.Conflict);
+          expect (Board.start [(Board.King, (k 2)); (Board.Pawn, (q 3))]) |> toBe Board.Conflict);
       test "[P-K7, P-Q3] fails" (fun () ->
-          expect (Board.play [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))] []) |> toBe Board.Unreachable);
+          expect (Board.start [(Board.Pawn, (k 7)); (Board.Pawn, (q 3))]) |> toBe Board.Unreachable);
       test "[P-Q3, K-K2] fails" (fun () ->
-          expect (Board.play [(Board.Pawn, (q 3)); (Board.King, (k 2))] []) |> toBe Board.Conflict);
+          expect (Board.start [(Board.Pawn, (q 3)); (Board.King, (k 2))]) |> toBe Board.Conflict);
       test "[P-Q3, Q-Q3] fails" (fun () ->
-          expect (Board.play [(Board.Pawn, (q 3)); (Board.Queen, (q 3))] []) |> toBe Board.Conflict);
+          expect (Board.start [(Board.Pawn, (q 3)); (Board.Queen, (q 3))]) |> toBe Board.Conflict);
       test "[P-Q3, P-K3, Q-Q3] fails" (fun () ->
-          expect (Board.play [(Board.Pawn, (q 3)); (Board.Pawn, (k 3)); (Board.Queen, (q 3))] []) |> toBe Board.Conflict);
+          expect (Board.start [(Board.Pawn, (q 3)); (Board.Pawn, (k 3)); (Board.Queen, (q 3))]) |> toBe Board.Conflict);
       test "[P-Q3, Q-Q2] succeeds" (fun () ->
-          expect (Board.play [(Board.Pawn, (q 3)); (Board.Queen, (q 2))] []) |> toBe Board.End);
+          expect (Board.start [(Board.Pawn, (q 3)); (Board.Queen, (q 2))]) |> toBe Board.End);
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->

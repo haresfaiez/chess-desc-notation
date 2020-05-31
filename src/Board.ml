@@ -69,4 +69,6 @@ module Board = struct
                                                  play (List.tl moves) nextHistory
                                     | _       -> outcome
 
+  let start moves = play moves []
+
 end
