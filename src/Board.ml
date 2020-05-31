@@ -15,7 +15,6 @@ module Board = struct
   type movement = piece * position * position
 
   type _square =
-    | S of square
     | P of position
 
   type history = (piece * position * _square) list
@@ -59,7 +58,6 @@ module Board = struct
   let rec turn piece destination history =
     match history with
     | []                                             -> move piece (setup piece) destination
-    | (_, _, S dst) :: _      when destination = dst -> Conflict
     | (_, _, P (dst, _)) :: _ when destination = dst -> Conflict
     | (_, (src, _), _) :: _   when destination = src -> move piece (setup piece) destination
     | _                                              -> turn piece destination (List.tl history)
