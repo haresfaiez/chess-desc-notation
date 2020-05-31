@@ -14,7 +14,8 @@ module Board = struct
 
   type movement = piece * position * position
 
-  type history = (piece * position * square) list
+  type _square = | S of square
+  type history = (piece * position * _square) list
 
   type turn =
     | Unreachable
@@ -33,8 +34,8 @@ module Board = struct
 
   let init square =
     match square with
-    | (file, Rank 1) -> [(file, List.hd (setup file), square)]
-    | (_, Rank 2)    -> [(Pawn, (square, []), square)] (* TODO: Use setup *)
+    | (file, Rank 1) -> [(file, List.hd (setup file), S square)]
+    | (_, Rank 2)    -> [(Pawn, (square, []), S square)] (* TODO: Use setup *)
     | _              -> []
 
   let rec moveOptions piece sources destination =
@@ -55,7 +56,7 @@ module Board = struct
   let rec turn piece destination history =
     match history with
     | []                                           -> move piece (setup piece) destination
-    | (_, _, dst) :: _      when destination = dst -> Conflict
+    | (_, _, S dst) :: _      when destination = dst -> Conflict
     | (_, (src, _), _) :: _ when destination = src -> move piece (setup piece) destination
     | _                                            -> turn piece destination (List.tl history)
 
@@ -65,7 +66,7 @@ module Board = struct
     | (piece, nextSquare) :: _ -> let outcome = turn piece nextSquare (List.append history (init nextSquare)) in
                                     match outcome with
                                     | Moved _ -> let source = ((Queen, Rank 2), []) in (* TODO: and fix this *)
-                                                 let nextHistory = (piece, source, nextSquare) :: history in
+                                                 let nextHistory = (piece, source, S nextSquare) :: history in
                                                  play (List.tl moves) nextHistory
                                     | _       -> outcome
 

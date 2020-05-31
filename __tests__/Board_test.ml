@@ -7,8 +7,8 @@ let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
 let k rank              = (Board.King, (Board.Rank rank))
 let q rank              = (Board.Queen, (Board.Rank rank))
 let kn rank             = (Board.Knight, (Board.Rank rank))
-let moveP from count    = let destination = shift from count in (Board.Pawn, (from, []), destination)
-let moveQ from count    = let destination = shift from count in (Board.Queen, (from, []), destination)
+let moveP from count    = let destination = shift from count in (Board.Pawn, (from, []), Board.S destination)
+let moveQ from count    = let destination = shift from count in (Board.Queen, (from, []), Board.S destination)
 let nullPosition square = (square, [])
 
 let destination actual = match actual with | Board.Moved (_, _, (result, _)) -> result
@@ -83,11 +83,11 @@ let () =
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
-          expect(moveP (k 2) 1) |> toEqual (Board.Pawn, ((k 2), []), (k 3)));
+          expect(moveP (k 2) 1) |> toEqual (Board.Pawn, ((k 2), []), Board.S (k 3)));
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
-          expect(moveP (k 2) 0) |> toEqual (Board.Pawn, ((k 2), []), (k 2)));
+          expect(moveP (k 2) 0) |> toEqual (Board.Pawn, ((k 2), []), Board.S (k 2)));
       test "moves queen one step forward" (fun() ->
-          expect(moveQ (q 2) 1) |> toEqual (Board.Queen, ((q 2), []), (q 3)));
+          expect(moveQ (q 2) 1) |> toEqual (Board.Queen, ((q 2), []), Board.S (q 3)));
       test "moves queen one step backward" (fun() ->
-          expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, ((q 2), []), (q 1)));
+          expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, ((q 2), []), Board.S (q 1)));
     );
