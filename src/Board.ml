@@ -60,6 +60,7 @@ module Board = struct
     match history with
     | []                                           -> move piece (setup piece) destination
     | (_, _, S dst) :: _      when destination = dst -> Conflict
+    | (_, _, P (dst, _)) :: _      when destination = dst -> Conflict
     | (_, (src, _), _) :: _ when destination = src -> move piece (setup piece) destination
     | _                                            -> turn piece destination (List.tl history)
 

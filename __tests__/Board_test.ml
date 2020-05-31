@@ -55,7 +55,7 @@ let () =
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
         expect (Board.turn Board.Queen (q 3) [(moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
-        expect (Board.turn Board.Queen (q 3) [(Board.Pawn, ((q 2), []), Board.S (shift (q 2) 1))]) |> toBe Board.Conflict);
+        expect (Board.turn Board.Queen (q 3) [(Board.Pawn, ((q 2), []), Board.P ((shift (q 2) 1), []))]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, P-K3, Q-Q3]" (fun () ->
         expect (Board.turn Board.Queen (q 3) [(moveP (k 2) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
