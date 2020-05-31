@@ -10,6 +10,7 @@ let kn rank             = (Board.Knight, (Board.Rank rank))
 let moveP from count    = (Board.Pawn, (from, []), Board.S (shift from count))
 let moveQ from count    = (Board.Queen, (from, []), Board.S (shift from count))
 let nullPosition square = (square, [])
+let _moveP from count   = (Board.Pawn, nullPosition from, Board.P (nullPosition (shift from count)))
 
 let destination actual = match actual with | Board.Moved (_, _, (result, _)) -> result
 
@@ -55,7 +56,7 @@ let () =
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
         expect (Board.turn Board.Queen (q 3) [(moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, Q-Q3]" (fun () ->
-        expect (Board.turn Board.Queen (q 3) [(Board.Pawn, ((q 2), []), Board.P ((shift (q 2) 1), []))]) |> toBe Board.Conflict);
+        expect (Board.turn Board.Queen (q 3) [_moveP (q 2) 1]) |> toBe Board.Conflict);
       test "detects a conflict in [P-Q3, P-K3, Q-Q3]" (fun () ->
         expect (Board.turn Board.Queen (q 3) [(moveP (k 2) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
       test "detects no conflicts in [P-K3]" (fun () ->
