@@ -23,7 +23,7 @@ module Board : sig
     | End
 
   val moveOptions  : position list -> square -> turn list
-  val move         : piece -> position list -> square -> turn
+  val move         : position list -> square -> turn
   val play         : (piece * square) list -> history -> turn
   val start        : (piece * square) list -> turn
   val turn         : piece -> square -> history -> turn

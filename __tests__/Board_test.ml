@@ -27,15 +27,15 @@ let () =
     );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
-        expect (Board.move Board.Pawn [] (k 3)) |> toBe Board.Unreachable);
+        expect (Board.move [] (k 3)) |> toBe Board.Unreachable);
     );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board.move Board.Pawn [nullPosition (k 2)] (k 7)) |> toBe Board.Unreachable);
+          expect (Board.move [nullPosition (k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
-          expect (destination (Board.move Board.Pawn [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
+          expect (destination (Board.move [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
-          expect (_movement (Board.move Board.Pawn (Board.setup Board.Pawn) (k 3)))
+          expect (_movement (Board.move (Board.setup Board.Pawn) (k 3)))
           |> toEqual (((k 2), [(k 3)]), (shift (k 2) 1, [])));
     );
   describe "Initial movement: Kn" (fun () ->
@@ -44,11 +44,11 @@ let () =
     );
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
-          expect (Board.move Board.King [nullPosition (k 1)] (k 3)) |> toBe Board.Unreachable);
+          expect (Board.move [nullPosition (k 1)] (k 3)) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (destination (Board.move Board.Queen [nullPosition (q 1)] (q 4))) |> toEqual (q 4));
+        expect (destination (Board.move [nullPosition (q 1)] (q 4))) |> toEqual (q 4));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->

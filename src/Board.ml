@@ -50,13 +50,13 @@ module Board = struct
     | source :: next -> check (source, destination) next
 
   (* Implement a strategy to select the option *)
-  let move piece sources destination = List.hd (moveOptions sources destination)
+  let move sources destination = List.hd (moveOptions sources destination)
 
   let rec turn piece destination history = (* TODO: replace piece with sources *)
     match history with
-    | []                                           -> move piece (setup piece) destination
+    | []                                           -> move (setup piece) destination
     | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
-    | (_, (src, _), _) :: _ when destination = src -> move piece (setup piece) destination
+    | (_, (src, _), _) :: _ when destination = src -> move (setup piece) destination
     | _                                            -> turn piece destination (List.tl history)
 
   let rec play moves history =
