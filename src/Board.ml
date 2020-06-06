@@ -38,7 +38,7 @@ module Board = struct
     | _              -> []
 
   let rec moveOptions piece sources destination =
-    let check (piece, (source, options), destination) next = (* TODO: set destination options *)
+    let check ((source, options), destination) next = (* TODO: set destination options *)
       if (List.exists (fun e -> e = destination) options)
       then [Moved ((source, options), (destination, []))]
       else if (source = (Queen, Rank 1)) (* TODO: Remove this *)
@@ -47,7 +47,7 @@ module Board = struct
     in
     match sources with
     | []             -> [Unreachable]
-    | source :: next -> check (piece, source, destination) next
+    | source :: next -> check (source, destination) next
 
   (* Implement a strategy to select the option *)
   let move piece sources destination = List.hd (moveOptions piece sources destination)
