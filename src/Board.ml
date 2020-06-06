@@ -12,14 +12,14 @@ module Board = struct
 
   type position = square * square list
 
-  type movement = piece * position * position
+  type movement = position * position
 
   type history = (piece * position * position) list
 
   type turn =
     | Unreachable
     | Conflict
-    | Moved: (position * position) -> turn
+    | Moved: movement -> turn
     | End
 
   let setup piece =
