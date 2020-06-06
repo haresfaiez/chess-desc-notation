@@ -37,20 +37,20 @@ module Board = struct
     | (_, Rank 2)    -> [(Pawn, (square, []), (square, []))] (* TODO: Use setup *)
     | _              -> []
 
-  let rec moveOptions piece sources destination =
+  let rec moveOptions sources destination =
     let check ((source, options), destination) next = (* TODO: set destination options *)
       if (List.exists (fun e -> e = destination) options)
       then [Moved ((source, options), (destination, []))]
       else if (source = (Queen, Rank 1)) (* TODO: Remove this *)
       then [Moved ((source, options), (destination, []))]
-      else moveOptions piece next destination
+      else moveOptions next destination
     in
     match sources with
     | []             -> [Unreachable]
     | source :: next -> check (source, destination) next
 
   (* Implement a strategy to select the option *)
-  let move piece sources destination = List.hd (moveOptions piece sources destination)
+  let move piece sources destination = List.hd (moveOptions sources destination)
 
   let rec turn piece destination history = (* TODO: replace piece with sources *)
     match history with
