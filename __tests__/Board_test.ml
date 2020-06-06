@@ -11,8 +11,8 @@ let nullPosition square = (square, [])
 let moveP from count    = (Board.Pawn, nullPosition from, nullPosition (shift from count))
 let moveQ from count    = (Board.Queen, nullPosition from, nullPosition (shift from count))
 
-let destination actual = match actual with | Board.Moved (_, _, (result, _)) -> result
-let _movement actual   = match actual with | Board.Moved (_, s, d) -> (s, d)
+let destination actual = match actual with | Board.Moved (_, (result, _)) -> result
+let _movement actual   = match actual with | Board.Moved (s, d) -> (s, d)
 
 let () =
   describe "Initial piece positions" (fun () ->

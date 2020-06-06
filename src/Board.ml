@@ -19,7 +19,7 @@ module Board = struct
   type turn =
     | Unreachable
     | Conflict
-    | Moved: movement -> turn
+    | Moved: (position * position) -> turn
     | End
 
   let setup piece =
@@ -40,9 +40,9 @@ module Board = struct
   let rec moveOptions piece sources destination =
     let check (piece, (source, options), destination) next = (* TODO: set destination options *)
       if (List.exists (fun e -> e = destination) options)
-      then [Moved (piece, (source, options), (destination, []))]
+      then [Moved ((source, options), (destination, []))]
       else if (piece = Queen) (* TODO: Remove this *)
-      then [Moved (piece, (source, options), (destination, []))]
+      then [Moved ((source, options), (destination, []))]
       else moveOptions piece next destination
     in
     match sources with
@@ -64,7 +64,7 @@ module Board = struct
     | []                       -> End
     | (piece, nextSquare) :: _ -> let outcome = turn piece nextSquare (List.append history (init nextSquare)) in
                                   match outcome with
-                                  | Moved (_, s, d) -> play (List.tl moves) ((piece, s, d) :: history)
+                                  | Moved (s, d) -> play (List.tl moves) ((piece, s, d) :: history)
                                   | _               -> outcome
 
   let start moves = play moves []
