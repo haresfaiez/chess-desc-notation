@@ -52,7 +52,7 @@ module Board = struct
   (* Implement a strategy to select the option *)
   let move piece sources destination = List.hd (moveOptions piece sources destination)
 
-  let rec turn piece destination history =
+  let rec turn piece destination history = (* TODO: replace piece with sources *)
     match history with
     | []                                           -> move piece (setup piece) destination
     | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
