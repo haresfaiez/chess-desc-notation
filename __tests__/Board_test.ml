@@ -12,7 +12,6 @@ let moveP from count    = (Board.Pawn, nullPosition from, nullPosition (shift fr
 let moveQ from count    = (Board.Queen, nullPosition from, nullPosition (shift from count))
 
 let destination actual = match actual with | Board.Moved (_, (result, _)) -> result
-let _movement actual   = match actual with | Board.Moved (s, d) -> (s, d)
 
 let () =
   describe "Initial piece positions" (fun () ->
@@ -35,8 +34,7 @@ let () =
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (Board.move [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
-          expect (_movement (Board.move (Board.setup Board.Pawn) (k 3)))
-          |> toEqual (((k 2), [(k 3)]), (shift (k 2) 1, [])));
+          expect (Board.move (Board.setup Board.Pawn) (k 3)) |> toEqual (Board.Moved (((k 2), [(k 3)]), (shift (k 2) 1, []))));
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
