@@ -64,8 +64,8 @@ module Board = struct
     | []                       -> End
     | (piece, nextSquare) :: _ -> let outcome = turn piece nextSquare (List.append history (init nextSquare)) in
                                   match outcome with
-                                  | Moved current -> play (List.tl moves) (current :: history)
-                                  | _             -> outcome
+                                  | Moved (_, s, d) -> play (List.tl moves) ((piece, s, d) :: history)
+                                  | _               -> outcome
 
   let start moves = play moves []
 
