@@ -59,9 +59,6 @@ module Board = struct
     | (_, (src, _), _) :: _ when destination = src -> move sources destination
     | _                                            -> _turn sources destination (List.tl history)
 
-  let rec turn piece destination history = (* TODO: inline this *)
-    let sources = setup piece in _turn sources destination history
-
   let rec play moves history =
     match moves with
     | []                       -> End
