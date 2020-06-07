@@ -4,12 +4,13 @@ open Expect
 open Board
 
 let shift (file, Board.Rank origin) steps = (file, Board.Rank (origin + steps))
-let k rank              = (Board.King, (Board.Rank rank))
-let q rank              = (Board.Queen, (Board.Rank rank))
-let kn rank             = (Board.Knight, (Board.Rank rank))
-let nullPosition square = (square, [])
-let moveP from count    = (Board.Pawn, nullPosition from, nullPosition (shift from count))
-let moveQ from count    = (Board.Queen, nullPosition from, nullPosition (shift from count))
+
+let k rank           = (Board.King, (Board.Rank rank))
+let q rank           = (Board.Queen, (Board.Rank rank))
+let kn rank          = (Board.Knight, (Board.Rank rank))
+let toPos square     = (square, [])
+let moveP from count = (Board.Pawn, toPos from, toPos (shift from count))
+let moveQ from count = (Board.Queen, toPos from, toPos (shift from count))
 
 let destination actual = match actual with | Board.Moved (_, (result, _)) -> result
 
@@ -30,7 +31,7 @@ let () =
     );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board.move [nullPosition (k 2)] (k 7)) |> toBe Board.Unreachable);
+          expect (Board.move [toPos (k 2)] (k 7)) |> toBe Board.Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (Board.move [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
@@ -42,13 +43,13 @@ let () =
     );
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
-          expect (Board.move [nullPosition (k 1)] (k 3)) |> toBe Board.Unreachable);
+          expect (Board.move [toPos (k 1)] (k 3)) |> toBe Board.Unreachable);
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board._turn [nullPosition (k 2)] (k 3) [(Board.King, (nullPosition (k 1)), (nullPosition (k 2)))]) |> toBe Board.Unreachable);
+          expect (Board._turn [toPos (k 2)] (k 3) [(Board.King, (toPos (k 1)), (toPos (k 2)))]) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
-        expect (destination (Board.move [nullPosition (q 1)] (q 4))) |> toEqual (q 4));
+        expect (destination (Board.move [toPos (q 1)] (q 4))) |> toEqual (q 4));
     );
   describe "PlayTurn" (fun () ->
       test "detects no conflicts in [P-K3, P-Q3]" (fun () ->
