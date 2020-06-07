@@ -53,10 +53,11 @@ module Board = struct
   let move sources destination = List.hd (moveOptions sources destination)
 
   let rec turn piece destination history = (* TODO: replace piece with sources *)
+    let sources = setup piece in
     match history with
-    | []                                           -> move (setup piece) destination
+    | []                                           -> move sources destination
     | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
-    | (_, (src, _), _) :: _ when destination = src -> move (setup piece) destination
+    | (_, (src, _), _) :: _ when destination = src -> move sources destination
     | _                                            -> turn piece destination (List.tl history)
 
   let rec play moves history =
