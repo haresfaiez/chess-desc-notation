@@ -55,13 +55,15 @@ module Board = struct
   let _turn sources destination history =
     match history with
     | []                                           -> move sources destination
+    | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
+    | (_, (src, _), _) :: _ when destination = src -> move sources destination
   
   let rec turn piece destination history = (* TODO: replace piece with sources *)
     let sources = setup piece in
     match history with
     | []                                           -> _turn sources destination history
-    | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
-    | (_, (src, _), _) :: _ when destination = src -> move sources destination
+    | (_, _, (dst, _)) :: _ when destination = dst -> _turn sources destination history
+    | (_, (src, _), _) :: _ when destination = src -> _turn sources destination history
     | _                                            -> turn piece destination (List.tl history)
 
   let rec play moves history =
