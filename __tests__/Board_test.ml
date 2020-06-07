@@ -9,8 +9,8 @@ let k rank           = (Board.King, (Board.Rank rank))
 let q rank           = (Board.Queen, (Board.Rank rank))
 let kn rank          = (Board.Knight, (Board.Rank rank))
 let toPos square     = (square, [])
-let moveP from count = (Board.Pawn, toPos from, toPos (shift from count))
-let moveQ from count = (Board.Queen, toPos from, toPos (shift from count))
+let moveP from steps = (Board.Pawn, toPos from, toPos (shift from steps))
+let moveQ from steps = (Board.Queen, toPos from, toPos (shift from steps))
 
 let destination actual = match actual with | Board.Moved (_, (result, _)) -> result
 
