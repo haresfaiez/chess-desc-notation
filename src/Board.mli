@@ -26,7 +26,7 @@ module Board : sig
   val move         : position list -> square -> turn
   val play         : (piece * square) list -> history -> turn
   val start        : (piece * square) list -> turn
-  val _turn        : position list -> square -> history -> turn
+  val turn         : position list -> square -> history -> turn
   val init         : square -> history
   val setup        : piece -> position list
 end

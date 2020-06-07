@@ -14,7 +14,7 @@ let moveQ from steps = (Board.Queen, toPos from, toPos (shift from steps))
 
 let destination actual = match actual with | Board.Moved (_, (result, _)) -> result
 
-let rec turn piece destination history = Board._turn (Board.setup piece) destination history
+let rec turn piece destination history = Board.turn (Board.setup piece) destination history
 
 let () =
   describe "Initial piece positions" (fun () ->
@@ -47,7 +47,7 @@ let () =
       test "-K3 is unreachable from K1" (fun () ->
           expect (Board.move [toPos (k 1)] (k 3)) |> toBe Board.Unreachable);
       test "-K7 is unreachable from K2" (fun () ->
-          expect (Board._turn [toPos (k 2)] (k 3) [(Board.King, (toPos (k 1)), (toPos (k 2)))]) |> toBe Board.Unreachable);
+          expect (Board.turn [toPos (k 2)] (k 3) [(Board.King, (toPos (k 1)), (toPos (k 2)))]) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->

@@ -52,17 +52,17 @@ module Board = struct
   (* Implement a strategy to select the option *)
   let move sources destination = List.hd (moveOptions sources destination)
 
-  let rec _turn sources destination history =
+  let rec turn sources destination history =
     match history with
     | []                                           -> move sources destination
     | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
     | (_, (src, _), _) :: _ when destination = src -> move sources destination
-    | _                                            -> _turn sources destination (List.tl history)
+    | _                                            -> turn sources destination (List.tl history)
 
   let rec play moves history =
     match moves with
     | []                       -> End
-    | (piece, nextSquare) :: _ -> let outcome = _turn (setup piece) nextSquare (List.append history (init nextSquare)) in
+    | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (List.append history (init nextSquare)) in
                                   match outcome with
                                   | Moved (sorce, destination) -> play (List.tl moves) ((piece, sorce, destination) :: history)
                                   | _                          -> outcome
