@@ -43,6 +43,8 @@ let () =
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
           expect (Board.move [nullPosition (k 1)] (k 3)) |> toBe Board.Unreachable);
+      test "-K7 is unreachable from K2" (fun () ->
+          expect (Board._turn [nullPosition (k 2)] (k 3) [(Board.King, (nullPosition (k 1)), (nullPosition (k 2)))]) |> toBe Board.Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
