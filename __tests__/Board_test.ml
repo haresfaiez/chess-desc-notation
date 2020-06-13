@@ -66,8 +66,8 @@ let () =
         expect (destination (initTurn Board.Pawn (k 3) [])) |> toEqual (k 3));
       test "detects a conflict at Q-Q4 in [P-Q3, P-Q4, Q-Q4]" (fun () ->
         expect (initTurn Board.Queen (q 4) [(moveP (q 3) 1); (moveP (q 2) 1)]) |> toBe Board.Conflict);
-      test "detects no conflicts in [Q-Q1, Q-Q2, Q-Q1]" (fun () ->
-        expect (destination (initTurn Board.Queen (q 1) [(moveQ (q 1) 1)])) |> toEqual (q 1));
+      test "detects an unreachable movement in [Q-Q1, Q-Q1]" (fun () ->
+        expect (initTurn Board.Queen (q 1) [(moveQ (q 1) 1)]) |> toBe Board.Unreachable);
       test "detects unreachable destination in [P-Kn3, Kn-Kn2]" (fun () ->
         expect (initTurn Board.Knight (kn 2) [moveP (kn 2) 1]) |> toBe Board.Unreachable);
     );

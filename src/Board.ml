@@ -41,8 +41,6 @@ module Board = struct
     let check ((source, options), destination) next = (* TODO: set destination options *)
       if (List.exists (fun e -> e = destination) options)
       then [Moved ((source, options), (destination, []))]
-      else if (source = (Queen, Rank 1)) (* TODO: Remove this *)
-      then [Moved ((source, options), (destination, []))]
       else moveOptions next destination
     in
     match sources with
