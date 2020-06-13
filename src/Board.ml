@@ -42,8 +42,8 @@ module Board = struct
   let rec moveOptions sources destination =
     let findDestination (_, options) = exists (fun e -> e = destination) options in
     match sources with
-    | []                                             -> [Unreachable]
-    | current :: next when (findDestination current) -> [Moved (current, (destination, []))]
+    | []                                             -> [Unreachable] (* TODO: Add variant for null-movement *)
+    | current :: next when (findDestination current) -> [Moved (current, (destination, []))] (* TODO: Set destination options *)
     | _ :: next                                      -> moveOptions next destination
 
   (* Implement a strategy to select the option *)
