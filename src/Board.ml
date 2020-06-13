@@ -10,7 +10,7 @@ module Board = struct
   type rank =
     | Rank of int (* value should be between 1 and 8 *)
 
-  type square = (piece * rank)
+  type square = piece * rank
 
   type position = square * square list
 
@@ -61,7 +61,7 @@ module Board = struct
     | []                       -> End
     | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (append history (init nextSquare)) in
                                   match outcome with
-                                  | Moved (sorce, destination) -> play (tl moves) ((piece, sorce, destination) :: history)
+                                  | Moved (source, destination) -> play (tl moves) ((piece, source, destination) :: history)
                                   | _                          -> outcome
 
   let start moves = play moves []
