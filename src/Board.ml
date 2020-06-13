@@ -1,3 +1,5 @@
+open List
+
 module Board = struct
   type piece =
     | King
@@ -33,32 +35,32 @@ module Board = struct
 
   let init square =
     match square with
-    | (file, Rank 1) -> [(file, List.hd (setup file), (square, []))]
+    | (file, Rank 1) -> [(file, hd (setup file), (square, []))]
     | (_, Rank 2)    -> [(Pawn, (square, []), (square, []))] (* TODO: Use setup *)
     | _              -> []
 
   let rec moveOptions sources destination =
     match sources with
     | []                        -> [Unreachable]
-    | (source, options) :: next when (List.exists (fun e -> e = destination) options) -> [Moved ((source, options), (destination, []))]
+    | (source, options) :: next when (exists (fun e -> e = destination) options) -> [Moved ((source, options), (destination, []))]
     | _ :: next -> moveOptions next destination
 
   (* Implement a strategy to select the option *)
-  let move sources destination = List.hd (moveOptions sources destination)
+  let move sources destination = hd (moveOptions sources destination)
 
   let rec turn sources destination history =
     match history with
     | []                                           -> move sources destination
     | (_, _, (dst, _)) :: _ when destination = dst -> Conflict
     | (_, (src, _), _) :: _ when destination = src -> move sources destination
-    | _                                            -> turn sources destination (List.tl history)
+    | _                                            -> turn sources destination (tl history)
 
   let rec play moves history =
     match moves with
     | []                       -> End
-    | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (List.append history (init nextSquare)) in
+    | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (append history (init nextSquare)) in
                                   match outcome with
-                                  | Moved (sorce, destination) -> play (List.tl moves) ((piece, sorce, destination) :: history)
+                                  | Moved (sorce, destination) -> play (tl moves) ((piece, sorce, destination) :: history)
                                   | _                          -> outcome
 
   let start moves = play moves []
