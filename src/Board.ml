@@ -68,8 +68,9 @@ module Board = struct
 
   let nextSetup setup expected (source, destination) =
     fun actual ->
+    let prevSetup = setup actual in
     if (expected = actual)
-    then (append [destination] (filter (fun e -> e <> source) (setup actual)))
-    else (setup actual)
+    then (append [destination] (filter (fun e -> e <> source) prevSetup))
+    else prevSetup
 
 end
