@@ -66,5 +66,5 @@ module Board = struct
 
   let start moves = play moves []
 
-  let nextSetup _ _ _ = fun _ -> [(Queen, Rank 3), [(Queen, Rank 4)]]
+  let nextSetup _ _ (_, destination) = fun _ -> [destination]
 end
