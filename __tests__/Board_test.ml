@@ -103,6 +103,5 @@ let () =
       test "returns inital queen setup when it does not move" (fun () ->
           expect((nextSetup (fun _ -> [q 1, []]) Pawn pQ2Q3) Queen) |> toEqual [q 1, []]);
       test "keeps non-moved pawns when a pawn moves" (fun () ->
-          expect((nextSetup (fun _ -> [(q 2, [q 3]); (k 2, [k 3])]) Pawn pQ2Q3) Pawn)
-          |> toEqual [(q 3, [q 4]); (k 2, [k 3])]);
+          expect((nextSetup (fun _ -> [(q 2, [q 3]); (k 2, [k 3])]) Pawn pQ2Q3) Pawn) |> toEqual [(q 3, [q 4]); (k 2, [k 3])]);
     );
