@@ -62,7 +62,7 @@ module Board = struct
     | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (append history (init nextSquare)) in
                                   match outcome with
                                   | Moved (source, destination) -> play (tl moves) ((piece, source, destination) :: history)
-                                  | _                          -> outcome
+                                  | _                           -> outcome
 
   let start moves = play moves []
 
