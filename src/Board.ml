@@ -66,7 +66,10 @@ module Board = struct
 
   let start moves = play moves []
 
-  let nextSetup setup expected (_, destination) =
-    fun actual -> if (expected = actual) then [destination] else (setup actual)
+  let nextSetup setup expected (source, destination) =
+    fun actual ->
+    if (expected = actual)
+    then (append [destination] (filter (fun e -> e <> source) (setup actual)))
+    else (setup actual)
 
 end
