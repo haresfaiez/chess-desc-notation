@@ -101,4 +101,6 @@ let () =
       let pQ2Q3 = (((q 2), [q 3]), ((q 3), [q 4])) in
       test "overrides inital pawn setup after it moves" (fun () ->
         expect((Board.nextSetup (fun _ -> [((q 2), [q 3])]) Board.Pawn pQ2Q3) Board.Pawn) |> toEqual [(q 3), [(q 4)]]);
+      test "returns inital queen setup when it does not move" (fun () ->
+        expect((Board.nextSetup (fun _ -> [((q 1), [])]) Board.Pawn pQ2Q3) Board.Queen) |> toEqual [(q 1), []]);
     );
