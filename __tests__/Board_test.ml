@@ -97,3 +97,7 @@ let () =
       test "moves queen one step backward" (fun() ->
           expect(moveQ (q 2) (-1)) |> toEqual (Board.Queen, ((q 2), []), ((q 1), [])));
     );
+  describe "Next setup" (fun () ->
+      test "overrides inital pawn setup after it moves" (fun () ->
+        expect((Board.nextSetup (fun _ -> [((q 2), [q 3])]) Board.Pawn (((q 2), [q 3]), ((q 3), [q 4]))) Board.Pawn) |> toEqual [(q 3), [(q 4)]]);
+    );
