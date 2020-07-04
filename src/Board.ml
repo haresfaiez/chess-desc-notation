@@ -70,7 +70,7 @@ module Board = struct
     fun actual ->
     let prevSetup = setup actual in
     if (expected = actual)
-    then (append [destination] (filter (fun e -> e <> source) prevSetup))
+    then (destination :: (filter (fun e -> e <> source) prevSetup))
     else prevSetup
 
 end
