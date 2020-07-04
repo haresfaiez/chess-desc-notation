@@ -22,6 +22,8 @@ module Board : sig
     | Moved: movement -> turn
     | End
 
+  type setup = piece -> position list
+
   val moveOptions  : position list -> square -> turn list
   val move         : position list -> square -> turn
   val play         : (piece * square) list -> history -> turn

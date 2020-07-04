@@ -24,6 +24,8 @@ module Board = struct
     | Moved: movement -> turn
     | End
 
+  type setup = piece -> position list
+
   let setup piece =
     let at rank = (piece, Rank rank) in
     let pawnAt file = ((file, Rank 2), [(file, Rank 3)]) in
