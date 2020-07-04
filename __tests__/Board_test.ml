@@ -17,13 +17,13 @@ let initTurn piece destination history = turn (setup piece) destination history
 let () =
   describe "Initial piece positions" (fun () ->
       test "of the king are K1" (fun () ->
-          expect (setup King) |> toEqual [((k 1), [(k 2)])]);
+          expect (setup King) |> toEqual [(k 1, [k 2])]);
       test "of the Queen are Q1" (fun () ->
-          expect (setup Queen) |> toEqual [(q 1), [(q 2); (q 3); (q 4)]]);
+          expect (setup Queen) |> toEqual [q 1, [q 2; q 3; q 4]]);
       test "of the Knight are Kn1,Kn1" (fun () ->
           expect (setup Knight) |> toEqual [(kn 1, []); (kn 1, [])]);
       test "of the pawn are Kn2,K2,Q2,Kn2" (fun () ->
-          expect (setup Pawn) |> toEqual [(kn 2, [(kn 3)]); (q 2, [(q 3)]); (k 2, [(k 3)]); (kn 2, [(kn 3)])]);
+          expect (setup Pawn) |> toEqual [(kn 2, [(kn 3)]); (q 2, [q 3]); (k 2, [k 3]); (kn 2, [kn 3])]);
     );
   describe "Movement" (fun () ->
       test "fails when no sources are available" (fun () ->
@@ -33,9 +33,9 @@ let () =
       test "-K7 is unreachable from K2" (fun () ->
           expect (move [(k 2, [])] (k 7)) |> toBe Unreachable);
       test "-K3 succeeds from K2" (fun () ->
-          expect (destination (move [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
+          expect (destination (move [k 2, [k 3]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
-          expect (move (setup Pawn) (k 3)) |> toEqual (Moved (((k 2), [(k 3)]), (shift (k 2) 1, []))));
+          expect (move (setup Pawn) (k 3)) |> toEqual (Moved ((k 2, [k 3]), (shift (k 2) 1, []))));
     );
   describe "Initial movement: Kn" (fun () ->
       test "-K7 fails" (fun () ->
@@ -71,29 +71,29 @@ let () =
     );
   describe "Game play" (fun () ->
       test "[K-K2] fails" (fun () ->
-          expect (start [(King, (k 2))]) |> toBe Conflict);
+          expect (start [(King, k 2)]) |> toBe Conflict);
       test "[K-K2, P-Q3] fails" (fun () ->
-          expect (start [(King, (k 2)); (Pawn, (q 3))]) |> toBe Conflict);
+          expect (start [(King, k 2); (Pawn, q 3)]) |> toBe Conflict);
       test "[P-K7, P-Q3] fails" (fun () ->
-          expect (start [(Pawn, (k 7)); (Pawn, (q 3))]) |> toBe Unreachable);
+          expect (start [(Pawn, (k 7)); (Pawn, q 3)]) |> toBe Unreachable);
       test "[P-Q3, K-K2] fails" (fun () ->
-          expect (start [(Pawn, (q 3)); (King, (k 2))]) |> toBe Conflict);
+          expect (start [(Pawn, q 3); (King, k 2)]) |> toBe Conflict);
       test "[P-Q3, Q-Q3] fails" (fun () ->
-          expect (start [(Pawn, (q 3)); (Queen, (q 3))]) |> toBe Conflict);
+          expect (start [(Pawn, q 3); (Queen, q 3)]) |> toBe Conflict);
       test "[P-Q3, P-K3, Q-Q3] fails" (fun () ->
-          expect (start [(Pawn, (q 3)); (Pawn, (k 3)); (Queen, (q 3))]) |> toBe Conflict);
+          expect (start [(Pawn, q 3); (Pawn, k 3); (Queen, q 3)]) |> toBe Conflict);
       test "[P-Q3, Q-Q2] succeeds" (fun () ->
-          expect (start [(Pawn, (q 3)); (Queen, (q 2))]) |> toBe End);
+          expect (start [(Pawn, q 3); (Queen, q 2)]) |> toBe End);
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
-          expect(moveP (k 2) 1) |> toEqual (Pawn, ((k 2), []), ((k 3), [])));
+          expect(moveP (k 2) 1) |> toEqual (Pawn, (k 2, []), (k 3, [])));
       test "keeps pawn in K2 when the steps count is 0" (fun () ->
-          expect(moveP (k 2) 0) |> toEqual (Pawn, ((k 2), []), ((k 2), [])));
+          expect(moveP (k 2) 0) |> toEqual (Pawn, (k 2, []), (k 2, [])));
       test "moves queen one step forward" (fun() ->
-          expect(moveQ (q 2) 1) |> toEqual (Queen, ((q 2), []), ((q 3), [])));
+          expect(moveQ (q 2) 1) |> toEqual (Queen, (q 2, []), (q 3, [])));
       test "moves queen one step backward" (fun() ->
-          expect(moveQ (q 2) (-1)) |> toEqual (Queen, ((q 2), []), ((q 1), [])));
+          expect(moveQ (q 2) (-1)) |> toEqual (Queen, (q 2, []), (q 1, [])));
     );
   describe "Next setup" (fun () ->
       let pQ2Q3 = ((q 2, [q 3]), (q 3, [q 4])) in
