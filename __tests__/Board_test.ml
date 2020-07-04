@@ -7,9 +7,8 @@ let shift (file, Rank origin) steps = (file, Rank (origin + steps))
 let k rank           = (King, (Rank rank))
 let q rank           = (Queen, (Rank rank))
 let kn rank          = (Knight, (Rank rank))
-let toPos square     = (square, [])
-let moveP from steps = (Pawn, toPos from, toPos (shift from steps))
-let moveQ from steps = (Queen, toPos from, toPos (shift from steps))
+let moveP from steps = (Pawn, (from, []), (shift from steps, []))
+let moveQ from steps = (Queen, (from, []), (shift from steps, []))
 
 let destination actual = match actual with | Moved (_, (result, _)) -> result
 
@@ -32,7 +31,7 @@ let () =
     );
   describe "Movement: P" (fun () ->
       test "-K7 is unreachable from K2" (fun () ->
-          expect (move [toPos (k 2)] (k 7)) |> toBe Unreachable);
+          expect (move [(k 2, [])] (k 7)) |> toBe Unreachable);
       test "-K3 succeeds from K2" (fun () ->
           expect (destination (move [(k 2), [(k 3)]] (k 3))) |> toEqual (k 3));
       test "-K3 succeeds from initial setup" (fun () ->
@@ -44,9 +43,9 @@ let () =
     );
   describe "Movement: K" (fun () ->
       test "-K3 is unreachable from K1" (fun () ->
-          expect (move [toPos (k 1)] (k 3)) |> toBe Unreachable);
+          expect (move [(k 1, [])] (k 3)) |> toBe Unreachable);
       test "-K7 is unreachable from K2" (fun () ->
-          expect (initTurn King (k 3) [(King, (toPos (k 1)), (toPos (k 2)))]) |> toBe Unreachable);
+          expect (initTurn King (k 3) [(King, (k 1, []), (k 2, []))]) |> toBe Unreachable);
     );
   describe "Movement: Q" (fun () ->
       test "-Q4 succeeds from Q1" (fun () ->
