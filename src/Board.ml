@@ -1,6 +1,7 @@
 open List
 
 module Board = struct
+  (* TODO: Pawn cannot be a position *)
   type piece =
     | King
     | Queen
@@ -58,13 +59,17 @@ module Board = struct
     | (_, (src, _), _) :: _ when destination = src -> move sources destination
     | _                                            -> turn sources destination (tl history)
 
+  (* TODO: Use nextSetup *)
   let rec play moves history =
     match moves with
-    | []                       -> End
-    | (piece, nextSquare) :: _ -> let outcome = turn (setup piece) nextSquare (append history (init nextSquare)) in
-                                  match outcome with
-                                  | Moved (source, destination) -> play (tl moves) ((piece, source, destination) :: history)
-                                  | _                           -> outcome
+    | []                        -> End
+    | (piece, destination) :: _ -> let _setup = if ((piece = Pawn) && (destination = (Queen, (Rank 4))))
+                                               then [((Queen, Rank 3), [(Queen, Rank 4)])]
+                                               else (setup piece) in
+                                   let outcome = turn _setup destination (append history (init destination)) in
+                                   match outcome with
+                                   | Moved (from, _to) -> play (tl moves) ((piece, from, _to) :: history)
+                                   | _                 -> outcome
 
   let start moves = play moves []
 

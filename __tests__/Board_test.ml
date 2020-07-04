@@ -84,6 +84,8 @@ let () =
           expect (start [(Pawn, q 3); (Pawn, k 3); (Queen, q 3)]) |> toBe Conflict);
       test "[P-Q3, Q-Q2] succeeds" (fun () ->
           expect (start [(Pawn, q 3); (Queen, q 2)]) |> toBe End);
+      test "[P-Q3, P-Q4] succeeds" (fun () ->
+          expect (start [(Pawn, q 4); (Pawn, q 3)]) |> toBe End);
     );
   describe "Vertical movement" (fun () ->
       test "moves pawn from P-K2 to P-K3" (fun () ->
