@@ -30,6 +30,6 @@ module Board : sig
   val start        : (piece * square) list -> turn
   val turn         : position list -> square -> history -> turn
   val init         : square -> history
-  val setup        : piece -> position list
-  val nextSetup    : (piece -> position list) -> piece -> movement -> (piece -> position list)
+  val setup        : setup
+  val nextSetup    : setup -> piece -> movement -> setup
 end
